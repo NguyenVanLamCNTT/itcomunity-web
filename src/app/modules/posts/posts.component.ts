@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import { MyUploadAdapter } from './uploadAdapter';
 import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
   }
 
   onchange(eventData: any) {
-    this.contentRichText = eventData?.target?.innerHTML;
+    this.contentRichText = eventData;
     console.log(this.contentRichText);
   }
 

@@ -1,5 +1,5 @@
 import { TokenStorageService } from './../../services/token-storage/token-storage.service';
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 const customBuild = require('../ckCustomBuild/build/ckeditor.js');
 import { MyUploadAdapter } from 'src/app/modules/posts/uploadAdapter';
@@ -21,7 +21,7 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
   public Editor = customBuild;
   token: string = '';
   @Input() readonly: boolean = false;
-
+  @Output() public changeInput = new EventEmitter<string>();
   private _value: string = '';
   config: any
 
@@ -41,6 +41,7 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   onChange(_: any) {
+    this.changeInput.emit(this.value);
   }
 
   onTouch() { }

@@ -78,7 +78,7 @@
                 </div>
                 <div class="mt-1">
                     <app-my-ck-editor [readonly]="readonly"
-                        (keydown)="onchange($event)"></app-my-ck-editor>
+                        (changeInput)="onchange($event)"></app-my-ck-editor>
                 </div>
                 <div class="d-flex justify-content-end mt-2">
                     <div>
@@ -92,8 +92,8 @@
         </mat-step>
         <mat-step #horizontalStepperStep2>
             <ng-template matStepLabel>Posts preview</ng-template>
-            <div class="group-posts-preview container">
-                <div class="d-flex">
+            <!-- <div class="group-posts-preview container">
+                <div class="d-flex mt-3">
                     <div class="avatar-image">
                         <img src="../../../../assets/images/logo-header-250x250.png" alt="">
                     </div>
@@ -137,17 +137,12 @@
                             <span>{{ tag.name }}</span>
                         </a>
                     </div>
-                    <!-- <div class="tag-name ms-1">
-                        <a href="#">
-                            <span>Notification</span>
-                        </a>
-                    </div> -->
                 </div>
                 <div class="group-content-posts mt-2">
-                    <h1 class="fw-bold">
+                    <h1 class="fw-bold title">
                         {{ this.postsForm.value.title }}
                     </h1>
-                    <div [innerHTML]="contentRichText">
+                    <div class="content-posts" [innerHTML]="contentRichText">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-2">
@@ -157,6 +152,15 @@
                     <div>
                         <button mat-raised-button color="primary" matStepperNext>Continue</button>
                     </div>
+                </div>
+            </div> -->
+            <app-posts-item [tags]="tags" [content]="contentRichText" [title]="this.postsForm.value.title"></app-posts-item>
+            <div class="d-flex justify-content-end mt-2">
+                <div>
+                    <button mat-raised-button color="warn" class="me-3" matStepperPrevious>Cancel</button>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" matStepperNext>Continue</button>
                 </div>
             </div>
         </mat-step>

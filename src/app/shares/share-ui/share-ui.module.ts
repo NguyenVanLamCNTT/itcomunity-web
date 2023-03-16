@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
+import { PostsItemComponent } from './posts-item/posts-item.component';
 
 
 
@@ -20,7 +21,8 @@ import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
     LanguageComponent,
     MenuComponent,
     CardItemComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    PostsItemComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
     PageNotFoundComponent,
     MenuComponent,
     CardItemComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    PostsItemComponent
   ]
 })
 export class ShareUiModule { }
