@@ -1,0 +1,22 @@
+{
+    "POSTS": "Bài viết",
+    "Q&A": "Hỏi đáp",
+    "DISCUSSIONS": "Thảo luận",
+    "LOGIN": "Đăng nhập",
+    "SEARCH": "Tìm kiếm",
+    "VALIDATE_EMAIL_SUB_HEADER": "Để tăng tính bảo mật của hệ thống, chúng tôi cần xác thực danh tính của bạn. Hiện tại, tài khoản của bạn chưa được xác thực vui lòng kiểm tra Email của bạn và xác thực tài khoản để tiếp tục sử dụng các dịch vụ của chúng tôi.",
+    "WELCOME": "Chào mừng bạn đến với ITCommunity !",
+    "RESEND_OTP": "Gửi lại mã OTP",
+    "TIME_VERIFY_OTP": "Mã xác thực chỉ có hiệu lực trong 120s vui lòng nhập nó trước thời gian này.",
+    "PROFILE": "Hồ sơ",
+    "CHANGE_PASSWORD": "Đổi mật khẩu",
+    "LOGOUT": "Đăng xuất",
+    "CONTENT_CREATOR": "Nhà sáng tạo nội dung",
+    "NEWEST": "Mới nhất",
+    "FOLLOWINGS": "Đang theo dõi",
+    "SERIES": "Series",
+    "TRENDING": "Xu hướng",
+    "TITLE": "Tiêu đề",
+    "MY_BOOKMARKS": "Bài viết đã lưu",
+    "TOPICS": "Chủ đề"
+}

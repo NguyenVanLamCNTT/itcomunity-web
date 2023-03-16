@@ -1,0 +1,100 @@
+.group-card-item {
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 15px;
+
+    .avatar-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .group-content-user {
+        .name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--main-color);
+        }
+
+        .date-ago,
+        .time-readding,
+        .line,
+        i {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            font-weight: 300;
+            margin-top: 3px;
+        }
+    }
+
+    .group-content-title {
+        .title a{
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--black);
+        }
+        .title a:hover {
+            color: var(--main-color);
+        }
+    }
+
+    .icon {
+        i {
+            font-size: 1.2rem;
+            color: var(--main-color);
+            transform: rotate(35deg);
+        }
+    }
+
+    .tag-name-trending {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: var(--main-color);
+        margin-top: 10px;
+        width: fit-content;
+
+        a {
+            color: var(--white);
+        }
+    }
+
+    .tag-name {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: #f4f4f5;
+        margin-top: 10px;
+        width: fit-content;
+        border: 1px solid #e9e9eb;
+
+        a {
+            color: var(--gray-text);
+        }
+    }
+
+    .group-icon-action {
+        .icon-item {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            margin-left: 15px;
+            aspect-ratio: 3/2;
+
+            span {
+                margin-left: 3px;
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+}

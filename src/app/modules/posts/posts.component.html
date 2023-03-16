@@ -1,0 +1,175 @@
+<div class="posts-outer px-5 pt-2">
+    <mat-horizontal-stepper [linear]="true" #horizontalStepper>
+        <mat-step #horizontalStepperStep1>
+            <ng-template matStepLabel>Posts Info</ng-template>
+            <form [formGroup]="postsForm" class="mt-2">
+                <div class="form-group mt-1 col-12 row">
+                    <div class="col-10">
+                        <mat-form-field class="w-full width-1 col-12" appearance="outline">
+                            <mat-label>{{ 'TITLE' | translate }}</mat-label>
+                            <input matInput formControlName="title" [placeholder]="'Enter Title Text (not required)'">
+                        </mat-form-field>
+                        <mat-form-field class="w-full width-1 col-12" appearance="outline">
+                            <mat-label>{{ 'TOPICS' | translate }}</mat-label>
+                            <input matInput formControlName="topics" [placeholder]="'Enter Topic Text'">
+                        </mat-form-field>
+                        <div class="form-group col-12 mt-1 chip-list">
+                            <mat-form-field class="width-1 w-100" appearance="fill">
+                                <mat-chip-grid #chipGrid aria-label="Enter tags">
+                                    <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)" [editable]="true"
+                                        (edited)="edit(tag, $event)"
+                                        [aria-description]="'press enter to edit ' + tag.name">
+                                        {{tag.name}}
+                                        <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                                            <mat-icon>cancel</mat-icon>
+                                        </button>
+                                    </mat-chip-row>
+                                    <input placeholder="Tag your post. Maximum 5 tags. At least 1 tag!"
+                                        [matChipInputFor]="chipGrid"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+                                </mat-chip-grid>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                        <div>
+                            <div class="magazine1" appDrag (files)="detectFileThumbnail($event)">
+                                <label class="inline-block my-3 text-gray-500 text-center flex flex-col w-100"
+                                    *ngIf="urlThumbnail.length === 0">
+                                    Image Thumbnail </label>
+                                <div class="flex items-start justify-center w-100 drop1 h-100"
+                                    *ngIf="urlThumbnail.length === 0">
+                                    <label draggable="true" class="w-100 border-0" for="files1">
+                                        <div class="flex-column text-center w-100 pt-2">
+                                            <mat-icon aria-hidden="false" aria-label="Example home icon"
+                                                fontIcon="touch_app"></mat-icon>
+                                            <div class="desc">
+                                                Click Or Drag
+                                                <br />
+                                                Image Here
+                                            </div>
+                                            <p
+                                                class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                            </p>
+                                        </div>
+                                        <input type="file" id="files1" class="opacity-0"
+                                            (change)="detectFileThumbnail($event)" />
+                                    </label>
+                                </div>
+                                <div *ngFor="let url of urlThumbnail; let i = index" cdkDrag
+                                    class="d-flex justify-content-center align-items-cente w-100 h-100">
+                                    <div *ngIf="i === 0" class="h-100 w-100">
+                                        <div class="h-100 w-100">
+                                            <img class="flex flex-col rounded-lg" [src]="url"
+                                                style="height: 100%; width: 100%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center" *ngIf="urlThumbnail.length != 0">
+                                <button mat-mini-fab color="warn" (click)="removeUrlThumbnail()"
+                                    class="absolute justify-self-center my-fab">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-1">
+                    <app-my-ck-editor [readonly]="readonly"
+                        (keydown)="onchange($event)"></app-my-ck-editor>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <div>
+                        <button mat-raised-button color="warn" class="me-3">Cancel</button>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperNext>Continue</button>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step #horizontalStepperStep2>
+            <ng-template matStepLabel>Posts preview</ng-template>
+            <div class="group-posts-preview container">
+                <div class="d-flex">
+                    <div class="avatar-image">
+                        <img src="../../../../assets/images/logo-header-250x250.png" alt="">
+                    </div>
+                    <div class="ms-2">
+                        <div class="d-flex group-content-user align-items-start">
+                            <div class="name">
+                                <a href="">
+                                    <span>Hira Nguyen</span>
+                                </a>
+                            </div>
+                            <div class="date-ago ms-2">
+                                <span class="my-auto">@hira.n</span>
+                            </div>
+                            <span class="mx-3 line">-</span>
+                            <div class="time-readding">
+                                <span class="my-auto">3 phút đọc</span>
+                            </div>
+                            <div class="link-icon ms-2">
+                                <i class="fa-solid fa-link-simple"></i>
+                            </div>
+                        </div>
+                        <div class="group-icon-action d-flex mt-1">
+                            <div class="icon-item m-0">
+                                <i class="fa-solid fa-eye"></i>
+                                <span>0</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fa-solid fa-bookmark"></i>
+                                <span>0</span>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fa-solid fa-comment"></i>
+                                <span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="tag-name" *ngFor="let tag of tags">
+                        <a href="#">
+                            <span>{{ tag.name }}</span>
+                        </a>
+                    </div>
+                    <!-- <div class="tag-name ms-1">
+                        <a href="#">
+                            <span>Notification</span>
+                        </a>
+                    </div> -->
+                </div>
+                <div class="group-content-posts mt-2">
+                    <h1 class="fw-bold">
+                        {{ this.postsForm.value.title }}
+                    </h1>
+                    <div [innerHTML]="contentRichText">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <div>
+                        <button mat-raised-button color="warn" class="me-3" matStepperPrevious>Cancel</button>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperNext>Continue</button>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step #horizontalStepperStep3>
+            <ng-template matStepLabel>Posts options</ng-template>
+            <div class="d-flex justify-content-end mt-2">
+                <div>
+                    <button mat-raised-button color="warn" class="me-3" matStepperPrevious>Cancel</button>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" matStepperNext>Continue</button>
+                </div>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

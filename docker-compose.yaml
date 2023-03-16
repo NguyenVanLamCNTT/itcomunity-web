@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  itcommunity-website:
+    build: .
+    privileged: true
+    restart: always
+    container_name: itcommunity-website
+    ports:
+      - "80:80"
+      - "443:443"

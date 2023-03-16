@@ -1,0 +1,30 @@
+<div class="menu">
+    <div class="container">
+        <ul class="list-item d-flex justify-content-between m-0 align-item-center list-unstyled">
+            <ng-container *ngFor="let item of dataMenu">
+                <li class="p-3 text-decoration-none text-center" *ngIf="item.isShow || isLogin" (click)="selectItem(item)">
+                    <div class="text-center">
+                        <a routerLink="{{item.link}}" class="text-decoration-none" [class.active]="item.isActive">
+                            <span class="fw-normal text-white text-xs">
+                                {{ item.name | translate}}
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ng-container>
+            <ng-container>
+                <li class="text-decoration-none d-flex justify-center align-items-center">
+                    <div class="text-center">
+                        <a routerLink="/login" class="btn btn-primary text-decoration-none" routerLink="/create-post"
+                            *ngIf="isLogin">
+                            <i class="fa-sharp fa-regular fa-pen-to-square text-white"></i>
+                            <span class="fw-bold text-white">
+                                {{ 'POSTS' | translate }}
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

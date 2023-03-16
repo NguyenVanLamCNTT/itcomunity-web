@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-lg p-0">
+        <a class="navbar-brand" href="/home">
+            <img src="assets/images/logo-header-250x250.png" width="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" data-spy="affix"
+            data-offset-top="700">
+            <span class="navbar-toggler-icon">
+                <i class="fa fa-navicon" style="color:#fff; font-size:28px;"></i>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="mx-3 icon-logo navbar-nav col-12 col-lg-7 row text-lg-center h-100">
+                <li class="col-1"></li>
+                <li class="nav-item active col-4 col-lg-3 p-0">
+                    <a class="nav-link text-black fw-bold" href="#">
+                        {{ 'POSTS' | translate }}
+                    </a>
+                </li>
+                <li class="nav-item active col-4 col-lg-3 p-0">
+                    <a class="nav-link text-black fw-bold" href="#">
+                        {{ 'Q&A' | translate }}
+                    </a>
+                </li>
+                <li class="nav-item active col-4 col-lg-3 p-0">
+                    <a class="nav-link text-black" href="#">
+                        {{ 'DISCUSSIONS' | translate }}
+                    </a>
+                </li>
+            </ul>
+            <ul class="mx-3 icon-logo navbar-nav col-12 col-lg-5 row">
+                <li class="nav-item active col-7 p-0">
+                    <a class="nav-link text-black fw-bold">
+                        <div class="d-flex">
+                            <div class="form-group">
+                                <input type="text" class="form-control pe-5"
+                                    placeholder="{{ 'SEARCH' | translate }}...">
+                            </div>
+                            <button class="btn btn-search">
+                                <i class="fa fa-search form-control-icon"></i>
+                            </button>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item active col-3 p-0 login-item d-flex justify-items-center">
+                    <a href="" *ngIf="isLogin" class="me-3">
+                        <span class="my-auto h-100 d-flex align-items-center">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </span>
+                    </a>
+                    <a href="" *ngIf="isLogin" class="me-3">
+                        <span class="my-auto h-100 d-flex align-items-center">
+                            <i class="fa-solid fa-bell"></i>
+                        </span>
+                    </a>
+                    <a href="" *ngIf="isLogin" class="me-3">
+                        <span class="my-auto h-100 d-flex align-items-center">
+                            <i class="fa-sharp fa-solid fa-pen-line"></i>
+                        </span>
+                    </a>
+                    <a href="" class="dropdown" *ngIf="isLogin">
+                        <span class="my-auto h-100 d-flex align-items-center" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="assets/images/logo-header-250x250.png" width="30">
+                        </span>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">{{ 'PROFILE' | translate }}</a></li>
+                            <li><a class="dropdown-item" href="#">{{ 'CHANGE_PASSWORD' | translate }}</a></li>
+                            <li><a class="dropdown-item" (click)="logout()">{{ 'LOGOUT' | translate }}</a></li>
+                        </ul>
+                    </a>
+                    <a class="nav-link fw-bold h-100" routerLink="/auth/login" *ngIf="!isLogin">
+                        <span class="my-auto h-100 d-flex align-items-center">
+                            <i class="fa-solid fa-user me-2"></i>
+                            {{ 'LOGIN' | translate }}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item active col-1 p-0">
+                    <a class="nav-link text-black fw-bold">
+                        <app-language></app-language>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
