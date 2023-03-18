@@ -1,3 +1,4 @@
+import { HighlightJsModule, HighlightJsDirective } from 'ngx-highlight-js';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -10,9 +11,6 @@ import { MenuComponent } from './menu/menu.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
 import { PostsItemComponent } from './posts-item/posts-item.component';
-
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -27,7 +25,8 @@ import { PostsItemComponent } from './posts-item/posts-item.component';
   imports: [
     CommonModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    HighlightJsModule
   ],
   exports: [
     NavbarComponent,
@@ -37,6 +36,9 @@ import { PostsItemComponent } from './posts-item/posts-item.component';
     CardItemComponent,
     SafeHtmlPipe,
     PostsItemComponent
+  ],
+  providers: [
+    HighlightJsDirective
   ]
 })
 export class ShareUiModule { }

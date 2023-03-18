@@ -73,7 +73,7 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
           'code', 'codeBlock', '|',
           'insertTable', '|',
           'imageInsert', 'blockQuote', '|',
-          'todoList'
+          'todoList',
           ,
           'undo', 'redo',
         ],

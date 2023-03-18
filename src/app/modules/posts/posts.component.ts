@@ -37,7 +37,9 @@ export class PostsComponent implements OnInit {
   }
 
   onchange(eventData: any) {
+    console.log(eventData);
     this.contentRichText = eventData;
+    // this.contentRichText = this.contentRichText.replace(/<pre/g, '<pre highlight-js lang=\"ts\"');
     console.log(this.contentRichText);
   }
 

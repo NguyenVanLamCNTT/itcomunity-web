@@ -37,6 +37,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 
 class Editor extends ClassicEditor { }
 
@@ -76,6 +77,7 @@ Editor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
+	CodeBlock
 ];
 
 export default Editor;
