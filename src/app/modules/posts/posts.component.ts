@@ -1,9 +1,12 @@
+import { map, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { PostsService } from './../../shares/services/posts/posts.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import { MyUploadAdapter } from './uploadAdapter';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { UploadFileService } from 'src/app/shares/services/uploadFile/upload-file.service';
 const hljs = require('highlight.js');
 export interface Tag {
   name: string;
@@ -25,8 +28,9 @@ export class PostsComponent implements OnInit {
   content: any;
   postsMode: any = 'publish';
 
-  constructor(private formBuilder: FormBuilder,
-              private postsService: PostsService) {
+  constructor(private postsService: PostsService,
+    private uploadFileService: UploadFileService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -113,6 +117,7 @@ export class PostsComponent implements OnInit {
         reader.readAsDataURL(file);
       }
     }
+    console.log('this.filesThumbnail', this.filesThumbnail[0]);
   }
 
   removeUrlThumbnail(): void {
@@ -127,20 +132,31 @@ export class PostsComponent implements OnInit {
     });
   }
   submit(): void {
-    // console.log(this.postsForm.value);
     const keywords = this.tags.map((tag: any) => tag.name);
     const data = {
       name: this.postsForm.value.title,
       topics: [1],
       content: this.content,
       keywords: keywords,
-      thumbnail: this.urlThumbnail,
       status: this.postsMode,
       imageUrl: ''
     };
-    console.log(data);
+    if (this.filesThumbnail[0]) {
+      const fd = new FormData();
+      fd.append('upload', this.filesThumbnail[0]);
+      this.uploadFileService.uploadFile(fd).pipe(
+        switchMap(res => {
+          data.imageUrl = res.fileName;
+          return this.postsService.createPosts(data);
+        })
+      ).subscribe((res: any) => {
+        this.router.navigate(['/home/newest']);
+      });
+      return;
+    }
     this.postsService.createPosts(data).subscribe((res: any) => {
       console.log(res);
+      this.router.navigate(['/home/newest']);
     });
   }
 }
