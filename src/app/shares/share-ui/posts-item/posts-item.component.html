@@ -53,7 +53,7 @@
         <h1 class="fw-bold title">
             {{ title }}
         </h1>
-        <div [innerHTML]="content">
+        <div [innerHTML]="content | safeHtml">
         </div>
     </div>
 </div>

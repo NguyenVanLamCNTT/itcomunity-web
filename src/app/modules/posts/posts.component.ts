@@ -1,9 +1,10 @@
+import { PostsService } from './../../shares/services/posts/posts.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import { MyUploadAdapter } from './uploadAdapter';
-import {MatChipEditedEvent, MatChipInputEvent} from '@angular/material/chips';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+const hljs = require('highlight.js');
 export interface Tag {
   name: string;
 }
@@ -21,8 +22,11 @@ export class PostsComponent implements OnInit {
   tags: Tag[] = [];
   urlThumbnail: any = [];
   filesThumbnail: any;
+  content: any;
+  postsMode: any = 'publish';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private postsService: PostsService) {
   }
 
   ngOnInit(): void {
@@ -37,10 +41,12 @@ export class PostsComponent implements OnInit {
   }
 
   onchange(eventData: any) {
-    console.log(eventData);
     this.contentRichText = eventData;
-    // this.contentRichText = this.contentRichText.replace(/<pre/g, '<pre highlight-js lang=\"ts\"');
-    console.log(this.contentRichText);
+    this.contentRichText = this.contentRichText.replace(/<code/g, '<code class=\"hljs\"');
+    document.querySelectorAll('pre code').forEach((el) => {
+      console.log('hljs.highlightElement(el)', el)
+      hljs.highlightElement(el);
+    });
   }
 
   isControlValid(formGroup: FormGroup, controlName: string): boolean {
@@ -67,7 +73,7 @@ export class PostsComponent implements OnInit {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.tags.push({name: value});
+      this.tags.push({ name: value });
     }
 
     event.chipInput!.clear();
@@ -109,7 +115,32 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  removeUrlThumbnail(): void { 
-    this.urlThumbnail = []; 
+  removeUrlThumbnail(): void {
+    this.urlThumbnail = [];
+  }
+
+  next(): void {
+    this.content = this.contentRichText;
+    document.querySelectorAll('pre code').forEach((el) => {
+      console.log('hljs.highlightElement(el)', el)
+      hljs.highlightElement(el);
+    });
+  }
+  submit(): void {
+    // console.log(this.postsForm.value);
+    const keywords = this.tags.map((tag: any) => tag.name);
+    const data = {
+      name: this.postsForm.value.title,
+      topics: [1],
+      content: this.content,
+      keywords: keywords,
+      thumbnail: this.urlThumbnail,
+      status: this.postsMode,
+      imageUrl: ''
+    };
+    console.log(data);
+    this.postsService.createPosts(data).subscribe((res: any) => {
+      console.log(res);
+    });
   }
 }

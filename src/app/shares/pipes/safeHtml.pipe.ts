@@ -1,6 +1,6 @@
 import { Component, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-const linkifyHtml = require('linkify-html');
+// const linkifyHtml = require('linkify-html');
 
 @Pipe({
   name: 'safeHtml'
@@ -8,9 +8,9 @@ const linkifyHtml = require('linkify-html');
 export class SafeHtmlPipe implements PipeTransform {
   constructor(private sanitized: DomSanitizer) { }
   transform(value: any) {
-    // return this.sanitized.bypassSecurityTrustHtml(value);
-    const options = { defaultProtocol: 'https' };
-    const linkifiedValue = linkifyHtml(value, options);
-    return this.sanitized.bypassSecurityTrustHtml(linkifiedValue);
+    return this.sanitized.bypassSecurityTrustHtml(value);
+    // const options = { defaultProtocol: 'https' };
+    // const linkifiedValue = linkifyHtml(value, options);
+    // return this.sanitized.bypassSecurityTrustHtml(linkifiedValue);
   }
 }

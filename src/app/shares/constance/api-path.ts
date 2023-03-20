@@ -12,6 +12,11 @@ export const apiPath = {
       refreshToken: 'api/auth/refreshToken',
       changePassword: 'api/auth/changePassword',
       register: 'api/auth/register',
+    },
+    posts: {
+      posts: 'api/posts',
+      postsByUserFollow: 'api/posts/users/user-follow',
+      postsBySeries: 'api/posts/series',
     }
   }
   
