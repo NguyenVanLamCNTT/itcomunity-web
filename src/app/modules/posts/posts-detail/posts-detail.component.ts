@@ -17,13 +17,10 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(() => {
       document.querySelectorAll('h1, h2').forEach((el: any) => {
-        console.log('el', el.tagName);
         this.headers.push({
           tag: el.tagName,
           id: el.textContent
         });
-        console.log('this.headers', this.headers);
-        console.log('el.textContent?.toLowerCase()', el.textContent?.toLowerCase().replace(/ /g, '_'));
         el.setAttribute('id', el.textContent?.toLowerCase().replace(/ /g, '_').replace(/[^a-zA-Z_]/g, ''));
       });
     }, 1000);
@@ -34,12 +31,26 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
       this.postsId = res?.id;
     });
     this.listenService();
+    window.addEventListener('scroll', this.setFixedSideBar);
+  }
+  setFixedSideBar(event: any) {
+    const scrollValue = window.pageYOffset;
+    this.headers?.forEach((header: any) => {
+      // find the element that is currently in the viewport
+      const element = document.querySelector(this.getIdScroll(header.id));
+      if (element) {
+        const elementPosition = element.getBoundingClientRect().top;
+        if (elementPosition < 0) {
+          console.log('header.id', header.id);
+        }
+      }
+    });
   }
 
   listenService(): void {
     this.postsService.getPostsById(this.postsId).subscribe(posts => {
       this.posts = posts;
-      console.log('this.posts', this.posts);
+      console.log('posts', posts);
     })
   }
 
@@ -48,9 +59,7 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   }
 
   scroll(header: string): void {
-    console.log('scroll');
     const id = `#${header?.toLowerCase().replace(/ /g, '_').replace(/[^a-zA-Z_]/g, '')}`;
-    console.log('id', id);
     const el = document.querySelector(id);
     el?.scrollIntoView({ behavior: 'smooth' });
   }

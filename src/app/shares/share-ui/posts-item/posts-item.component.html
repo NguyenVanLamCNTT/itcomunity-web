@@ -1,17 +1,17 @@
 <div class="group-posts-preview container">
     <div class="d-flex mt-3">
         <div class="avatar-image">
-            <img src="../../../../assets/images/logo-header-250x250.png" alt="">
+            <img src="{{user?.avatar}}" alt="">
         </div>
         <div class="ms-2">
             <div class="d-flex group-content-user align-items-start">
                 <div class="name">
                     <a href="">
-                        <span>Hira Nguyen</span>
+                        <span>{{ user?.fullName }}</span>
                     </a>
                 </div>
                 <div class="date-ago ms-2">
-                    <span class="my-auto">@hira.n</span>
+                    <span class="my-auto">@{{user?.username}}</span>
                 </div>
                 <span class="mx-3 line">-</span>
                 <div class="time-readding">

@@ -13,6 +13,7 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
   @Input() topics: any;
   @Input() postsForm: any;
   @Input() content: any;
+  @Input() user: any;
 
   constructor(private _renderer: Renderer2, private cd: HighlightJsDirective) {
 

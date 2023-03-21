@@ -3,16 +3,13 @@
     max-width: 279px !important;
 
     .sticky {
-        margin-top: 10px;
         position: sticky;
-        top: 0;
+        top: 10px;
     }
     ul {
-        list-style: none;
         padding: 0;
         li {
             cursor: pointer;
-
             &:hover {
                 color: var(--main-color);
             }

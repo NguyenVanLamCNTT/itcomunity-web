@@ -41,7 +41,7 @@
 </div>
 <div class="mt-3 container d-flex">
     <div class="w-75">
-        <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name"></app-posts-item>
+        <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name" [user]="posts?.author"></app-posts-item>
     </div>
     <div class="w-25 mt-3 left-side-bar">
         <div class="left-side-bar-item sticky" id="sidebar">
@@ -51,7 +51,7 @@
                     <hr class="title-line ms-2">
                 </div>
                 <ul *ngFor="let header of headers">
-                    <li>
+                    <li [class.ms-3]="header.tag === 'H2'">
                         <a (click)="scroll(header.id)">
                             <span>{{ header.id }}</span>
                         </a>
