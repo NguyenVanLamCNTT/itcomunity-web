@@ -43,7 +43,22 @@
     <div class="w-75">
         <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name"></app-posts-item>
     </div>
-    <div class="w-25 mt-3">
-        <app-sidebar-ask></app-sidebar-ask>
+    <div class="w-25 mt-3 left-side-bar">
+        <div class="left-side-bar-item sticky" id="sidebar">
+            <div class="mx-4">
+                <div class="d-flex">
+                    <h5 class="title-sidebar text-uppercase">Mục lục</h5>
+                    <hr class="title-line ms-2">
+                </div>
+                <ul *ngFor="let header of headers">
+                    <li>
+                        <a (click)="scroll(header.id)">
+                            <span>{{ header.id }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <app-sidebar-ask></app-sidebar-ask>
+        </div>
     </div>
 </div>

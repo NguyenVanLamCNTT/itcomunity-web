@@ -11,7 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
 import { PostsItemComponent } from './posts-item/posts-item.component';
-import { SidebarAskComponent } from '../../shares/share-ui/sidebar-ask/sidebar-ask.component';
+import { SidebarAskComponent } from 'src/app/shares/share-ui/sidebar-ask/sidebar-ask.component';
 
 @NgModule({
   declarations: [

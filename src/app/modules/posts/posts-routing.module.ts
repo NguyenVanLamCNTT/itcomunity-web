@@ -3,6 +3,7 @@ import { PostsComponent } from './posts.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatePostsComponent } from './create-posts/create-posts.component';
+import { AuthGuard } from 'src/app/shares/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        component: CreatePostsComponent
+        component: CreatePostsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: ':id',

@@ -1,0 +1,33 @@
+.left-side-bar {
+    position: relative;
+    max-width: 279px !important;
+
+    .sticky {
+        margin-top: 10px;
+        position: sticky;
+        top: 0;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            cursor: pointer;
+
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+    }
+}
+
+.title-sidebar {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.title-line {
+    color: var(--gray-text);
+    flex-grow: 1;
+}
