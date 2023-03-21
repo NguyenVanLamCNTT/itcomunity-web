@@ -1,22 +1,22 @@
 import { map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { PostsService } from './../../shares/services/posts/posts.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { UploadFileService } from 'src/app/shares/services/uploadFile/upload-file.service';
 import { Posts } from 'src/app/shares/models/posts/posts';
+import { PostsService } from 'src/app/shares/services/posts/posts.service';
 const hljs = require('highlight.js');
 export interface Tag {
   name: string;
 }
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  selector: 'app-create-posts',
+  templateUrl: './create-posts.component.html',
+  styleUrls: ['./create-posts.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class CreatePostsComponent implements OnInit {
   public contentRichText: string = ""
   public readonly: boolean = true;
   postsForm: any;

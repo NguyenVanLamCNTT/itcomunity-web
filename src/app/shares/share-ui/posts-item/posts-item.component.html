@@ -38,9 +38,9 @@
         </div>
     </div>
     <div class="d-flex">
-        <div class="tag-name mr-2" *ngFor="let tag of tags">
+        <div class="tag-name me-1" *ngFor="let tag of tags">
             <a href="#">
-                <span>{{ tag.name }}</span>
+                <span>{{ tag.name ? tag.name : tag }}</span>
             </a>
         </div>
         <!-- <div class="tag-name ms-1">

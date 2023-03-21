@@ -18,14 +18,18 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // hljs.highlight(this.content, {language: 'javascript'});
-    console.log('hljs.highlight(this.content)', hljs.highlight(this.content, {language: 'javascript'}))
-    document.querySelectorAll('pre code').forEach((el) => {
-      console.log('hljs.highlightElement(el)',el)
-      hljs.highlightElement(el);
-    });
+    setTimeout(() => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    }, 1000);
   }
   ngAfterViewInit(): void {
-    console.log('hljs.highlightElement(el)')
+    console.log('ngAfterViewInit');
+    setTimeout(() => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    }, 1000);
   }
 }

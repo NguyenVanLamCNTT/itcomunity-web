@@ -4,7 +4,8 @@
         <i class="fa-regular fa-newspaper ms-3"></i>
     </div>
     <div class="mt-3">
-        <app-card-item></app-card-item>
-        <app-card-item></app-card-item>
+        <div *ngFor="let item of listPosts?.items">
+            <app-card-item [item]="item"></app-card-item>
+        </div>
     </div>
 </div>

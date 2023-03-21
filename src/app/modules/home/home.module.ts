@@ -4,13 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { SidebarAskComponent } from './component/sidebar-ask/sidebar-ask.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    SidebarAskComponent
   ],
   imports: [
     CommonModule,

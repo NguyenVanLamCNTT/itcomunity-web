@@ -11,6 +11,8 @@ import { MenuComponent } from './menu/menu.component';
 import { CardItemComponent } from './card-item/card-item.component';
 import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
 import { PostsItemComponent } from './posts-item/posts-item.component';
+import { SidebarAskComponent } from '../../shares/share-ui/sidebar-ask/sidebar-ask.component';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -20,7 +22,8 @@ import { PostsItemComponent } from './posts-item/posts-item.component';
     MenuComponent,
     CardItemComponent,
     SafeHtmlPipe,
-    PostsItemComponent
+    PostsItemComponent,
+    SidebarAskComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { PostsItemComponent } from './posts-item/posts-item.component';
     MenuComponent,
     CardItemComponent,
     SafeHtmlPipe,
-    PostsItemComponent
+    PostsItemComponent,
+    SidebarAskComponent
   ],
   providers: [
     HighlightJsDirective

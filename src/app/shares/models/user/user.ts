@@ -1,6 +1,8 @@
 import { classToPlain, deserialize, Expose, serialize } from 'class-transformer';
 
 export class User {
+    id?: Number;
+
     @Expose({ name: 'fullname' })
     fullname?: String;
 
@@ -36,6 +38,9 @@ export class User {
 
     @Expose({ name: 'confirm_email' })
     confirmEmail?: Boolean;
+
+    avatar?: String;
+    fullName?: String;
 
     static fromJson(user: any): User {
         return deserialize(User, user);

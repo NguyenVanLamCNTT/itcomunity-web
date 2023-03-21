@@ -2,17 +2,17 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <div class="avatar-image">
-                <img src="../../../../assets/images/logo-header-250x250.png" alt="">
+                <img src="{{item?.author?.avatar}}" alt="{{item?.author?.avatar}}">
             </div>
             <div class="ms-3">
                 <div class="d-flex group-content-user align-items-start">
-                    <div class="name">
+                    <div class="name mt-1">
                         <a href="">
-                            <span>ITCommunity Admin</span>
+                            <span>{{item?.author?.fullName}}</span>
                         </a>
                     </div>
                     <div class="date-ago ms-2">
-                        <span class="my-auto">thg 2 22, 4:28 CH</span>
+                        <span class="my-auto">{{item?.created | date: 'medium'}}</span>
                     </div>
                     <span class="mx-3 line">-</span>
                     <div class="time-readding">
@@ -24,33 +24,33 @@
                 </div>
                 <div class="group-content-title mt-1">
                     <div class="title">
-                        <a href="#">[ITCommunity] Giới thiệu các chương trình hợp tác cùng ITCommunity 2023</a>
+                        <a routerLink="/posts/{{item?.id}}">{{item?.name}}</a>
                     </div>
                 </div>
                 <div class="d-flex">
-                    <div class="tag-name-trending">
+                    <!-- <div class="tag-name-trending">
                         <a href="#">
                             <span>Announcement</span>
                         </a>
-                    </div>
-                    <div class="tag-name ms-1">
+                    </div> -->
+                    <div class="tag-name me-1" *ngFor="let tag of item?.keywords">
                         <a href="#">
-                            <span>Notification</span>
+                            <span>{{ tag }}</span>
                         </a>
                     </div>
                 </div>
                 <div class="group-icon-action d-flex mt-1">
                     <div class="icon-item m-0">
                         <i class="fa-solid fa-eye"></i>
-                        <span>1</span>
+                        <span>{{ item?.viewNumber }}</span>
                     </div>
                     <div class="icon-item">
                         <i class="fa-solid fa-bookmark"></i>
-                        <span>1</span>
+                        <span>{{ item?.commentNumber }}</span>
                     </div>
                     <div class="icon-item">
                         <i class="fa-solid fa-comment"></i>
-                        <span>1</span>
+                        <span>{{ item?.bookMarkNumber }}</span>
                     </div>
                 </div>
             </div>

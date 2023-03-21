@@ -15,10 +15,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import { CreatePostsComponent } from './create-posts/create-posts.component';
+import { PostsDetailComponent } from './posts-detail/posts-detail.component';
 
 @NgModule({
   declarations: [
     PostsComponent,
+    CreatePostsComponent,
+    PostsDetailComponent
   ],
   imports: [
     CommonModule,
