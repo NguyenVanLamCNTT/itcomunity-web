@@ -3,11 +3,10 @@ FROM node:16.14.2-alpine3.15 as builder
 
 WORKDIR /ng-app
 
-RUN npm install
+# RUN npm install
 
 COPY . .
-RUN npm run build:prod
-
+# RUN npm run build:prod
 
 FROM nginx:1.19.10
 
