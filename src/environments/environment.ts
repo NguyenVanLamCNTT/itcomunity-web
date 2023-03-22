@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://139.59.107.238:5000'
+  apiUrl: 'https://api.it-community.tech'
 };
 
 /*
