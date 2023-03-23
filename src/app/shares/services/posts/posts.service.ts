@@ -27,7 +27,7 @@ export class PostsService {
       );
   }
 
-  public getPosts(): Observable<Posts> {
+  public getPosts(): Observable<Posts[]> {
     const url = `${apiUrl}/${path.posts}`;
     return this.apiService.get(url)
       .pipe(

@@ -44,6 +44,7 @@ ul li {
 .btn-search {
     background: var(--main-color) !important;
     border-radius: 0 5px 5px 0 !important;
+
     i {
         color: var(--white);
     }
@@ -77,4 +78,24 @@ ul li {
     a {
         color: var(--main-color) !important;
     }
+}
+
+.jumbotron img {
+    vertical-align: bottom;
+    margin-right: 10px;
+}
+
+.center-content {
+    margin: auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.center-content img {
+    margin: 30px;
+    cursor: pointer;
 }

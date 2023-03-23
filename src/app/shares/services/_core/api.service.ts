@@ -4,7 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import * as _ from 'lodash-es';
 // import { keys } from 'lodash-es';
-import {TokenStorageService} from '../token-storage/token-storage.service';
+import {LocalStorageHelperService} from '../token-storage/localstorage-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import {TokenStorageService} from '../token-storage/token-storage.service';
 export class ApiService {
 
   constructor(private httpClient: HttpClient,
-              private storageService: TokenStorageService
+              private storageService: LocalStorageHelperService
   ) {
   }
 

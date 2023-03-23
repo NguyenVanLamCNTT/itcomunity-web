@@ -1,4 +1,4 @@
-import { TokenStorageService } from './../../services/token-storage/token-storage.service';
+import { LocalStorageHelperService } from '../../services/token-storage/localstorage-helper.service';
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 const customBuild = require('../ckCustomBuild/build/ckeditor.js');
@@ -36,8 +36,8 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  constructor(private tokenStorageService: TokenStorageService) {
-    this.token = this.tokenStorageService?.getToken();
+  constructor(private localStorageHelperService: LocalStorageHelperService) {
+    this.token = this.localStorageHelperService?.getToken();
   }
 
   onChange(_: any) {

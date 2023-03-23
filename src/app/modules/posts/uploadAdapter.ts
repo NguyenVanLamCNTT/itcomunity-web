@@ -1,5 +1,4 @@
 import { FileLoader, UploadAdapter } from "@ckeditor/ckeditor5-upload/src/filerepository";
-import { TokenStorageService } from "src/app/shares/services/token-storage/token-storage.service";
 
 
 export class MyUploadAdapter implements UploadAdapter {

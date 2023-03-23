@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MyCkEditorComponent } from './my-ck-editor.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
-import { TokenStorageService } from '../../services/token-storage/token-storage.service';
+import { LocalStorageHelperService } from '../../services/token-storage/localstorage-helper.service';
 
 
 
@@ -20,7 +20,7 @@ import { TokenStorageService } from '../../services/token-storage/token-storage.
     MyCkEditorComponent
   ],
   providers: [
-    TokenStorageService
+    LocalStorageHelperService
   ]
 })
 export class MyCkEditorModule { }

@@ -12,6 +12,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { HighlightJsModule } from 'ngx-highlight-js';
+import { PopoverModule } from 'ngx-smart-popover';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     NgxLinkifyjsModule.forRoot(),
-    HighlightJsModule
+    HighlightJsModule,
+    PopoverModule
   ],
   providers: [],
   bootstrap: [AppComponent]

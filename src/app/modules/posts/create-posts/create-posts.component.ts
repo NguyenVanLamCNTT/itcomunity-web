@@ -1,3 +1,6 @@
+import { User } from './../../../shares/models/user/user';
+import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
+import { UserService } from './../../../shares/services/user/user.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -27,14 +30,21 @@ export class CreatePostsComponent implements OnInit {
   urlThumbnail: any = [];
   filesThumbnail: any;
   content: any;
+  user: User | undefined;
 
   constructor(private postsService: PostsService,
     private uploadFileService: UploadFileService,
-    private router: Router) {
+    private router: Router,
+    private localStorageHelperService: LocalStorageHelperService) {
   }
 
   ngOnInit(): void {
     this.initPostsForm();
+    this.getMe();
+  }
+
+  getMe(): void {
+    this.user = this.localStorageHelperService.getUser();
   }
 
   initPostsForm(): void {
@@ -45,14 +55,12 @@ export class CreatePostsComponent implements OnInit {
     this.formOptionPosts = new FormGroup({
       status: new FormControl('publish', [Validators.required]),
     });
+    console.log('this.contentRichText', this.contentRichText);
   }
 
   onchange(eventData: any) {
     this.contentRichText = eventData;
     this.contentRichText = this.contentRichText.replace(/<code/g, '<code class=\"hljs\"');
-    document.querySelectorAll('pre code').forEach((el) => {
-      hljs.highlightElement(el);
-    });
   }
 
   isControlValid(formGroup: FormGroup, controlName: string): boolean {
@@ -127,10 +135,8 @@ export class CreatePostsComponent implements OnInit {
 
   next(): void {
     this.content = this.contentRichText;
-    document.querySelectorAll('pre code').forEach((el) => {
-      hljs.highlightElement(el);
-    });
   }
+
   submit(): void {
     const keywords = this.tags.map((tag: any) => tag.name);
     const data: Posts = {

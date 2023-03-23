@@ -1,4 +1,4 @@
-import { TokenStorageService } from './../../shares/services/token-storage/token-storage.service';
+import { LocalStorageHelperService } from '../../shares/services/token-storage/localstorage-helper.service';
 import { AuthService } from './../../shares/services/auth/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   providers: [
     AuthService,
-    TokenStorageService
+    LocalStorageHelperService
   ]
 })
 export class AuthModule { }

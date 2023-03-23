@@ -84,14 +84,14 @@
                         <button mat-raised-button color="warn" class="me-3">Cancel</button>
                     </div>
                     <div>
-                        <button mat-raised-button color="primary" matStepperNext (click)="next()">Continue</button>
+                        <button mat-raised-button color="primary" matStepperNext (click)="next()" [disabled]="postsForm.invalid || !contentRichText.length">Continue</button>
                     </div>
                 </div>
             </form>
         </mat-step>
         <mat-step #horizontalStepperStep2>
             <ng-template matStepLabel>Posts preview</ng-template>
-            <app-posts-item [tags]="tags" [content]="content" [title]="this.postsForm.value.title"></app-posts-item>
+            <app-posts-item [tags]="tags" [content]="content" [title]="this.postsForm.value.title" [user]="user"></app-posts-item>
             <div class="d-flex justify-content-end mt-2">
                 <div>
                     <button mat-raised-button color="warn" class="me-3" matStepperPrevious>Cancel</button>

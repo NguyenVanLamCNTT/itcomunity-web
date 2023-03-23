@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { TokenStorageService } from './../token-storage/token-storage.service';
+import { LocalStorageHelperService } from '../token-storage/localstorage-helper.service';
 import { Injectable } from '@angular/core';
 import {ApiService} from "../_core/api.service";
 import {Observable} from "rxjs";
@@ -19,7 +19,7 @@ const path = apiPath.auth;
 export class AuthService {
 
   constructor(private apiService: ApiService,
-              private tokenStorageService: TokenStorageService,
+              private localStorageHelperService: LocalStorageHelperService,
               private router: Router) { }
 
   public login(user: User, remember?: boolean): Observable<Token>{
@@ -71,13 +71,13 @@ export class AuthService {
   }
 
   logout() {
-    this.tokenStorageService.signOut();
+    this.localStorageHelperService.signOut();
     this.router.navigate(['/auth/login'], {
       queryParams: {},
     });
   }
   
   checkLogin(): boolean{
-    return this.tokenStorageService.getToken() && this.tokenStorageService.getRefreshToken();
+    return this.localStorageHelperService.getToken() && this.localStorageHelperService.getRefreshToken();
  }
 }

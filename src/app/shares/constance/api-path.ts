@@ -20,6 +20,10 @@ export const apiPath = {
     },
     upload: {
       upload: 'api/dms/upload',
+    },
+    user: {
+      allUser: 'api/users',
+      getMe: 'api/users/me/info',
     }
   }
   
