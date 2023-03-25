@@ -74,6 +74,18 @@ ul li {
     pointer-events: none;
 }
 
+.dropdown-menu {
+    width: 240px;
+}
+.dropdown-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    color: var(--black) !important;
+    font-weight: 400;
+    &:hover {
+        background-color: var(--gray-light) !important;
+    }
+}
 .login-item {
     a {
         color: var(--main-color) !important;
@@ -98,4 +110,32 @@ ul li {
 .center-content img {
     margin: 30px;
     cursor: pointer;
+}
+
+.popover-profile-header {
+    background-color: var(--gray-light);
+}
+.popover-profile-header-text {
+    color: var(--gray-text);
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    .name {
+        font-weight: 700 !important;
+        color: var(--main-color);
+    }
+}
+
+.btn-main {
+    background-color: var(--main-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background-color: var(--blue-itc);
+    }
 }

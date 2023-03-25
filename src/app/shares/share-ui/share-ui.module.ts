@@ -13,6 +13,7 @@ import { SafeHtmlPipe } from '../pipes/safeHtml.pipe';
 import { PostsItemComponent } from './posts-item/posts-item.component';
 import { SidebarAskComponent } from 'src/app/shares/share-ui/sidebar-ask/sidebar-ask.component';
 import { PopoverModule } from 'ngx-smart-popover';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PopoverModule } from 'ngx-smart-popover';
     TranslateModule,
     RouterModule,
     HighlightJsModule,
-    PopoverModule
+    PopoverModule,
+    MatButtonModule
   ],
   exports: [
     NavbarComponent,
