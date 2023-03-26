@@ -1,0 +1,48 @@
+<div class="profile-outer">
+    <div class="profile-header container">
+        <div class="p-3 d-flex align-items-center">
+            <div class="profile-header-avatar">
+                <img src="{{ user?.avatar }}" width="140">
+            </div>
+            <div class="profile-header-text ms-4">
+                <p class="name">{{ user?.fullName }}</p>
+                <p class="username m-0">@{{ user?.username }}</p>
+            </div>
+        </div>
+    </div>
+    <menu class="menu d-flex">
+        <div class="container">
+            <ul class="d-flex justify-content-center align-items-center h-100">
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Profile</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Posts</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Series</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Question</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Followings</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Followers</a>
+                </li>
+                <li class="h-100 px-5">
+                    <a class="my-auto" href="">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </menu>
+    <div class="container d-flex mt-4">
+        <div class="w-100 w-lg-75">  
+            <router-outlet></router-outlet>
+        </div>
+        <div class="w-25 d-none d-lg-block mx-2">
+            <app-profile-sidebar></app-profile-sidebar>
+        </div>
+    </div>
+</div>

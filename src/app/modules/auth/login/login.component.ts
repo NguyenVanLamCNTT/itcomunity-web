@@ -38,21 +38,29 @@ export class LoginComponent implements OnInit {
       username: this.infoLogin.value.username,
       password: this.infoLogin.value.password
     }
+    const token = new Token();
     this.authService.login(userData, false).pipe(
       tap((res: Token) => {
         this.localStorageHelperService.saveToken(res.accessToken.toString());
         this.localStorageHelperService.saveRefreshToken(res.refreshToken.toString());
         this.localStorageHelperService.saveIsVerify(res.isConfirmEmail);
-        if (res && !res.isConfirmEmail) {
-          this.router.navigate(['/auth/validate-email']);
-          return;
-        } else {
-          this.router.navigate(['/home/newest']);
-        }
+        token.accessToken = res.accessToken;
+        token.refreshToken = res.refreshToken;
+        token.isConfirmEmail = res.isConfirmEmail;
+        token.isConfirmEmail = res.isConfirmEmail;
+        token.isAdmin = res.isAdmin;
       }),
       switchMap(() => this.userService.getMe()),
     ).subscribe((user: User) => {
+      console.log('login', user);
       this.localStorageHelperService.addUser(user);
+      this.authService.isLogin(true);
+      if (token && !token.isConfirmEmail) {
+        this.router.navigate(['/auth/validate-email']);
+        return;
+      } else {
+        this.router.navigate(['/home/newest']);
+      }
     });
   }
 }

@@ -1,0 +1,47 @@
+.profile-info {
+    .form-group {
+        margin-top: 10px;
+
+        label {
+            color: var(--gray-text);
+        }
+
+        input {
+            margin-top: 10px;
+        }
+
+        textarea {
+            height: 150px;
+            margin-top: 10px;
+        }
+    }
+}
+
+.profile-info-group {
+    border: 1px solid var(--gray-light);
+}
+
+.avatar {
+    position: relative;
+    
+    label {
+        position: absolute !important;
+        display: none;
+    }
+    img:hover + label {
+        display: block;
+    }
+}
+
+.fa-image {
+    font-size: 3.5rem;
+    opacity: 0.8;
+}
+.rounded {
+    border-radius: 50% !important;
+}
+.fa-trash {
+    font-size: 1.5rem;
+    opacity: 0.8;
+    color: var(--red);
+}

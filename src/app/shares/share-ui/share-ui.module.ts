@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth/auth.service';
 import { HighlightJsModule, HighlightJsDirective } from 'ngx-highlight-js';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -46,7 +47,8 @@ import {MatButtonModule} from '@angular/material/button';
     SidebarAskComponent
   ],
   providers: [
-    HighlightJsDirective
+    HighlightJsDirective,
+    AuthService
   ]
 })
 export class ShareUiModule { }

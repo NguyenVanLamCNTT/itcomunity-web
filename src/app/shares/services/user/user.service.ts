@@ -37,4 +37,15 @@ export class UserService {
         })
       );
   }
+
+  updateMe(user: User): Observable<User>{
+    const url = `${apiUrl}/${path.getMe}`;
+    return this.apiService.put(url, user)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
 }

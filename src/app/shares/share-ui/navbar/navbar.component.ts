@@ -1,6 +1,6 @@
 import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
 import { AuthService } from './../../services/auth/auth.service';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user/user';
@@ -11,12 +11,14 @@ import { User } from '../../models/user/user';
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
   isLogin: boolean = false;
   user: User | undefined;
   constructor(private authService: AuthService,
-              private router: Router,
-              private localStorageHelperService: LocalStorageHelperService) { }
+    private router: Router,
+    private localStorageHelperService: LocalStorageHelperService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   ngOnInit(): void {
     this.isLogin = this.authService.checkLogin();
@@ -25,7 +27,6 @@ export class NavbarComponent implements OnInit {
 
   getMe(): void {
     this.user = this.localStorageHelperService.getUser();
-    console.log(this.user);
   }
 
   logout(): void {

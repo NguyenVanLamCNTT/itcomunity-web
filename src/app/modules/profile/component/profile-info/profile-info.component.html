@@ -1,0 +1,61 @@
+<div class="profile-info mx-3">
+    <div class="profile-info-group p-4">
+        <div class="avatar d-flex justify-content-center align-items-center" (files)="detectFileThumbnail($event)">
+            <img src="{{urlProfile}}" alt="{{urlProfile}}" width="200" height="200px" class="rounded">
+            <label for="upload">
+                <i class="fa-sharp fa-regular fa-image"></i>
+                <!-- <input type="file" class="uploadImgae"> -->
+            </label>
+            <input type="file" id="upload" class="uploadImgae d-none" (change)="detectFileThumbnail($event)">
+        </div>
+        <div class="d-flex justify-content-center mt-1" *ngIf="isUpload">
+            <button mat-mini-fab color="warn" (click)="removeUrlThumbnail()"
+                class="absolute justify-self-center my-fab">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <div class="mt-4">
+            <form [formGroup]="userForm">
+                <div class="form-group">
+                    <label for="name">Fullname <span class="text-danger">(*)</span></label>
+                    <input type="text" [disabled]="true" class="form-control" formControlName="fullname" id="name"
+                        placeholder="Enter fullname">
+                </div>
+                <div class="d-flex col-12">
+                    <div class="form-group col-6">
+                        <label for="username">Username <span class="text-danger">(*)</span></label>
+                        <input type="text" class="form-control me-1" formControlName="username" id="username"
+                            placeholder="Enter username">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="email">Email <span class="text-danger">(*)</span></label>
+                        <input type="email" class="form-control ms-1" formControlName="email" id="email"
+                            placeholder="Enter email" [disabled]="true">
+                    </div>
+                </div>
+                <div class="d-flex col-12">
+                    <div class="form-group col-6">
+                        <label for="password">Age <span class="text-danger">(*)</span></label>
+                        <input type="text" class="form-control me-1" formControlName="age" id="password"
+                            placeholder="Enter Age" [disabled]="true">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="confirmPassword">Gender <span class="text-danger">(*)</span></label>
+                        <input type="text" class="form-control ms-1" formControlName="gender" id="confirmPassword"
+                            placeholder="Enter Gender" [disabled]="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">About</label>
+                    <textarea type="text" class="form-control" formControlName="about" id="confirmPassword"
+                        placeholder="Please write about here !" [disabled]="true"></textarea>
+                </div>
+                <div class="mt-3 d-flex justify-content-end">
+                    <button mat-stroked-button color="primary" class="me-2">Cancel</button>
+                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

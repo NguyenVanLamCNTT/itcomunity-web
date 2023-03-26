@@ -41,6 +41,7 @@ export class User {
 
     avatar?: String;
     fullName?: String;
+    about?: String;
 
     static fromJson(user: any): User {
         return deserialize(User, user);

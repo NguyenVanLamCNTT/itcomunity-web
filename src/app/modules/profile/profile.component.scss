@@ -1,0 +1,41 @@
+.profile-header {
+    .profile-header-text {
+        color: var(--gray-text);
+        font-weight: 400 !important;
+        font-size: 1.2rem !important;
+
+        .name {
+            font-weight: 500 !important;
+            color: var(--main-color);
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.menu {
+    height: 50px;
+    background-color: var(--main-color);
+    border-top: 1px solid var(--gray-light);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    ul {
+        list-style: none;
+
+        li {
+            a {
+                text-decoration: none;
+                color: var(--white);
+                font-weight: 400;
+                font-size: 1rem;
+                line-height: 50px;
+            }
+
+            &:hover {
+                background-color: var(--white);
+                a {
+                    color: var(--main-color);
+                }
+            }
+        }
+    }
+}

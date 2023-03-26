@@ -1,0 +1,29 @@
+.btn-coppy-link {
+    background-color: var(--white);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 8px 10px;
+
+    &:hover {
+        background-color: var(--blue-itc);
+        color: var(--white);
+    }
+}
+
+.summary-info {
+    border: 1px solid var(--gray-light);
+
+    .key {
+        color: var(--gray-text);
+        font-weight: 400;
+        font-size: 1rem;
+    }
+
+    .value {
+        color: var(--main-color);
+        font-weight: 500;
+        font-size: 1rem;
+    }
+}
