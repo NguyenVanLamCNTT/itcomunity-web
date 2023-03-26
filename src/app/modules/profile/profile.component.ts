@@ -16,4 +16,5 @@ export class ProfileComponent implements OnInit{
   listenService(): void {
     this.user = this.localStorageHelperService.getUser();
   }
+
 }

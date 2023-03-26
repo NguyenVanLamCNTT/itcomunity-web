@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewestComponent implements OnInit{
   listPosts: any;
+  page: number = 1;
+  count: number = 0;
+  itemsSize: number = 10;
+  tableSizes: any = [3, 6, 9, 12];
   constructor(private postsService: PostsService) {
 
   }
@@ -16,10 +20,14 @@ export class NewestComponent implements OnInit{
     this.listenService();
   }
 
-  listenService() {
-    this.postsService.getPosts().subscribe(res => {
+  listenService(page = 1, itemsSize = 10, sort = 'desc') {
+    this.postsService.getPosts(page, itemsSize, sort).subscribe(res => {
       this.listPosts = res;
-      console.log(this.listPosts);
     })
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.listenService(this.page, this.itemsSize);
   }
 }

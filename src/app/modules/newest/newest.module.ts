@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { NewestRoutingModule } from './newest-routing.module';
 import { NewestComponent } from './newest.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { NewestComponent } from './newest.component';
   imports: [
     CommonModule,
     NewestRoutingModule,
-    ShareUiModule
+    ShareUiModule,
+    NgxPaginationModule
   ]
 })
 export class NewestModule { }

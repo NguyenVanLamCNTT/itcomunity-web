@@ -2,7 +2,7 @@ import { ApiService } from './../_core/api.service';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { apiPath } from '../../constance/api-path';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Posts } from '../../models/posts/posts';
 
@@ -27,8 +27,12 @@ export class PostsService {
       );
   }
 
-  public getPosts(): Observable<Posts[]> {
-    const url = `${apiUrl}/${path.posts}`;
+  public getPosts(page?: number, perPage?: number, sort?: string): Observable<Posts[]> {
+    const url = `${apiUrl}/${path.posts}?page=${page}&perPage=${perPage}`;
+    const params: HttpParams = new HttpParams();
+    page && params.set('page', page.toString());
+    perPage && params.set('perPage', perPage.toString());
+    // sort && params.set('sort', sort);
     return this.apiService.get(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
