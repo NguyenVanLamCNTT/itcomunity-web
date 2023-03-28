@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shares/services/user/user.service';
-import { tap } from 'rxjs';
+import { of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -51,16 +51,20 @@ export class LoginComponent implements OnInit {
         token.isAdmin = res.isAdmin;
       }),
       switchMap(() => this.userService.getMe()),
-    ).subscribe((user: User) => {
-      console.log('login', user);
-      this.localStorageHelperService.addUser(user);
-      this.authService.isLogin(true);
-      if (token && !token.isConfirmEmail) {
+      switchMap((user: User) => {
+        console.log('login', user);
+        user.password = userData.password;
+        this.localStorageHelperService.addUser(user);
+        this.authService.isLogin(true);
+        if (token && token.isConfirmEmail) {
+          this.router.navigate(['/home/newest']);
+          return of(null);
+        }
         this.router.navigate(['/auth/validate-email']);
-        return;
-      } else {
-        this.router.navigate(['/home/newest']);
-      }
+        return this.authService.sendOTP(user.username!);
+      })
+    ).subscribe((user: User) => {
+
     });
   }
 }

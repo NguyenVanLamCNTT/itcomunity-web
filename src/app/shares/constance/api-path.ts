@@ -12,6 +12,8 @@ export const apiPath = {
       refreshToken: 'api/auth/refreshToken',
       changePassword: 'api/auth/changePassword',
       register: 'api/auth/register',
+      sendOTP: 'api/auth/send-otp',
+      verifyOTP: 'api/auth/validate-otp',
     },
     posts: {
       posts: 'api/posts',

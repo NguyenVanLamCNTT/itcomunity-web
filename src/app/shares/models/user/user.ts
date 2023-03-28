@@ -4,19 +4,19 @@ export class User {
     id?: Number;
 
     @Expose({ name: 'fullname' })
-    fullname?: String;
+    fullname?: string;
 
     @Expose({ name: 'email' })
-    email?: String;
+    email?: string;
 
     @Expose({ name: 'password' })
-    password?: String;
+    password?: string;
 
     @Expose({ name: 'username' })
-    username?: String;
+    username?: string;
 
     @Expose({ name: 'gender' })
-    gender?: String;
+    gender?: string;
 
     @Expose({ name: 'age' })
     age?: Number;
@@ -39,9 +39,9 @@ export class User {
     @Expose({ name: 'confirm_email' })
     confirmEmail?: Boolean;
 
-    avatar?: String;
-    fullName?: String;
-    about?: String;
+    avatar?: string;
+    fullName?: string;
+    about?: string;
 
     static fromJson(user: any): User {
         return deserialize(User, user);

@@ -71,10 +71,32 @@ export class AuthService {
     return this.apiService.postNoHeader(url, refreshData)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
-          const body = httpResponse.body;
+          const body = httpResponse.body.data;
           return Token.fromJson(JSON.stringify(body));
         })
       );
+  }
+
+  public sendOTP(username: string): Observable<any> {
+    const url = `${apiUrl}/${path.sendOTP}`;
+    const data = { username };
+    return this.apiService.postNoHeader(url, data).pipe(
+      map((httpResponse: HttpResponse<any>) => {
+        const body = httpResponse.body.data;
+        return Token.fromJson(JSON.stringify(body));
+      })
+    );;
+  }
+
+  public verifyOTP(email: string, otp: number): Observable<any> {
+    const url = `${apiUrl}/${path.verifyOTP}`;
+    const data = { email, otp };
+    return this.apiService.postNoHeader(url, data).pipe(
+      map((httpResponse: HttpResponse<any>) => {
+        const body = httpResponse.body.data;
+        return Token.fromJson(JSON.stringify(body));
+      })
+    );
   }
 
   logout() {
@@ -85,6 +107,10 @@ export class AuthService {
   }
 
   checkLogin(): boolean {
-    return this.localStorageHelperService.getToken() && this.localStorageHelperService.getRefreshToken();
+    return this.checkIsVerify() && this.localStorageHelperService.getToken() && this.localStorageHelperService.getRefreshToken();
+  }
+
+  checkIsVerify(): boolean {
+    return this.localStorageHelperService.getIsVerify();
   }
 }

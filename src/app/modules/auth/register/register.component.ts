@@ -1,3 +1,4 @@
+import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
 import { map, mergeMap } from 'rxjs/operators';
 import { Token } from './../../../shares/models/token/token';
 import { User } from './../../../shares/models/user/user';
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   infoRegister = this.initFormRegister();
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private localStorageHelperService: LocalStorageHelperService,
   ) { }
 
   ngOnInit(): void {
@@ -44,13 +46,11 @@ export class RegisterComponent implements OnInit {
     console.log('user', user);
     this.authService.register(user).pipe(
       mergeMap((res: any) => {
-        return this.authService.login(user, false);
+        user && this.localStorageHelperService.addUser(user);
+        return this.authService.sendOTP(user.username!);
       })
     ).subscribe((data: any) => {
-      if (data && !data.isConfirmEmail) {
-        this.router.navigate(['/auth/validate-email']);
-        return;
-      }
+      this.router.navigate(['/auth/validate-email']);
     });
   }
 }

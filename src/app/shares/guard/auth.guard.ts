@@ -14,7 +14,12 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.authState.checkLogin()){
-      return true;
+      if (this.authState.checkIsVerify()) {
+        return true;
+      } else {
+        this.router.navigate(['/auth/validate-email']);
+        return false;
+      }
     }else{
       this.router.navigate(['/auth/login'])
       return false;
