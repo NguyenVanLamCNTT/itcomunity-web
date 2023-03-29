@@ -116,7 +116,12 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
           'imageTextAlternative'
         ]
       },
-      language: 'en'
+      language: 'en',
+      placeholder: `Markdown syntax is supported. Click ? for Help \n
+      To next line, using HTML <br> tag or Enter Twice \n
+      Click “Next” to preview mode \n
+      Click icon “Code” to embed code your posts \n
+      Please hover to any icon for show tooltip. Give me any feedback if any. \n`,
     };
   }
 

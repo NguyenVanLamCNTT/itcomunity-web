@@ -55,7 +55,6 @@ export class CreatePostsComponent implements OnInit {
     this.formOptionPosts = new FormGroup({
       status: new FormControl('publish', [Validators.required]),
     });
-    console.log('this.contentRichText', this.contentRichText);
   }
 
   onchange(eventData: any) {
@@ -147,7 +146,7 @@ export class CreatePostsComponent implements OnInit {
       status: this.formOptionPosts.value.status,
       imageUrl: ''
     };
-    if (this.filesThumbnail[0]) {
+    if (this.filesThumbnail && this.filesThumbnail[0]) {
       const fd = new FormData();
       fd.append('upload', this.filesThumbnail[0]);
       this.uploadFileService.uploadFile(fd).pipe(
