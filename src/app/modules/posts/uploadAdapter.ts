@@ -18,9 +18,12 @@ export class MyUploadAdapter implements UploadAdapter {
       console.log(file);
       return new Promise<{ default: string }>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://139.59.107.238:5000/api/dms/upload', true);
+        xhr.open('POST', 'https://api.it-community.tech/api/dms/upload', true);
         xhr.setRequestHeader('Authorization', 'Bearer ' + this.token); // if you're using JWT authentication
         xhr.setRequestHeader('Accept', 'application/json');
+        const formData = new FormData();
+        formData.append('upload', file);
+        xhr.send(formData);
         xhr.onreadystatechange = () => {
           if (xhr.readyState === 4) {
             if (xhr.status >= 200 && xhr.status < 300) {
@@ -31,12 +34,6 @@ export class MyUploadAdapter implements UploadAdapter {
             }
           }
         };
-        const formData = new FormData();
-        formData.append('upload', file);
-        xhr.send(formData);
-        xhr.onload = () => {
-          console.log('xhr.response', xhr.response);
-        }
       });
     });
   }
