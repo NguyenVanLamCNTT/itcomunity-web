@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-// @import '~ngx-toastr/toastr';
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
 // @tailwind base;
 // @tailwind components;
 // @tailwind utilities;
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import 'ngx-toastr/toastr';
+
 /* Importing Bootstrap SCSS file. */
 :root {
   --main-color: #5488C7;
@@ -105,4 +106,11 @@ blockquote::before {
 
 blockquote::after {
   content: '\201D';
+}
+
+.input-custom {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }

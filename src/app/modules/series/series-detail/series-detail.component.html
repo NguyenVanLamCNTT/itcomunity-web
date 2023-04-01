@@ -1,0 +1,56 @@
+<div class="mt-5 container d-flex">
+    <div class="w-75 right-content-series">
+        <div class="title">
+            <h1>{{ series?.name }}</h1>
+        </div>
+        <div class="d-flex">
+            <div class="tag-name me-1" *ngFor="let tag of series?.keywords">
+                <a href="#">
+                    <span>{{ tag }}</span>
+                </a>
+            </div>
+        </div>
+        <div class="mt-2 create-date">
+            <div class="d-flex">
+                <p>
+                    <i class="fa-solid fa-earth-americas"></i> 
+                    Published at {{ series?.created | date: 'medium' }}
+                </p>
+                <div class="group-icon-action d-flex mt-1 ms-4">
+                    <div class="icon-item m-0">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{ series?.viewNumber }}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span>{{ series?.commentNumber }}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>{{ series?.bookMarkNumber }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2">
+            <div  [innerHTML]="series?.description | safeHtml"></div>
+        </div>
+        <div class="d-flex align-items-end">
+            <h1 class="text-uppercase title-content m-0 mt-2">Contents</h1>
+            <hr class="title-line m-0 ms-2">
+        </div>
+        <div class="mt-4 mx-2">
+            <div *ngFor="let posts of listPosts?.items">
+                <app-card-item [item]="posts"></app-card-item>
+            </div>
+        </div>
+    </div>
+    <div class="w-25 mt-3 left-side-bar">
+        <div class="left-side-bar-item sticky" id="sidebar">
+            <div class="mx-4">
+
+            </div>
+            <app-sidebar-ask></app-sidebar-ask>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="series-outer container mt-5">
+    <div class="mx-5">
+        <form [formGroup]="seriesForm" class="mt-2">
+            <div class="d-flex">
+                <input matInput formControlName="title" [placeholder]="'Enter Title Text (not required)'"
+                    class="input-custom me-3">
+                <div class="dropdown">
+                    <button class="custom-button-save d-flex" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="mb-1 me-2">Save</span>
+                        <i class="fa-solid fa-angle-down my-auto"></i>
+                    </button>
+                    <ul class="dropdown-menu pt-0">
+                        <div class="popover-series-option p-3">
+                            <h3>Publish your series</h3>
+                            <div>
+                                <label class="radio-group-label">Visibility:</label>
+                                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" formControlName="status">
+                                    <mat-radio-button class="radio-button" value="PUBLISH">
+                                        Public
+                                    </mat-radio-button>
+                                    <mat-radio-button class="radio-button" value="DRAFT">
+                                        Private draft (only you can see it)
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                                <hr>
+                                <p class="sub-title mx-1">👁️‍🗨️ Chỉ những người có liên kết đến series này, mới có thể
+                                    xem được</p>
+                                <button mat-stroked-button color="primary" (click)="submit()">Save</button>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        <div class="mt-1">
+            <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)"></app-my-ck-editor>
+            <div class="d-flex justify-content-end mt-1">
+                <span class="me-4 fw-bold">Line: 0</span>
+                <span class="fw-bold me-4">Word: 0</span>
+                <span class="fw-bold me-2">0:0</span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 group-sreies-content mx-5">
+        <div class="d-flex sreies-content-title">
+            <h3 class="text-uppercase me-3">Series contents</h3>
+            <hr>
+        </div>
+        <div class="sreies-content-sub-title">
+            <h1>There's no post yet. Please add posts to this series to make it displayed on the homepage!</h1>
+        </div>
+        <hr>
+        <div>
+            <div cdkDropList (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let posts of listPostsSelectedAfterSubmit" cdkDrag>
+                    <div class="mt-2 item-posts-series d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center mx-2">
+                            <div class="me-2">
+                                <i class="fa-sharp fa-regular fa-bars"></i>
+                            </div>
+                            <div class="avatar me-1">
+                                <img src="{{posts?.author?.avatar}}" alt="" width="40" height="40">
+                            </div>
+                            <h1 class="text-one-line m-0">
+                                {{ posts?.name }}
+                            </h1>
+                        </div>
+                        <i class="fa-duotone fa-trash mx-2"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="button-add-posts ms-3 mt-2">
+                <i class="fa-solid fa-circle-plus"></i>
+                <span class="ms-2" (click)="open(listPosts)">Add post</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #listPosts>
+    <div class="modal-header">
+        <h4 class="modal-title">Add posts</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex">
+            <input matInput [placeholder]="'Search posts'" class="input-custom me-3">
+            <button class="custom-button-search">Search</button>
+        </div>
+        <div class="mt-3">
+            <div *ngFor="let item of posts?.items| paginate: {
+                itemsPerPage: itemsSize,
+                currentPage: page,
+                totalItems: posts?.totalItems
+              }; let i = index">
+                <div class="mt-2 item-posts" [class.active]="isCheckActive(item)">
+                    <h1 class="text-one-line m-0" (click)="selectPosts(item)">
+                        {{i + 1}}. {{ item?.name }}
+                        <i class="fa-solid fa-link ms-2"></i>
+                    </h1>
+                </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-end">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button color="primary" (click)="addPosts()">Add posts</button>
+        <button mat-raised-button color="warn" (click)="closeModal()">Close</button>
+    </div>
+</ng-template>

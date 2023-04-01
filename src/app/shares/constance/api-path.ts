@@ -26,6 +26,9 @@ export const apiPath = {
     user: {
       allUser: 'api/users',
       getMe: 'api/users/me/info',
+    },
+    series: {
+      series: 'api/series',
     }
   }
   

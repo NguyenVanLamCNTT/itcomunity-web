@@ -8,6 +8,7 @@ import { Posts } from '../../models/posts/posts';
 })
 export class CardItemComponent {
   @Input() item: Posts | undefined;
+  @Input() isSeries: boolean | undefined;
   constructor() {}
 
 }

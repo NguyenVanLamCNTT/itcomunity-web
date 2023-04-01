@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { PopoverModule } from 'ngx-smart-popover';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -40,7 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     NgxLinkifyjsModule.forRoot(),
     HighlightJsModule,
-    PopoverModule
+    PopoverModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

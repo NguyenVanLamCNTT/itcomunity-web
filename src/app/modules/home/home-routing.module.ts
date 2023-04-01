@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'editors-choise',
         loadChildren: () => import('../editors-choise/editors-choise.module').then(m => m.EditorsChoiseModule)
+      },
+      {
+        path: 'series',
+        loadChildren: () => import('../series/series.module').then(m => m.SeriesModule),
       }
     ]
   }

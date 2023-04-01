@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     {
       id: 2,
       name: 'NEWEST',
-      link: '/home/newest',
+      link: '/home/newest/posts',
       isShow: true,
       isActive: true,
     },
@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     {
       id: 4,
       name: 'SERIES',
-      link: '/series',
+      link: '/home/newest/series',
       isShow: true,
       isActive: false,
     },
