@@ -1,16 +1,16 @@
 <div class="group-posts-preview container">
     <div class="d-flex mt-3">
-        <div class="avatar-image">
+        <div class="avatar-image" routerLink="/profile/{{user?.username}}/posts">
             <img src="{{user?.avatar}}" alt="">
         </div>
         <div class="ms-2">
             <div class="d-flex group-content-user align-items-start">
                 <div class="name">
-                    <a href="">
+                    <a routerLink="/profile/{{user?.username}}/posts">
                         <span>{{ user?.fullName }}</span>
                     </a>
                 </div>
-                <div class="date-ago ms-2">
+                <div class="date-ago ms-2" routerLink="/profile/{{user?.username}}/posts">
                     <span class="my-auto">@{{user?.username}}</span>
                 </div>
                 <span class="mx-3 line">-</span>

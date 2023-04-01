@@ -1,13 +1,13 @@
 <div class="group-card-item mt-2">
     <div class="d-flex justify-content-between">
         <div class="d-flex">
-            <div class="avatar-image">
+            <div class="avatar-image" routerLink="/profile/{{item?.author?.username}}/posts">
                 <img src="{{item?.author?.avatar}}" alt="{{item?.author?.avatar}}">
             </div>
             <div class="ms-3">
                 <div class="d-flex group-content-user align-items-start">
                     <div class="name mt-1">
-                        <a href="">
+                        <a routerLink="/profile/{{item?.author?.username}}/posts">
                             <span>{{item?.author?.fullName}}</span>
                         </a>
                     </div>
