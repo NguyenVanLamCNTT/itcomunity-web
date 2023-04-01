@@ -113,4 +113,18 @@ blockquote::after {
   padding: 10px;
   width: 100%;
   margin-bottom: 10px;
+  height: 45px;
+}
+
+
+.select-custom {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #ccc;
+  padding: 0 15px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  option {
+    padding: 0 5px;
+  }
 }

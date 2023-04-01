@@ -26,9 +26,14 @@ export const apiPath = {
     user: {
       allUser: 'api/users',
       getMe: 'api/users/me/info',
+      byUsername: 'api/users/user',
     },
     series: {
       series: 'api/series',
+    },
+    topic: {
+      topic: 'api/topics',
+      addTopic: 'api/topics/add-topic-to-user',
     }
   }
   

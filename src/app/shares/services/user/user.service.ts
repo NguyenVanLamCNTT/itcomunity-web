@@ -48,4 +48,15 @@ export class UserService {
         })
       );
   }
+
+  getByUsername(username: string): Observable<User>{
+    const url = `${apiUrl}/${path.byUsername}?username=${username}`;
+    return this.apiService.get(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
 }

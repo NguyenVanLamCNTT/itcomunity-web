@@ -1,9 +1,10 @@
+import { TopicService } from './../../../shares/services/topic/topic.service';
 import { User } from './../../../shares/models/user/user';
 import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
 import { UserService } from './../../../shares/services/user/user.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -20,8 +21,25 @@ export interface Tag {
   styleUrls: ['./create-posts.component.scss']
 })
 export class CreatePostsComponent implements OnInit {
+  @HostListener('dragover', ['$event']) dragOver(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  // Dragleave Event
+  @HostListener('dragleave', ['$event']) public dragLeave(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  // Drop Event
+  @HostListener('drop', ['$event']) public drop(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.detectFileThumbnail(event);
+  }
+  
   public contentRichText: string = ""
   public readonly: boolean = true;
+  listTopic: any;
   postsForm: any;
   formOptionPosts: any;
   addOnBlur = true;
@@ -35,12 +53,21 @@ export class CreatePostsComponent implements OnInit {
   constructor(private postsService: PostsService,
     private uploadFileService: UploadFileService,
     private router: Router,
-    private localStorageHelperService: LocalStorageHelperService) {
+    private localStorageHelperService: LocalStorageHelperService,
+    private topicService: TopicService) {
   }
 
   ngOnInit(): void {
     this.initPostsForm();
     this.getMe();
+    this.listenService();
+  }
+  
+  listenService() {
+    this.topicService.getTopic().subscribe((res: any) => {
+      this.listTopic = res;
+      console.log('this.listTopic', this.listTopic);
+    });
   }
 
   getMe(): void {

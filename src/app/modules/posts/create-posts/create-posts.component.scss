@@ -168,3 +168,30 @@ a {
     padding: 3px 6px;
     border-radius: 50%;
 }
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    border: 1px solid #ccc !important;
+    border-radius: 0px !important;
+}
+
+::ng-deep .mdc-line-ripple {
+    border: 1px solid #ccc !important;
+}
+
+.custom-button-thumbnail {
+    color: var(--gray-text);
+    border: none;
+    padding: 5px 30px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    height: 45px;
+}
+
+.popover-posts-option {
+    width: 280px;
+
+}
