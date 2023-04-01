@@ -101,7 +101,7 @@ export class ValidateEmailComponent implements OnInit {
     ).subscribe((data: any) => {
       console.log('Get me res', data);
       this.localStorageHelperService.addUser(data);
-      this.router.navigate(['/home/newest']);
+      this.router.navigate(['/home/newest/posts']);
     });
   }
 }

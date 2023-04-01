@@ -155,12 +155,12 @@ export class CreatePostsComponent implements OnInit {
           return this.postsService.createPosts(data);
         })
       ).subscribe((res: any) => {
-        this.router.navigate(['/home/newest']);
+        this.router.navigate(['/home/newest/posts']);
       });
       return;
     }
     this.postsService.createPosts(data).subscribe((res: any) => {
-      this.router.navigate(['/home/newest']);
+      this.router.navigate(['/home/newest/posts']);
     });
   }
 }

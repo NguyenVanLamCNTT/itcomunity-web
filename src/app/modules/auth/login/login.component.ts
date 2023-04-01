@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.localStorageHelperService.addUser(user);
         this.authService.isLogin(true);
         if (token && token.isConfirmEmail) {
-          this.router.navigate(['/home/newest']);
+          this.router.navigate(['/home/newest/posts']);
           return of(null);
         }
         this.router.navigate(['/auth/validate-email']);

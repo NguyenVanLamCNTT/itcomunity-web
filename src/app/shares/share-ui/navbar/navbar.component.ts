@@ -31,6 +31,6 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/home/newest']);
+    this.router.navigate(['/home/newest/posts']);
   }
 }
