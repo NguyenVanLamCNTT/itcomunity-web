@@ -23,7 +23,6 @@ export class ValidateEmailComponent implements OnInit {
 
   ngOnInit(): void {
     const currentLanguage = this.translateService.currentLang;
-    console.log(currentLanguage);
     this.translateService.use(currentLanguage || 'vi');
   }
 
@@ -39,7 +38,6 @@ export class ValidateEmailComponent implements OnInit {
   }
 
   nextValue(value: string): void{
-    console.log(value);
     switch (value) {
       case 'number1':
         if (this.formOTP.getRawValue().number1 !== ''){
@@ -88,18 +86,15 @@ export class ValidateEmailComponent implements OnInit {
     const user = this.localStorageHelperService.getUser();
     this.authService.verifyOTP(user.email!, parseInt(otp)).pipe(
       switchMap((res) => {
-        console.log('OTP res', res);
         return this.authService.login(user, true);
       }),
       switchMap((res) => {
-        console.log('Login res', res);
         this.localStorageHelperService.saveToken(res.accessToken.toString());
         this.localStorageHelperService.saveRefreshToken(res.refreshToken.toString());
         this.localStorageHelperService.saveIsVerify(res.isConfirmEmail);
         return this.userService.getMe();
-      })
+      }),
     ).subscribe((data: any) => {
-      console.log('Get me res', data);
       this.localStorageHelperService.addUser(data);
       this.router.navigate(['/home/newest/posts']);
     });

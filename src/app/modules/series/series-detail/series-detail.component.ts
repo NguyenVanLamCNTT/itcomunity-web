@@ -28,11 +28,9 @@ export class SeriesDetailComponent implements OnInit {
   listenService(): void {
     this.seriesService.getSeriesById(this.seriesId).subscribe((series: any) => {
       this.series = series;
-      console.log('series', this.series);
     });
     this.postsService.getPostsBySeries(this.seriesId).subscribe((posts: any) => {
       this.listPosts = posts;
-      console.log('posts', this.listPosts);
     });
   }
 }

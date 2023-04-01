@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shares/services/auth/auth.service';
 import { SeriesService } from './../../../shares/services/series/series.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,16 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newest-series.component.scss']
 })
 export class NewestSeriesComponent implements OnInit{
+  isLogin: boolean = false;
   listSeries: any;
   page: number = 1;
   count: number = 0;
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   constructor (private postsService: PostsService,
-              private seriesService: SeriesService) {
+              private seriesService: SeriesService,
+              private authService: AuthService) {
     
   }
   ngOnInit(): void {
+    this.isLogin = this.authService.checkLogin();
     this.listenService();
   }
 

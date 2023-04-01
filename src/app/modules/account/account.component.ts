@@ -1,3 +1,4 @@
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 import { UploadFileService } from './../../shares/services/uploadFile/upload-file.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +21,8 @@ export class AccountComponent implements OnInit{
 
   constructor(private localStorageHelperService: LocalStorageHelperService,
               private userService: UserService,
-              private uploadFileService: UploadFileService) { }
+              private uploadFileService: UploadFileService,
+              private notifyService: NotifyService) { }
 
   ngOnInit(): void {
     this.listenService();
@@ -92,7 +94,12 @@ export class AccountComponent implements OnInit{
       ).subscribe((res: any) => {
         this.localStorageHelperService.addUser(res);
         this.listenService();
-      });
+        this.notifyService.success('Update profile successfully!', 'Success');
+      },
+      (err: any) => {
+        this.notifyService.error('Update profile fail please check again!', 'Error');
+      }
+      );
     } else {
       this.userService.updateMe(userUpdate).pipe(
         switchMap((res: any) => {
@@ -101,6 +108,10 @@ export class AccountComponent implements OnInit{
       ).subscribe((res: any) => {
         this.localStorageHelperService.addUser(res);
         this.listenService();
+        this.notifyService.success('Update profile successfully!', 'Success');
+      },
+      (err: any) => {
+        this.notifyService.error('Update profile fail please check again!', 'Error');
       });
     }
   }

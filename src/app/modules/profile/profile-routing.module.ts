@@ -1,3 +1,5 @@
+import { ProfileSeriesComponent } from './component/profile-series/profile-series.component';
+import { ProfilePostsComponent } from './component/profile-posts/profile-posts.component';
 import { ProfileInfoComponent } from './component/profile-info/profile-info.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,8 +11,21 @@ const routes: Routes = [
     component: ProfileComponent,
     children: [
       {
+        path: '',
+        redirectTo: ':username/posts',
+        pathMatch: 'full'
+      },
+      {
         path: ':username',
         component: ProfileInfoComponent,
+      },
+      {
+        path: ':username/posts',
+        component: ProfilePostsComponent,
+      },
+      {
+        path: ':username/series',
+        component: ProfileSeriesComponent,
       }
     ]
   }

@@ -83,7 +83,6 @@ export class CreateSeriesComponent implements OnInit{
     this.listPostsSelectedAfterSubmit = this.listPostsSelected;
     this.notifyService.success('Add posts to series successfully!', 'Notification');
     this.modalService.dismissAll();
-    console.log('this.listPostsSelectedAfterSubmit', this.listPostsSelectedAfterSubmit);
   }
 
   drop(event: CdkDragDrop<string[]>) {

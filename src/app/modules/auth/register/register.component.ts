@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    console.log('infoRegister', this.infoRegister.value);
     const user = new User();
     user.username = this.infoRegister.value.username;
     user.password = this.infoRegister.value.password;
@@ -43,7 +42,6 @@ export class RegisterComponent implements OnInit {
     user.age = this.infoRegister.value.age;
     user.gender = this.infoRegister.value.gender;
     user.fullname = this.infoRegister.value.fullname;
-    console.log('user', user);
     this.authService.register(user).pipe(
       mergeMap((res: any) => {
         user && this.localStorageHelperService.addUser(user);

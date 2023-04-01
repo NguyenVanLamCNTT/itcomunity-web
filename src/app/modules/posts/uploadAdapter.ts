@@ -15,7 +15,6 @@ export class MyUploadAdapter implements UploadAdapter {
 
   upload(): Promise<{ default: string }> {
     return this.loader.file.then((file: any) => {
-      console.log(file);
       return new Promise<{ default: string }>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'https://api.it-community.tech/api/dms/upload', true);

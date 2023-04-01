@@ -12,15 +12,15 @@
     </div>
     <menu class="menu d-flex">
         <div class="container">
-            <ul class="d-flex justify-content-center align-items-center h-100">
-                <li class="h-100 px-5">
+            <ul class="d-flex justify-content-start align-items-center h-100">
+                <!-- <li class="h-100 px-5">
                     <a class="my-auto" href="">Profile</a>
+                </li> -->
+                <li class="h-100 px-5">
+                    <a class="my-auto" routerLink="/profile/{{user?.username}}/posts">Posts</a>
                 </li>
                 <li class="h-100 px-5">
-                    <a class="my-auto" href="">Posts</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" href="">Series</a>
+                    <a class="my-auto" routerLink="/profile/{{user?.username}}/series">Series</a>
                 </li>
                 <li class="h-100 px-5">
                     <a class="my-auto" href="">Question</a>

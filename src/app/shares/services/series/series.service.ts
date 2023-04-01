@@ -15,8 +15,8 @@ export class SeriesService {
 
   constructor(private apiService: ApiService) { }
 
-  public getSeries(page?: number, perPage?: number, sort?: string): Observable<any[]> {
-    const url = `${apiUrl}/${path.series}?page=${page}&perPage=${perPage}`;
+  public getSeries(page?: number, perPage?: number, sort?: string, username?: string): Observable<any[]> {
+    const url = `${apiUrl}/${path.series}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
     return this.apiService.get(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {

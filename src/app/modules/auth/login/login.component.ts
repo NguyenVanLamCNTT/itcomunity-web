@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
       }),
       switchMap(() => this.userService.getMe()),
       switchMap((user: User) => {
-        console.log('login', user);
         user.password = userData.password;
         this.localStorageHelperService.addUser(user);
         this.authService.isLogin(true);

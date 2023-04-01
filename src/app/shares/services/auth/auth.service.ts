@@ -25,12 +25,10 @@ export class AuthService {
     private router: Router) { }
 
   public isLogin(isLogin: boolean): void {
-    console.log('isLogin', isLogin);
     this.isLoginSubject.next(isLogin);
   }
 
   public login(user: User, remember?: boolean): Observable<Token> {
-    console.log('user', user);
     const url = `${apiUrl}/${path.login}`;
     const loginData = {
       username: user.username,

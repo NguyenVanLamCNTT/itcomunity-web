@@ -41,7 +41,6 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
       if (element) {
         const elementPosition = element.getBoundingClientRect().top;
         if (elementPosition < 0) {
-          console.log('header.id', header.id);
         }
       }
     });
@@ -50,7 +49,6 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   listenService(): void {
     this.postsService.getPostsById(this.postsId).subscribe(posts => {
       this.posts = posts;
-      console.log('posts', posts);
     })
   }
 

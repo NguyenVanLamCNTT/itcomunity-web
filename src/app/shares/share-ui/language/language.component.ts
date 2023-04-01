@@ -18,13 +18,11 @@ export class LanguageComponent implements OnInit, OnDestroy{
     this.translateService.use('vi');
     this.languageChangeSubscription = this.translateService.onLangChange.subscribe(
       (event) => {
-        console.log('Language has changed:', event.lang);
       }
     );
   }
 
   changeLanguage(language: any) {
-    console.log('changeLanguage', language);
     const value = language.target.value;
     this.lenguageSelected = value;
     this.translateService.use(value);
