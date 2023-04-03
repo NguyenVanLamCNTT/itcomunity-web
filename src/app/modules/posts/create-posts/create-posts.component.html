@@ -24,10 +24,10 @@
                                                 <div class="magazine1" appDrag (files)="detectFileThumbnail($event)">
                                                     <label
                                                         class="inline-block my-3 text-gray-500 text-center flex flex-col w-100"
-                                                        *ngIf="urlThumbnail.length === 0">
+                                                        *ngIf="urlThumbnail?.length === 0">
                                                         Image Thumbnail </label>
                                                     <div class="flex items-start justify-center w-100 drop1 h-100"
-                                                        *ngIf="urlThumbnail.length === 0">
+                                                        *ngIf="urlThumbnail?.length === 0">
                                                         <label draggable="true" class="w-100 border-0" for="files1">
                                                             <div class="flex-column text-center w-100 pt-2">
                                                                 <mat-icon aria-hidden="false"
@@ -57,7 +57,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-center"
-                                                    *ngIf="urlThumbnail.length != 0">
+                                                    *ngIf="urlThumbnail?.length != 0">
                                                     <button mat-mini-fab color="warn" (click)="removeUrlThumbnail()"
                                                         class="absolute justify-self-center my-fab">
                                                         <mat-icon>delete</mat-icon>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div>
-                    <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)"></app-my-ck-editor>
+                    <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText"></app-my-ck-editor>
                 </div>
                 <div class="d-flex justify-content-end mt-2">
                     <div>

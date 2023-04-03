@@ -213,4 +213,17 @@ export class ApiService {
         catchError(this.errorHandler)
       );
   }
+
+  public patch(path: string, body: any): Observable<any> {
+    return this.httpClient.patch(
+      path, body,
+      {
+        headers: this.setHeaders(),
+        withCredentials: false,
+        observe: 'response'
+      })
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
 }

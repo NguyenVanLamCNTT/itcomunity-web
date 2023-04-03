@@ -3,7 +3,7 @@ import { User } from './../../../shares/models/user/user';
 import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
 import { UserService } from './../../../shares/services/user/user.service';
 import { map, switchMap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
@@ -49,18 +49,45 @@ export class CreatePostsComponent implements OnInit {
   filesThumbnail: any;
   content: any;
   user: User | undefined;
+  isUpdate: boolean = false;
+  postsId: any;
+  topicSelected: any;
+  postsOld: Posts | undefined;
 
   constructor(private postsService: PostsService,
     private uploadFileService: UploadFileService,
     private router: Router,
     private localStorageHelperService: LocalStorageHelperService,
-    private topicService: TopicService) {
+    private topicService: TopicService,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.initPostsForm();
     this.getMe();
     this.listenService();
+    this.activatedRoute.params.subscribe((params: any) => {
+      if (params.id) {
+        console.log('params.id', params.id);
+        this.postsId = params.id;
+        this.isUpdate = true;
+        this.postsService.getPostsById(params.id).subscribe((res: any) => {
+          this.postsOld = res;
+          console.log('res', res);
+          console.log('res', res.name);
+          console.log('res', res.topics);
+          this.postsForm.controls.title.setValue(res.name);
+          this.postsForm.controls.topics.setValue(res.topics);
+          this.contentRichText = res.content;
+          // this.urlThumbnail = res.imageThumbnail;
+          this.tags = res.keywords.map((item: any) => {
+            return { name: item };
+          });
+          console.log('this.tags', this.tags);
+          this.formOptionPosts.controls.status.setValue(res.status);
+        });
+      }
+    });
   }
   
   listenService() {
@@ -182,6 +209,14 @@ export class CreatePostsComponent implements OnInit {
           return this.postsService.createPosts(data);
         })
       ).subscribe((res: any) => {
+        this.router.navigate(['/home/newest/posts']);
+      });
+      return;
+    } else if (this.isUpdate && this.postsOld?.imageThumbnail) {
+      data.imageUrl = this.postsOld.imageThumbnail;
+    }
+    if (this.isUpdate) {
+      this.postsService.updatePosts(this.postsId, data).subscribe((res: any) => {
         this.router.navigate(['/home/newest/posts']);
       });
       return;

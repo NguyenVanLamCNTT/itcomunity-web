@@ -19,6 +19,7 @@ export const apiPath = {
       posts: 'api/posts',
       postsByUserFollow: 'api/posts/users/user-follow',
       postsBySeries: 'api/posts/series',
+      view: 'api/posts/view',
     },
     upload: {
       upload: 'api/dms/upload',

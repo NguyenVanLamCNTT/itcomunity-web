@@ -96,4 +96,15 @@ export class PostsService {
         })
       );
   }
+
+  public updateView(postId: number): Observable<any> {
+    const url = `${apiUrl}/${path.view}`;
+    return this.apiService.patch(url, {postId})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
 }

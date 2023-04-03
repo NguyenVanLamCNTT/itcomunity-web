@@ -49,6 +49,34 @@
             </a>
         </div> -->
     </div>
+    <div class="my-3 d-flex justify-content-end">
+        <div class="dropdown">
+            <button class="custom-button-option d-flex align-items-center" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-ellipsis"></i>
+            </button>
+            <ul class="dropdown-menu popover-posts-option  pt-0">
+                <li>
+                    <a class="dropdown-item p-3 py-2" routerLink="/posts/{{posts?.id}}/edit">
+                        <i class="fa-regular fa-pen-to-square me-2"></i>
+                        <span>Edit posts</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item p-3 py-2" href="#">
+                        <i class="fa-regular fa-square-plus me-2"></i>
+                        <span>Add posts to series</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item p-3 py-2" (click)="deletePosts(posts?.id)">
+                        <i class="fa-duotone fa-trash me-2"></i>
+                        <span>Delete posts</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="group-content-posts mt-2">
         <h1 class="fw-bold title">
             {{ title }}

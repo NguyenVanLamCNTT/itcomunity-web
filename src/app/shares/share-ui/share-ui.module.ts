@@ -15,6 +15,7 @@ import { PostsItemComponent } from './posts-item/posts-item.component';
 import { SidebarAskComponent } from 'src/app/shares/share-ui/sidebar-ask/sidebar-ask.component';
 import { PopoverModule } from 'ngx-smart-popover';
 import {MatButtonModule} from '@angular/material/button';
+import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatButtonModule} from '@angular/material/button';
     CardItemComponent,
     SafeHtmlPipe,
     PostsItemComponent,
-    SidebarAskComponent
+    SidebarAskComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,

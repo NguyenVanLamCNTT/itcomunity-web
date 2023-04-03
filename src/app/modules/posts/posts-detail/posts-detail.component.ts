@@ -1,7 +1,10 @@
+import { TopicService } from './../../../shares/services/topic/topic.service';
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
+import { switchMap } from 'rxjs';
 import { Posts } from 'src/app/shares/models/posts/posts';
 import { PostsService } from './../../../shares/services/posts/posts.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-detail',
@@ -13,7 +16,10 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   posts: Posts | undefined;
   headers: any = [];
   constructor(private postsService: PostsService,
-    private activatedRoute: ActivatedRoute,) { }
+    private activatedRoute: ActivatedRoute,
+    private notifyService: NotifyService,
+    private router: Router) { }
+
   ngAfterViewInit(): void {
     setTimeout(() => {
       document.querySelectorAll('h1, h2').forEach((el: any) => {
@@ -33,10 +39,10 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     this.listenService();
     window.addEventListener('scroll', this.setFixedSideBar);
   }
+
   setFixedSideBar(event: any) {
     const scrollValue = window.pageYOffset;
     this.headers?.forEach((header: any) => {
-      // find the element that is currently in the viewport
       const element = document.querySelector(this.getIdScroll(header.id));
       if (element) {
         const elementPosition = element.getBoundingClientRect().top;
@@ -47,9 +53,12 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   }
 
   listenService(): void {
-    this.postsService.getPostsById(this.postsId).subscribe(posts => {
-      this.posts = posts;
-    })
+    this.postsService.getPostsById(this.postsId).pipe(
+      switchMap((posts: any) => {
+        this.posts = posts;
+        return this.postsService.updateView(posts.id);
+      })
+    ).subscribe();
   }
 
   getIdScroll(header: string): string {
@@ -60,5 +69,15 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     const id = `#${header?.toLowerCase().replace(/ /g, '_').replace(/[^a-zA-Z_]/g, '')}`;
     const el = document.querySelector(id);
     el?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  deletePosts(postsId: any): void {
+    this.postsService.deletePosts(postsId).subscribe((res: any) => {
+      this.notifyService.success('Delete posts successfully!', 'Success');
+      this.router.navigate(['/home/newest/posts']);
+    },
+      (err: any) => {
+        this.notifyService.error('Delete posts failed!', 'Error');
+      });
   }
 }

@@ -1,5 +1,5 @@
 import { LocalStorageHelperService } from '../../services/token-storage/localstorage-helper.service';
-import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 const customBuild = require('../ckCustomBuild/build/ckeditor.js');
 import { MyUploadAdapter } from 'src/app/modules/posts/uploadAdapter';
@@ -16,13 +16,15 @@ import { MyUploadAdapter } from 'src/app/modules/posts/uploadAdapter';
     }
   ]
 })
-export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
-
-  public Editor = customBuild;
-  token: string = '';
+export class MyCkEditorComponent implements OnInit, ControlValueAccessor, OnChanges{
+  @Input() contentRichText: string = '';
   @Input() readonly: boolean = false;
   @Output() public changeInput = new EventEmitter<string>();
+
   private _value: string = '';
+  public Editor = customBuild;
+  
+  token: string = '';
   config: any
 
   get value() {
@@ -38,6 +40,14 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor {
 
   constructor(private localStorageHelperService: LocalStorageHelperService) {
     this.token = this.localStorageHelperService?.getToken();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.writeValue(this.contentRichText);
+  }
+  
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
   }
 
   onChange(_: any) {
