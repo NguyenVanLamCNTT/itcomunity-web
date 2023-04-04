@@ -3,6 +3,7 @@ import { NewestPostsComponent } from './newest-posts/newest-posts.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewestComponent } from './newest.component';
+import { NewestPostsFollowingsComponent } from './newest-posts-followings/newest-posts-followings.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'series',
         component: NewestSeriesComponent
+      },
+      {
+        path: 'followings',
+        component: NewestPostsFollowingsComponent
       }
     ]
   }

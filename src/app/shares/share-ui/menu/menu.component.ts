@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
     {
       id: 3,
       name: 'FOLLOWINGS',
-      link: '/following',
+      link: '/home/newest/followings',
       isShow: false,
       isActive: false,
     },

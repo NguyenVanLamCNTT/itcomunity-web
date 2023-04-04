@@ -34,11 +34,12 @@
     }
 
     .group-content-title {
-        .title a{
+        .title a {
             font-size: 1.2rem;
             font-weight: 400;
             color: var(--black);
         }
+
         .title a:hover {
             color: var(--main-color);
         }
@@ -97,4 +98,66 @@
 
 a {
     text-decoration: none;
+}
+
+.box-card-related {
+    margin-top: 20px;
+    padding: 25px;
+    border: 1px solid var(--gray-light);
+    border-radius: 5px;
+    background: var(--white);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+    width: 320px;
+    height: 170px;
+    margin: 0 10px;
+    flex: 1;
+
+    .title {
+        a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+    }
+
+    .name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--main-color);
+    }
+
+    .time-read {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: var(--gray-text);
+    }
+
+    .group-card-item {
+        margin-bottom: 15px;
+    }
+}
+// text one line
+.text-one-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// text two line
+.text-two-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.comment-outer {
+    .title {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--black);
+        margin-bottom: 10px;
+    }
 }

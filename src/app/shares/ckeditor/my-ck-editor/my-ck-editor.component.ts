@@ -19,6 +19,7 @@ import { MyUploadAdapter } from 'src/app/modules/posts/uploadAdapter';
 export class MyCkEditorComponent implements OnInit, ControlValueAccessor, OnChanges{
   @Input() contentRichText: string = '';
   @Input() readonly: boolean = false;
+  @Input() placeholder: string = '';
   @Output() public changeInput = new EventEmitter<string>();
 
   private _value: string = '';
@@ -127,15 +128,16 @@ export class MyCkEditorComponent implements OnInit, ControlValueAccessor, OnChan
         ]
       },
       language: 'en',
-      placeholder: `Markdown syntax is supported. Click ? for Help \n
-      To next line, using HTML <br> tag or Enter Twice \n
-      Click “Next” 👁️ to preview mode \n
-      Click icon “Code” 💻 to embed code your posts \n
-      CLick icon “Image” 📷 to upload image \n
-      Please hover to any icon for show tooltip. Give me any feedback if any. \n`,
+      placeholder: this.placeholder,
     };
   }
 
+  // `Markdown syntax is supported. Click ? for Help \n
+  //     To next line, using HTML <br> tag or Enter Twice \n
+  //     Click “Next” 👁️ to preview mode \n
+  //     Click icon “Code” 💻 to embed code your posts \n
+  //     CLick icon “Image” 📷 to upload image \n
+  //     Please hover to any icon for show tooltip. Give me any feedback if any. \n`
 
   onReady(editor: any): any {
     editor.plugins.get('FileRepository').createUploadAdapter = (loader: any) => {

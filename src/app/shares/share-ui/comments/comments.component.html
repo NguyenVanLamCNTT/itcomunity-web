@@ -1,0 +1,168 @@
+<div>
+    <div class="card-comment">
+        <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText"
+            [placeholder]="placeholder">
+        </app-my-ck-editor>
+        <div class="mt-2 d-flex justify-content-end">
+            <button class="btn-post-comment" [disabled]="contentRichText === ''">
+                Posts comment
+            </button>
+        </div>
+    </div>
+    <div class="card-comment mt-3">
+        <div class="card-comment-header">
+            <div class="card-comment-header-left">
+                <div class="card-comment-header-left-avatar">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="avatar">
+                </div>
+                <div class="card-comment-header-left-info">
+                    <div class="d-flex">
+                        <div class="card-comment-header-left-info-name me-2">
+                            <a href="#">Aia Nguyen</a>
+                        </div>
+                        <div class="card-comment-header-left-info-username">
+                            <span>@aia.n</span>
+                        </div>
+                    </div>
+                    <div class="card-comment-header-left-info-time">
+                        <span>1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-comment-header-right">
+                <div class="card-comment-header-right-icon">
+                    <i class="fa-solid fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card-comment-body">
+            <div class="card-comment-body-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+            </div>
+        </div>
+        <div class="card-comment-footer">
+            <div class="card-comment-footer-left">
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-heart me-1"></i>
+                    <span>Like</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-comment me-1"></i>
+                    <span>Reply</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-share me-1"></i>
+                    <span>Share</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-bookmark me-1"></i>
+                    <span>Bookmark</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-comment mt-3">
+        <div class="card-comment-header">
+            <div class="card-comment-header-left">
+                <div class="card-comment-header-left-avatar">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="avatar">
+                </div>
+                <div class="card-comment-header-left-info">
+                    <div class="d-flex">
+                        <div class="card-comment-header-left-info-name me-2">
+                            <a href="#">Aia Nguyen</a>
+                        </div>
+                        <div class="card-comment-header-left-info-username">
+                            <span>@aia.n</span>
+                        </div>
+                    </div>
+                    <div class="card-comment-header-left-info-time">
+                        <span>1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-comment-header-right">
+                <div class="card-comment-header-right-icon">
+                    <i class="fa-solid fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card-comment-body">
+            <div class="card-comment-body-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+            </div>
+        </div>
+        <div class="card-comment-footer">
+            <div class="card-comment-footer-left">
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-heart me-1"></i>
+                    <span>Like</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-comment me-1"></i>
+                    <span>Reply</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-share me-1"></i>
+                    <span>Share</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-bookmark me-1"></i>
+                    <span>Bookmark</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-comment mt-3">
+        <div class="card-comment-header">
+            <div class="card-comment-header-left">
+                <div class="card-comment-header-left-avatar">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="avatar">
+                </div>
+                <div class="card-comment-header-left-info">
+                    <div class="d-flex">
+                        <div class="card-comment-header-left-info-name me-2">
+                            <a href="#">Aia Nguyen</a>
+                        </div>
+                        <div class="card-comment-header-left-info-username">
+                            <span>@aia.n</span>
+                        </div>
+                    </div>
+                    <div class="card-comment-header-left-info-time">
+                        <span>1 hour ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-comment-header-right">
+                <div class="card-comment-header-right-icon">
+                    <i class="fa-solid fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card-comment-body">
+            <div class="card-comment-body-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.</p>
+            </div>
+        </div>
+        <div class="card-comment-footer">
+            <div class="card-comment-footer-left">
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-heart me-1"></i>
+                    <span>Like</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-comment me-1"></i>
+                    <span>Reply</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-share me-1"></i>
+                    <span>Share</span>
+                </div>
+                <div class="card-comment-footer-left-icon me-2">
+                    <i class="fa-solid fa-bookmark me-1"></i>
+                    <span>Bookmark</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

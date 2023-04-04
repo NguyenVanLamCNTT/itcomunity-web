@@ -30,6 +30,14 @@ export class CreateSeriesComponent implements OnInit{
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
 
+
+  placeholder = `Markdown syntax is supported. Click ? for Help \n
+      To next line, using HTML <br> tag or Enter Twice \n
+      Click “Next” 👁️ to preview mode \n
+      Click icon “Code” 💻 to embed code your posts \n
+      CLick icon “Image” 📷 to upload image \n
+      Please hover to any icon for show tooltip. Give me any feedback if any. \n`
+
   constructor(private modalService: NgbModal,
               private postsService: PostsService,
               private notifyService: NotifyService,

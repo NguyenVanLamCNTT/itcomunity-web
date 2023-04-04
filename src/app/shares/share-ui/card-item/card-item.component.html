@@ -1,4 +1,4 @@
-<div class="group-card-item mt-2">
+<div class="group-card-item mt-2" *ngIf="!isRelated">
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <div class="avatar-image" routerLink="/profile/{{item?.author?.username}}/posts">
@@ -58,6 +58,40 @@
         <div class="d-flex">
             <div class="icon">
                 <i class="fa-sharp fa-solid fa-thumbtack"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isRelated">
+    <div class="box-card-related">
+        <div class="group-content-title mt-1">
+            <div class="title text-two-line">
+                <a href="/posts/{{item?.id}}">{{item?.name}}</a>
+            </div>
+        </div>
+        <div class="name mt-1">
+            <a routerLink="/profile/{{item?.author?.username}}/posts">
+                <span>{{item?.author?.fullName}}</span>
+            </a>
+        </div>
+        <div class="time-read">
+            <span>
+                1 min read
+            </span>
+        </div>
+        <div class="group-icon-action d-flex mt-1">
+            <div class="icon-item m-0">
+                <i class="fa-solid fa-eye"></i>
+                <span>{{ item?.viewNumber }}</span>
+            </div>
+            <div class="icon-item">
+                <i class="fa-solid fa-bookmark"></i>
+                <span>{{ item?.commentNumber }}</span>
+            </div>
+            <div class="icon-item">
+                <i class="fa-solid fa-comment"></i>
+                <span>{{ item?.bookMarkNumber }}</span>
             </div>
         </div>
     </div>

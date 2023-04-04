@@ -42,8 +42,8 @@ export class PostsService {
       );
   }
 
-  public getPostsByUserFollow(): Observable<Posts> {
-    const url = `${apiUrl}/${path.postsByUserFollow}`;
+  public getPostsByUserFollow(page?: number, perPage?: number, sort?: string, username?: string): Observable<Posts> {
+    const url = `${apiUrl}/${path.postsByUserFollow}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
     return this.apiService.get(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {

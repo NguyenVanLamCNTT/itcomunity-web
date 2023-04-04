@@ -15,14 +15,16 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   postsId: number = 0;
   posts: Posts | undefined;
   headers: any = [];
+  postsRelatedAuthor: any;
   constructor(private postsService: PostsService,
     private activatedRoute: ActivatedRoute,
     private notifyService: NotifyService,
-    private router: Router) { }
+    private router: Router,
+    private topicService: TopicService) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      document.querySelectorAll('h1, h2').forEach((el: any) => {
+      document.querySelectorAll('h2, h3').forEach((el: any) => {
         this.headers.push({
           tag: el.tagName,
           id: el.textContent
@@ -56,9 +58,17 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     this.postsService.getPostsById(this.postsId).pipe(
       switchMap((posts: any) => {
         this.posts = posts;
+        console.log(this.posts);
         return this.postsService.updateView(posts.id);
+      }),
+      switchMap((res: any) => {
+        return this.postsService.getPosts(1, 10, undefined, this.posts?.author?.username)
       })
-    ).subscribe();
+    ).subscribe(
+      (res: any) => {
+        this.postsRelatedAuthor = res?.items.filter((res: Posts) => res.id !== this.posts?.id).slice(0, 3);
+      }
+    );
   }
 
   getIdScroll(header: string): string {

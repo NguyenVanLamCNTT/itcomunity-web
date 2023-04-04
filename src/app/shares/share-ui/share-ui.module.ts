@@ -16,6 +16,9 @@ import { SidebarAskComponent } from 'src/app/shares/share-ui/sidebar-ask/sidebar
 import { PopoverModule } from 'ngx-smart-popover';
 import {MatButtonModule} from '@angular/material/button';
 import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.component';
+import { CommentsComponent } from './comments/comments.component';
+import { MyCkEditorModule } from '../ckeditor/my-ck-editor/my-ck-editor.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     SafeHtmlPipe,
     PostsItemComponent,
     SidebarAskComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,10 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     RouterModule,
     HighlightJsModule,
     PopoverModule,
-    MatButtonModule
+    MatButtonModule,
+    MyCkEditorModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     NavbarComponent,
@@ -46,7 +53,8 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
     CardItemComponent,
     SafeHtmlPipe,
     PostsItemComponent,
-    SidebarAskComponent
+    SidebarAskComponent,
+    CommentsComponent
   ],
   providers: [
     HighlightJsDirective,

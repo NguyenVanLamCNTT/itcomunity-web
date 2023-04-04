@@ -9,12 +9,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NewestPostsComponent } from './newest-posts/newest-posts.component';
 import { NewestSeriesComponent } from './newest-series/newest-series.component';
 import {MatButtonModule} from '@angular/material/button';
+import { NewestPostsFollowingsComponent } from './newest-posts-followings/newest-posts-followings.component';
 
 @NgModule({
   declarations: [
     NewestComponent,
     NewestPostsComponent,
-    NewestSeriesComponent
+    NewestSeriesComponent,
+    NewestPostsFollowingsComponent
   ],
   imports: [
     CommonModule,
