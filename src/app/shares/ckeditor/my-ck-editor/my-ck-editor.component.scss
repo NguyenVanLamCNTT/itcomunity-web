@@ -1,3 +1,7 @@
 ::ng-deep .ck .ck-placeholder {
     white-space: pre-line;
 }
+
+::ng-deep .ck-editor__editable_inline {
+    min-height: 120px;
+}

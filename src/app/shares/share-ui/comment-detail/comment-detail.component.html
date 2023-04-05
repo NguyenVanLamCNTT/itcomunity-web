@@ -1,15 +1,5 @@
-<div>
-    <div class="card-comment">
-        <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText"
-            [placeholder]="placeholder">
-        </app-my-ck-editor>
-        <div class="mt-2 d-flex justify-content-end">
-            <button class="btn-post-comment" [disabled]="contentRichText === ''" (click)="onSubmit()">
-                Posts comment
-            </button>
-        </div>
-    </div>
-    <div class="card-comment mt-3" *ngFor="let comment of listComments?.items | paginate: {
+<div class="p-3">
+    <div class="card-comment mt-3" *ngFor="let comment of comment?.childComment | paginate: {
         itemsPerPage: itemsSize,
         currentPage: page,
         totalItems: listComments?.totalItems
@@ -22,7 +12,7 @@
                 <div class="card-comment-header-left-info">
                     <div class="d-flex">
                         <div class="card-comment-header-left-info-name me-2">
-                            <a href="#">{{ comment?.author?.fullname }}</a>
+                            <a href="#">{{ comment?.author?.fullname || comment?.author?.fullName }}</a>
                         </div>
                         <div class="card-comment-header-left-info-username">
                             <span>@{{ comment?.author?.username }}</span>
@@ -44,30 +34,28 @@
                 <div [innerHTML]="comment?.content | safeHtml"></div>
             </div>
         </div>
-        <div class="card-comment-footer">
+        <!-- <div class="card-comment-footer">
             <div class="card-comment-footer-left">
-                <!-- <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-heart me-1"></i>
-                    <span>Like</span>
-                </div> -->
-                <div class="card-comment-footer-left-icon me-2" (click)="openModalCommentDetail(comment)">
+                <div class="card-comment-footer-left-icon me-2">
                     <i class="fa-solid fa-comment me-1"></i>
                     <span>Reply</span>
                 </div>
-                <!-- <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-share me-1"></i>
-                    <span>Share</span>
-                </div>
-                <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-bookmark me-1"></i>
-                    <span>Bookmark</span>
-                </div> -->
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="mt-3 d-flex justify-content-end">
         <pagination-controls *ngIf="listComments?.items.length" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
         </pagination-controls>
+    </div>
+    <div class="card-comment">
+        <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText"
+            [placeholder]="placeholder">
+        </app-my-ck-editor>
+        <div class="mt-2 d-flex justify-content-end">
+            <button class="btn-post-comment" [disabled]="contentRichText === ''" (click)="onSubmit()">
+                Posts comment
+            </button>
+        </div>
     </div>
 </div>
 

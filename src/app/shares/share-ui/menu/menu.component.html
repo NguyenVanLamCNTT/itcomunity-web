@@ -1,6 +1,6 @@
 <div class="menu">
     <div class="container">
-        <ul class="list-item d-flex justify-content-between m-0 align-item-center list-unstyled">
+        <ul class="list-item d-flex justify-content-between m-0 align-item-center list-unstyled justify-content-center">
             <ng-container *ngFor="let item of dataMenu">
                 <li class="p-3 text-decoration-none text-center" *ngIf="item.isShow || isLogin" (click)="selectItem(item)">
                     <div class="text-center">
@@ -13,10 +13,9 @@
                 </li>
             </ng-container>
             <ng-container>
-                <li class="text-decoration-none d-flex justify-center align-items-center">
+                <li class="text-decoration-none d-flex justify-center align-items-center" *ngIf="isLogin">
                     <div class="text-center">
-                        <a class="btn btn-primary text-decoration-none" routerLink="/posts/create"
-                            *ngIf="isLogin">
+                        <a class="btn btn-primary text-decoration-none" routerLink="/posts/create">
                             <i class="fa-sharp fa-regular fa-pen-to-square text-white"></i>
                             <span class="fw-bold text-white">
                                 {{ 'POSTS' | translate }}

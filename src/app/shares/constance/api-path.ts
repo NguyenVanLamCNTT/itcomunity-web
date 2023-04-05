@@ -35,6 +35,9 @@ export const apiPath = {
     topic: {
       topic: 'api/topics',
       addTopic: 'api/topics/add-topic-to-user',
+    },
+    comment: {
+      comment: 'api/comments',
     }
   }
   

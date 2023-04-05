@@ -8,7 +8,7 @@ export class MyUploadAdapter implements UploadAdapter {
     this.loader = loader;
     this.token = token;
   }
-  
+
   abort(): void {
     throw new Error("Method not implemented.");
   }
@@ -23,18 +23,18 @@ export class MyUploadAdapter implements UploadAdapter {
         const formData = new FormData();
         formData.append('upload', file);
         xhr.send(formData);
-        setTimeout(() => {
-          xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-              if (xhr.status >= 200 && xhr.status < 300) {
-                  const response = JSON.parse(xhr.response);
-                resolve({ default: response.data.fileName });
-              } else {
-                reject(xhr.response);
-              }
+        // setTimeout(() => {
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              const response = JSON.parse(xhr.response);
+              resolve({ default: response.data.fileName });
+            } else {
+              reject(xhr.response);
             }
-          };
-        }, 1000);
+          }
+        };
+        // }, 1000);
       });
     });
   }

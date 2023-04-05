@@ -1,19 +1,133 @@
-import { Component } from '@angular/core';
+import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
+import { CommentService } from './../../services/comment/comment.service';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommentDetailComponent } from '../comment-detail/comment-detail.component';
+import { User } from '../../models/user/user';
+const hljs = require('highlight.js');
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class CommentsComponent {
+export class CommentsComponent implements OnChanges, AfterViewInit{
+  @Input() posts: any;
+  @Input() series: any;
+  @Input() question: any;
+  @Input() answer: any;
+  @Input() user: any;
+  @Input() comment: any;
+
   readonly = false;
   contentRichText: string = '';
-
   placeholder = 'Write a comment...';
+  listComments: any;
 
-  constructor() { }
+  page: number = 1;
+  count: number = 0;
+  itemsSize: number = 5;
+  tableSizes: any = [3, 6, 9, 12];
+
+  localUser: User = this.LocalStorageHelperService.getUser();
+  
+  constructor(private commentService: CommentService,
+              private notifyService: NotifyService,
+              private modalService: NgbModal,
+              private LocalStorageHelperService: LocalStorageHelperService
+              ) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('this.series', this.series);
+    if (this.posts && this.series) {
+      this.listenService(this.page, this.itemsSize, this.posts.id, this.series.id);
+    } else if (this.series) {
+      this.listenService(this.page, this.itemsSize, null, this.series.id);
+    } else if (this.posts) {
+      this.listenService(this.page, this.itemsSize, this.posts.id);
+    }
+
+    this.codeFormat();
+  }
+
+  ngAfterViewInit(): void {
+    this.codeFormat();
+  }
+
+  codeFormat() {
+    setTimeout(() => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    }, 1000);
+  }
+
+  listenService(page = 1, itemsSize = 5, postsId?: any, seriesId?: any) {
+    this.commentService.getComments(page, itemsSize, postsId, seriesId).subscribe(res => {
+      this.listComments = res;
+      console.log('this.listComments', this.listComments);
+      this.codeFormat();
+    });
+  }
 
   onchange(event: any) {
+    this.contentRichText = event;
+    this.contentRichText = this.contentRichText.replace(/<code/g, '<code class=\"hljs\"');
+  }
 
+  onSubmit() {
+    const data = {
+      content: this.contentRichText,
+      answerId: this.answer ? this.answer.id : null,
+      postId: this.posts ? this.posts.id : null,
+      seriesId: this.series ? this.series.id : null,
+      parentCommentId: this.comment ? this.comment.id : null,
+    }
+    if (this.posts) {
+      this.commentService.createComment(data).subscribe(res => {
+        this.notifyService.success('Comment successfully', 'Success');
+        this.contentRichText = '';
+        this.listenService(1, 10, this.posts.id);
+      },
+      err => {
+        this.notifyService.error('Comment failed', 'Error');
+      })
+    }
+    if (this.series) {
+      this.commentService.createComment(data).subscribe(res => {
+        this.notifyService.success('Comment successfully', 'Success');
+        this.contentRichText = '';
+        this.listenService(1, 10, null, this.series.id);
+      },
+      err => {
+        this.notifyService.error('Comment failed', 'Error');
+      })
+    }
+  }
+  
+  onTableDataChange(event: any) {
+    this.page = event;
+    if (this.posts) {
+      this.listenService(this.page, this.itemsSize, this.posts.id);
+    } else if (this.series) {
+      this.listenService(this.page, this.itemsSize, null, this.series.id);
+    }
+  }
+
+  openModalCommentDetail(comment: any) {
+    console.log('comment', comment);
+    const modalRef = this.modalService.open(CommentDetailComponent, { size: 'lg' });
+    modalRef.componentInstance.posts = this.posts;
+    modalRef.componentInstance.series = this.series;
+    modalRef.componentInstance.comment = comment;
+    modalRef.componentInstance.answer = this.answer;
+    modalRef.componentInstance.localUser = this.localUser;
+
+    modalRef.result.then((result) => {
+      console.log(result);
+    }, (reason) => {}).catch((err) => {
+      console.log(err);
+    });
   }
 }

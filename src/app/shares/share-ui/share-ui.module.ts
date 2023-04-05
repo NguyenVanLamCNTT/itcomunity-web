@@ -19,6 +19,8 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal.compo
 import { CommentsComponent } from './comments/comments.component';
 import { MyCkEditorModule } from '../ckeditor/my-ck-editor/my-ck-editor.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommentDetailComponent } from './comment-detail/comment-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PostsItemComponent,
     SidebarAskComponent,
     ConfirmModalComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentDetailComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyCkEditorModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports: [
     NavbarComponent,

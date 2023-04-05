@@ -1,3 +1,4 @@
+import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
 import { ConfirmModalComponent } from './../modal/confirm-modal/confirm-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightJsDirective } from 'ngx-highlight-js';
@@ -18,23 +19,31 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
   @Input() user: any;
   @Input() posts: any;
   @Output() idDeletePosts = new EventEmitter<any>();
-  constructor(private modalService: NgbModal) {
 
+  userLocal: any;
+  constructor(
+    private modalService: NgbModal,
+    private localStorageHelperService: LocalStorageHelperService
+  ) {
+    this.userLocal = this.localStorageHelperService.getUser();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    setTimeout(() => {
-      document.querySelectorAll('pre code').forEach((el) => {
-        hljs.highlightElement(el);
-      });
-    }, 1000);
+    console.log(this.user);
+    console.log(this.posts);
+    this.codeFormat();
   }
   ngAfterViewInit(): void {
+    this.codeFormat();
+  }
+
+  codeFormat() {
     setTimeout(() => {
       document.querySelectorAll('pre code').forEach((el) => {
         hljs.highlightElement(el);
       });
     }, 1000);
   }
+
   deletePosts(id: any): void {
     const modalRef = this.modalService.open(ConfirmModalComponent, { centered: true, size: 'md' });
     modalRef.componentInstance.action = 'delete';
@@ -45,5 +54,12 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  isPermission(): boolean {
+    if (this.userLocal?.id === this.posts?.author?.id) {
+      return true;
+    }
+    return false;
   }
 }
