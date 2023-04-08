@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
     {
       id: 1,
       name: 'CONTENT_CREATOR',
-      link: '/content-creator',
+      link: '',
       isShow: true,
       isActive: false,
     },
@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     {
       id: 4,
       name: 'QUESTIONS',
-      link: '/home/newest/followings',
+      link: '/home/newest/questions',
       isShow: true,
       isActive: false,
     },
@@ -48,14 +48,14 @@ export class MenuComponent implements OnInit {
     {
       id: 6,
       name: 'TRENDING',
-      link: '/trending',
+      link: '/',
       isShow: true,
       isActive: false,
     },
     {
       id: 7,
       name: 'MY_BOOKMARKS',
-      link: '/saved',
+      link: '/',
       isShow: false,
       isActive: false,
     }

@@ -1,0 +1,68 @@
+.card-custom {
+    border-bottom: 1px solid var(--gray-light);
+
+    .avatar {
+        span {
+            font-size: 1rem;
+            color: var(--main-color);
+            font-weight: 500;
+        }
+    }
+
+    .title {
+        a {
+            font-size: 1.3rem;
+            color: var(--black);
+            font-weight: 400;
+            margin-bottom: 0;
+            text-decoration: none;
+        }
+    }
+
+    .group-icon-action {
+        .icon-item {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-left: 20px;
+            aspect-ratio: 3/2;
+
+            span {
+                margin-left: 3px;
+            }
+        }
+    }
+
+    .tag-name-trending {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: var(--main-color);
+        width: fit-content;
+
+        a {
+            color: var(--white);
+            text-decoration: none;
+        }
+    }
+
+    .tag-name {
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background: #f4f4f5;
+        width: fit-content;
+        border: 1px solid #e9e9eb;
+
+        a {
+            color: var(--gray-text);
+            text-decoration: none;
+        }
+    }
+
+    .group-date {
+        color: var(--gray-text);
+        font-size: 0.9rem;
+    }
+}

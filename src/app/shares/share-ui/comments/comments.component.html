@@ -16,20 +16,20 @@
       }">
         <div class="card-comment-header">
             <div class="card-comment-header-left">
-                <div class="card-comment-header-left-avatar">
+                <div class="card-comment-header-left-avatar" routerLink="/profile/{{comment?.author?.username}}/posts">
                     <img src="{{ comment?.author?.avatar }}" alt="avatar">
                 </div>
                 <div class="card-comment-header-left-info">
                     <div class="d-flex">
                         <div class="card-comment-header-left-info-name me-2">
-                            <a href="#">{{ comment?.author?.fullname }}</a>
+                            <a routerLink="/profile/{{comment?.author?.username}}/posts">{{ comment?.author?.fullname }}</a>
                         </div>
-                        <div class="card-comment-header-left-info-username">
+                        <div class="card-comment-header-left-info-username" routerLink="/profile/{{comment?.author?.username}}/posts">
                             <span>@{{ comment?.author?.username }}</span>
                         </div>
                     </div>
                     <div class="card-comment-header-left-info-time">
-                        <span>1 hour ago</span>
+                        <span>{{ comment?.modified | date: 'medium' }}</span>
                     </div>
                 </div>
             </div>
@@ -46,22 +46,10 @@
         </div>
         <div class="card-comment-footer">
             <div class="card-comment-footer-left">
-                <!-- <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-heart me-1"></i>
-                    <span>Like</span>
-                </div> -->
                 <div class="card-comment-footer-left-icon me-2" (click)="openModalCommentDetail(comment)">
                     <i class="fa-solid fa-comment me-1"></i>
-                    <span>Reply</span>
+                    <span>Reply ({{ comment?.childComment?.length }})</span>
                 </div>
-                <!-- <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-share me-1"></i>
-                    <span>Share</span>
-                </div>
-                <div class="card-comment-footer-left-icon me-2">
-                    <i class="fa-solid fa-bookmark me-1"></i>
-                    <span>Bookmark</span>
-                </div> -->
             </div>
         </div>
     </div>

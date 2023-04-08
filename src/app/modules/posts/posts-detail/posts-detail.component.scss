@@ -37,3 +37,38 @@
         margin-bottom: 10px;
     }
 }
+
+
+.left-content-home {
+    display: 75%;
+}
+
+.right-content-home {
+    width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+    .right-content-home {
+        display: none;
+    }
+
+    .left-content-home {
+        width: 100%;
+        img {
+            width: 100% !important;
+            object-fit: cover;
+        }
+    }
+    
+    .slide {
+        img {
+            height: 200px;
+        }
+    }
+    .align-items-stretch {
+        overflow: auto;
+        padding-bottom: 20px;
+    }
+
+
+}

@@ -4,14 +4,14 @@
             <div class="avatar-image" routerLink="/profile/{{item?.author?.username}}/posts">
                 <img src="{{item?.author?.avatar}}" alt="{{item?.author?.avatar}}">
             </div>
-            <div class="ms-3">
+            <div class="flex-grow-1 ms-3">
                 <div class="d-flex group-content-user align-items-start">
                     <div class="name mt-1">
                         <a routerLink="/profile/{{item?.author?.username}}/posts">
                             <span>{{item?.author?.fullName}}</span>
                         </a>
                     </div>
-                    <div class="date-ago ms-2">
+                    <div class="date-ago ms-0 ms-md-2">
                         <span class="my-auto">{{item?.created | date: 'medium'}}</span>
                     </div>
                     <span class="mx-3 line">-</span>
@@ -27,7 +27,7 @@
                         <a routerLink="/{{isSeries ? 'series' : 'posts'}}/{{item?.id}}">{{item?.name}}</a>
                     </div>
                 </div>
-                <div class="d-flex">
+                <div class="tag-group">
                     <!-- <div class="tag-name-trending">
                         <a href="#">
                             <span>Announcement</span>

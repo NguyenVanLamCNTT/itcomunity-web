@@ -161,3 +161,23 @@ a {
         margin-bottom: 10px;
     }
 }
+
+.tag-group {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .tag-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .group-content-user {
+        display: block !important;
+    }
+    .time-readding, .link-icon, .line {
+        display: none;
+    }
+}

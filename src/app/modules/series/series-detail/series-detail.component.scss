@@ -47,3 +47,38 @@
     color: var(--gray-text);
     flex-grow: 1;
 }
+
+.left-side-bar {
+    width: 25%;
+}
+
+.right-content-series {
+    width: 75%;
+}
+
+.tags-group {
+    display: flex;
+}
+
+.create-date-item {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .left-side-bar {
+        display: none;
+    }
+
+    .right-content-series {
+        width: 100%;
+    }
+
+    .tags-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+
+    .create-date-item {
+        display: block;
+    }
+}

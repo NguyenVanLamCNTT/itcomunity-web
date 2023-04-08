@@ -3,3 +3,19 @@
     font-size: 1rem;
     font-weight: 400;
 }
+
+@media screen and (max-width: 768px) {
+    .right-content-home {
+        display: none;
+    }
+
+    .left-content-home {
+        width: 100%;
+    }
+
+    .slide {
+        img {
+            height: 200px;
+        }
+    }
+}

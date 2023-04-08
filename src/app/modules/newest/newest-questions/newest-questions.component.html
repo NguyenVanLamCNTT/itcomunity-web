@@ -1,0 +1,16 @@
+<div class="mx-2">
+    <!-- <div class="d-flex justify-content-center sub-title">
+        <p>
+            
+        </p>
+    </div> -->
+    <div class="d-flex justify-content-end" *ngIf="isLogin">
+        <button mat-raised-button color="primary" routerLink="/questions/create">
+            <i class="fa-solid fa-circle-question"></i>
+            Ask Question
+        </button>
+    </div>
+    <div *ngFor="let question of listQuestions?.items">
+        <app-question-card [question]="question"></app-question-card>
+    </div>
+</div>

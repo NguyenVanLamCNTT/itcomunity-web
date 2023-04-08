@@ -1,0 +1,61 @@
+<div class="question-outer container mt-5">
+    <form [formGroup]="questionForm" class="mt-2 mx-5">
+        <div>
+            <h1>
+                {{ 'CREATE_QUESTION' | translate }}
+            </h1>
+        </div>
+        <div class="form-group mt-1 col-12">
+            <div class="col-12 d-flex">
+                <input matInput formControlName="title" [placeholder]="'Enter Title Text (not required)'"
+                    class="input-custom me-3">
+                <div class="dropdown">
+                    <button class="custom-button-thumbnail d-flex align-items-center" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="mb-1 me-2">Save</span>
+                        <i class="fa-solid fa-angle-down my-auto"></i>
+                    </button>
+                    <ul class="dropdown-menu pt-0">
+                        <div class="popover-series-option p-3">
+                            <h3>Publish your series</h3>
+                            <div>
+                                <label class="radio-group-label">Visibility:</label>
+                                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" formControlName="status">
+                                    <mat-radio-button class="radio-button" value="PUBLISH">
+                                        Public
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                                <!-- <hr> -->
+                                <p class="sub-title mx-1">👁️ Chỉ những người có liên kết đến series này, mới có thể
+                                    xem được</p>
+                                <button mat-stroked-button color="primary" (click)="submit()">Save</button>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="form-group col-12 mt-2 chip-list">
+                    <mat-form-field class="width-1 w-100" appearance="fill">
+                        <mat-chip-grid #chipGrid aria-label="Enter tags">
+                            <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)" [editable]="true"
+                                (edited)="edit(tag, $event)" [aria-description]="'press enter to edit ' + tag.name">
+                                {{tag.name}}
+                                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip-row>
+                            <input placeholder="Tag your post. Maximum 5 tags. At least 1 tag!" [matChipInputFor]="chipGrid"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="add($event)" />
+                        </mat-chip-grid>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div>
+            <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText"
+                [placeholder]="placeholder"></app-my-ck-editor>
+        </div>
+    </form>
+</div>

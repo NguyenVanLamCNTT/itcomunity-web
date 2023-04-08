@@ -21,6 +21,7 @@ import { MyCkEditorModule } from '../ckeditor/my-ck-editor/my-ck-editor.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentDetailComponent } from './comment-detail/comment-detail.component';
+import { QuestionCardComponent } from './question-card/question-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CommentDetailComponent } from './comment-detail/comment-detail.componen
     SidebarAskComponent,
     ConfirmModalComponent,
     CommentsComponent,
-    CommentDetailComponent
+    CommentDetailComponent,
+    QuestionCardComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { CommentDetailComponent } from './comment-detail/comment-detail.componen
     SafeHtmlPipe,
     PostsItemComponent,
     SidebarAskComponent,
-    CommentsComponent
+    CommentsComponent,
+    QuestionCardComponent
   ],
   providers: [
     HighlightJsDirective,

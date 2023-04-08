@@ -38,6 +38,10 @@ export const apiPath = {
     },
     comment: {
       comment: 'api/comments',
+    },
+    qa: {
+      question: 'api/questions',
+      answer: 'api/questions/answers',
     }
   }
   

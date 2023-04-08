@@ -5,6 +5,7 @@ import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, View
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommentDetailComponent } from '../comment-detail/comment-detail.component';
 import { User } from '../../models/user/user';
+import { AuthService } from '../../services/auth/auth.service';
 const hljs = require('highlight.js');
 
 @Component({
@@ -36,10 +37,11 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   constructor(private commentService: CommentService,
               private notifyService: NotifyService,
               private modalService: NgbModal,
-              private LocalStorageHelperService: LocalStorageHelperService
+              private LocalStorageHelperService: LocalStorageHelperService,
+              private authService: AuthService
               ) { }
+
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('this.series', this.series);
     if (this.posts && this.series) {
       this.listenService(this.page, this.itemsSize, this.posts.id, this.series.id);
     } else if (this.series) {
@@ -66,7 +68,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   listenService(page = 1, itemsSize = 5, postsId?: any, seriesId?: any) {
     this.commentService.getComments(page, itemsSize, postsId, seriesId).subscribe(res => {
       this.listComments = res;
-      console.log('this.listComments', this.listComments);
       this.codeFormat();
     });
   }
@@ -77,6 +78,10 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   }
 
   onSubmit() {
+    if (!this.authService.checkLogin()) {
+      this.notifyService.error('Please login to comment', 'Error');
+      return;
+    }
     const data = {
       content: this.contentRichText,
       answerId: this.answer ? this.answer.id : null,

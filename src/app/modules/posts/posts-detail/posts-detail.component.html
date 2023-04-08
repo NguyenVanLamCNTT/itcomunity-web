@@ -33,14 +33,14 @@
 <!-- Content of the page -->
 <div class="mt-3 container d-flex">
     <!-- Content posts -->
-    <div class="w-75">
+    <div class="left-content-home">
         <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name" [user]="posts?.author"
             [posts]="posts" (idDeletePosts)="deletePosts($event)"></app-posts-item>
     </div>
     <!-- Content posts -->
 
     <!-- Sidebar -->
-    <div class="w-25 mt-3 left-side-bar">
+    <div class="right-content-home mt-3 left-side-bar">
         <div class="left-side-bar-item sticky" id="sidebar">
             <div class="mx-4">
                 <div class="d-flex">

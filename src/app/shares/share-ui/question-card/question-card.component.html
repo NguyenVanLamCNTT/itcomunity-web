@@ -1,0 +1,43 @@
+<div class="card-custom py-3">
+    <div class="d-flex">
+        <div class="">
+            <div class="group-date">
+                <i class="fa-duotone fa-calendar-days"></i>
+                <span class="ms-2">{{ question?.created | date: 'medium' }}</span>
+            </div>
+            <div>
+                <div class="group-icon-action d-flex mt-2">
+                    <div class="icon-item m-0">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>{{ question?.viewNumber }}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span>{{ question?.bookMarkNumber }}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-comment"></i>
+                        <span>{{ question?.answerNumber }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ms-5">
+            <div class="avatar d-flex align-items-center">
+                <img src="{{question?.author?.avatar}}" width="30" height="30" alt="">
+                <span class="name ms-1">{{question?.author?.fullname}}</span>
+            </div>
+            <div class="title my-2">
+                <a href="#">{{question?.title}}</a>
+            </div>
+            <div class="d-flex">
+                <div class="tag-name me-1" *ngFor="let tag of question?.keywords">
+                    <a href="#">
+                        <span>{{ parseObject(tag) }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
