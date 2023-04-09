@@ -5,7 +5,7 @@
         </app-my-ck-editor>
         <div class="mt-2 d-flex justify-content-end">
             <button class="btn-post-comment" [disabled]="contentRichText === ''" (click)="onSubmit()">
-                Posts comment
+                {{ !question ? 'Posts comment' : 'Posts answer' }}
             </button>
         </div>
     </div>
@@ -35,7 +35,39 @@
             </div>
             <div class="card-comment-header-right">
                 <div class="card-comment-header-right-icon">
-                    <i class="fa-solid fa-ellipsis-h"></i>
+                    <!-- <i class="fa-solid fa-ellipsis-h"></i> -->
+                    <div class="dropdown">
+                        <button class="custom-button-option d-flex align-items-center" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                        <ul class="dropdown-menu popover-posts-option  pt-0">
+                            <li>
+                                <a class="dropdown-item p-3 py-2" href="#">
+                                    <i class="fa-sharp fa-solid fa-circle-check me-2"></i>
+                                    <span>Approve</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="dropdown-item p-3 py-2">
+                                    <i class="fa-regular fa-pen-to-square me-2"></i>
+                                    <span>Edit comment</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item p-3 py-2">
+                                    <i class="fa-duotone fa-trash me-2"></i>
+                                    <span>Delete comment</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="dropdown-item p-3 py-2">
+                                    <i class="fa-regular fa-flag me-2"></i>
+                                    <span>Report</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,7 +78,7 @@
         </div>
         <div class="card-comment-footer">
             <div class="card-comment-footer-left">
-                <div class="card-comment-footer-left-icon me-2" (click)="openModalCommentDetail(comment)">
+                <div class="card-comment-footer-left-icon me-2" (click)="openModalCommentDetail(comment)" *ngIf="!question">
                     <i class="fa-solid fa-comment me-1"></i>
                     <span>Reply ({{ comment?.childComment?.length }})</span>
                 </div>

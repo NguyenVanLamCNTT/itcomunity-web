@@ -1,3 +1,4 @@
+import { QuestionAnswerService } from './../../services/question-answers/question-answer.service';
 import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
 import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 import { CommentService } from './../../services/comment/comment.service';
@@ -38,7 +39,8 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
               private notifyService: NotifyService,
               private modalService: NgbModal,
               private LocalStorageHelperService: LocalStorageHelperService,
-              private authService: AuthService
+              private authService: AuthService,
+              private questionAnswerService: QuestionAnswerService
               ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,6 +50,8 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
       this.listenService(this.page, this.itemsSize, null, this.series.id);
     } else if (this.posts) {
       this.listenService(this.page, this.itemsSize, this.posts.id);
+    } else if (this.question) {
+      this.listenService(this.page, this.itemsSize, null, null, this.question.id);
     }
 
     this.codeFormat();
@@ -65,7 +69,13 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
     }, 1000);
   }
 
-  listenService(page = 1, itemsSize = 5, postsId?: any, seriesId?: any) {
+  listenService(page = 1, itemsSize = 5, postsId?: any, seriesId?: any, questionId?: any) {
+    if (questionId) {
+      this.questionAnswerService.getAnswer(questionId).subscribe(res => {
+        this.listComments = res;
+      });
+      return;
+    }
     this.commentService.getComments(page, itemsSize, postsId, seriesId).subscribe(res => {
       this.listComments = res;
       this.codeFormat();
@@ -104,6 +114,21 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
         this.notifyService.success('Comment successfully', 'Success');
         this.contentRichText = '';
         this.listenService(1, 10, null, this.series.id);
+      },
+      err => {
+        this.notifyService.error('Comment failed', 'Error');
+      })
+    }
+
+    if (this.question) {
+      const dataAnswer = {
+        content: this.contentRichText,
+        questionId: this.question.id
+      }
+      this.questionAnswerService.createAnswer(dataAnswer).subscribe(res => {
+        this.notifyService.success('Comment successfully', 'Success');
+        this.contentRichText = '';
+        this.listenService(1, 10, null, null, this.question.id);
       },
       err => {
         this.notifyService.error('Comment failed', 'Error');
