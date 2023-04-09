@@ -9,12 +9,15 @@
             </button>
         </div>
     </div>
-    <div class="card-comment mt-3" *ngFor="let comment of listComments?.items | paginate: {
+    <div class="mt-3 card-comment" [ngClass]="comment && comment.isApproved ? 'card-comment-approved' : ''" *ngFor="let comment of listComments?.items | paginate: {
         itemsPerPage: itemsSize,
         currentPage: page,
         totalItems: listComments?.totalItems
       }">
         <div class="card-comment-header">
+            <div class="icon-approved" *ngIf="comment && comment.isApproved">
+                <i class="fa-sharp fa-solid fa-circle-check" title="Comment approved by owner question!"></i>
+            </div>
             <div class="card-comment-header-left">
                 <div class="card-comment-header-left-avatar" routerLink="/profile/{{comment?.author?.username}}/posts">
                     <img src="{{ comment?.author?.avatar }}" alt="avatar">
@@ -43,8 +46,8 @@
                         </button>
                         <ul class="dropdown-menu popover-posts-option  pt-0">
                             <li>
-                                <a class="dropdown-item p-3 py-2" href="#">
-                                    <i class="fa-sharp fa-solid fa-circle-check me-2"></i>
+                                <a class="dropdown-item p-3 py-2" (click)="approve(comment)">
+                                    <i class="fa-sharp fa-solid fa-circle-check me-2" ></i>
                                     <span>Approve</span>
                                 </a>
                             </li>

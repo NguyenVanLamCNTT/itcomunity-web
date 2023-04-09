@@ -47,4 +47,37 @@ export class SeriesService {
         })
       );
   }
+
+  public updateSeries(seriesId: number, series: any): Observable<any> {
+    const url = `${apiUrl}/${path.series}/${seriesId}`;
+    return this.apiService.put(url, series)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public addPostsToSeries(seriesId: number, postIdsAdd: any, postIdsRemove: any): Observable<any> {
+    const url = `${apiUrl}/${path.series}/${seriesId}/update-post`;
+    return this.apiService.patch(url, {postIdsAdd, postIdsRemove})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  // public deleteSeries(seriesId: number): Observable<any> {
+  //   const url = `${apiUrl}/${path.series}/${seriesId}`;
+  //   return this.apiService.patch(url)
+  //     .pipe(
+  //       map((httpResponse: HttpResponse<any>) => {
+  //         const body = httpResponse.body;
+  //         return body || {};
+  //       })
+  //     );
+  // }
 }

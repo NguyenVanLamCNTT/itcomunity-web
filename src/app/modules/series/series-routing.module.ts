@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: SeriesDetailComponent
+      },
+      {
+        path: ':id/edit',
+        component: CreateSeriesComponent
       }
     ]
   }

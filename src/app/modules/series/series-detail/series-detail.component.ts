@@ -33,4 +33,8 @@ export class SeriesDetailComponent implements OnInit {
       this.listPosts = posts;
     });
   }
+
+  isPermission(): boolean {
+    return true;
+  }
 }

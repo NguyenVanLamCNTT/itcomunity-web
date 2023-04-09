@@ -160,4 +160,19 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
       console.log(err);
     });
   }
+
+  approve(comment: any): void {
+    console.log('comment', comment);
+    if (!comment) {
+      return;
+    }
+
+    this.questionAnswerService.approvedAnswer(comment.id, true).subscribe(res => {
+      this.notifyService.success('Approved successfully!', 'Success');
+      this.listenService(1, 10, null, null, this.question.id);
+    }, 
+    err => {
+      this.notifyService.error('Approved failed!', 'Error');
+    });
+  }
 }

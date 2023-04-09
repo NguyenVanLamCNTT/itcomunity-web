@@ -94,7 +94,7 @@ export class QuestionAnswerService {
 
   public approvedAnswer (answerId: number, approved: boolean): Observable<any> {
     const url = `${apiUrl}/${path.answer}/${answerId}`;
-    return this.apiService.patch(url, approved)
+    return this.apiService.patch(url, {approved})
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body;

@@ -111,6 +111,26 @@
     }
 }
 
+.card-comment-approved {
+    position: relative;
+    background-color: #D4EDDA;
+    border: 1px solid #09A778;
+    .icon-approved {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        i {
+            color: #09A778;
+            font-size: 1.2rem;
+        }
+    }
+    .card-comment-body-content {
+        span {
+            background-color: #D4EDDA !important;
+        }
+    }
+}
+
 .card-comment ::ng-deep .ck-editor__editable_inline {
     min-height: 120px;
 }

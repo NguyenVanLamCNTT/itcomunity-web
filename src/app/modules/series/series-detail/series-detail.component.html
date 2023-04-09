@@ -10,6 +10,46 @@
                 </a>
             </div>
         </div>
+        <div class="my-3 d-flex justify-content-end">
+            <div class="dropdown">
+                <button class="custom-button-option d-flex align-items-center" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <ul class="dropdown-menu popover-posts-option  pt-0">
+                    <li *ngIf="isPermission()">
+                        <a class="dropdown-item p-3 py-2" routerLink="/series/{{series?.id}}/edit">
+                            <i class="fa-regular fa-pen-to-square me-2"></i>
+                            <span>Edit series</span>
+                        </a>
+                    </li>
+                    <!-- <li *ngIf="isPermission()">
+                        <a class="dropdown-item p-3 py-2" href="#">
+                            <i class="fa-regular fa-square-plus me-2"></i>
+                            <span>Add posts to series</span>
+                        </a>
+                    </li> -->
+                    <li *ngIf="isPermission()">
+                        <a class="dropdown-item p-3 py-2">
+                            <i class="fa-duotone fa-trash me-2"></i>
+                            <span>Delete series</span>
+                        </a>
+                    </li>
+                    <li *ngIf="!isPermission()">
+                        <a class="dropdown-item p-3 py-2">
+                            <i class="fa-regular fa-flag me-2"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                    <li *ngIf="!isPermission()">
+                        <a class="dropdown-item p-3 py-2">
+                            <i class="fa-regular fa-bookmark me-2"></i>
+                            <span>Bookmark</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="mt-2 create-date">
             <div class="create-date-item">
                 <p>

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { SeriesService } from './../../../shares/services/series/series.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Posts } from 'src/app/shares/models/posts/posts';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NotifyService } from 'src/app/shares/services/notify/notify.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-create-series',
@@ -30,6 +32,9 @@ export class CreateSeriesComponent implements OnInit{
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
 
+  isUpdate: boolean = false;
+  dataUpdate: any;
+  listPostsOld: any[] = [];
 
   placeholder = `Markdown syntax is supported. Click ? for Help \n
       To next line, using HTML <br> tag or Enter Twice \n
@@ -41,9 +46,32 @@ export class CreateSeriesComponent implements OnInit{
   constructor(private modalService: NgbModal,
               private postsService: PostsService,
               private notifyService: NotifyService,
-              private seriesService: SeriesService) {}
+              private seriesService: SeriesService,
+              private activatedRoute: ActivatedRoute) {}
   ngOnInit(): void {
     this.listenService();
+    this.activatedRoute.params.subscribe((params: any) => {
+      if (params.id) {
+        this.isUpdate = true;
+        this.seriesService.getSeriesById(params.id).subscribe((series: any) => {
+          if (!series) {
+            return;
+          }
+          this.dataUpdate = series;
+          this.seriesForm.patchValue({
+            title: series.name,
+            status: series.status,
+          });
+          this.textDescriptionSeries = series.description;
+        });
+
+        this.postsService.getPostsBySeries(params.id).subscribe((posts: any) => {
+          this.listPostsOld.push(...posts.items);
+          this.listPostsSelectedAfterSubmit = posts.items;
+          this.listPostsSelected = posts.items;
+        });
+      }
+    });
   }
 
   onchange(event: any): void {
@@ -113,7 +141,23 @@ export class CreateSeriesComponent implements OnInit{
       keywords: keywordsPosts,
       status: this.seriesForm.value.status
     }
+    if (this.isUpdate) {
+      const listAdd = listIdPostsSelected.filter((item: any) => !this.listPostsOld.some((itemOld: any) => itemOld.id === item));
+      const listRemove = this.listPostsOld.filter((item: any) => !listIdPostsSelected.some((itemOld: any) => itemOld === item.id));
+      const listIdRemove = listRemove.map((item: any) => item.id);
 
+      this.seriesService.updateSeries(this.dataUpdate.id, data).pipe(
+        switchMap((res: any) => {
+          return this.seriesService.addPostsToSeries(this.dataUpdate.id, listAdd, listIdRemove);
+        })
+      ).subscribe((res: any) => {
+        this.notifyService.success('Update series successfully!', 'Notification');
+        this.seriesForm.reset();
+        this.listPostsSelectedAfterSubmit = [];
+        this.textDescriptionSeries = '';
+      });
+      return;
+    }
     this.seriesService.createSeries(data).subscribe((res: any) => {
       this.notifyService.success('Create series successfully!', 'Notification');
       this.seriesForm.reset();

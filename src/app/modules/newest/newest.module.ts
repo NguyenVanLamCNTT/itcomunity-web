@@ -11,6 +11,7 @@ import { NewestSeriesComponent } from './newest-series/newest-series.component';
 import {MatButtonModule} from '@angular/material/button';
 import { NewestPostsFollowingsComponent } from './newest-posts-followings/newest-posts-followings.component';
 import { NewestQuestionsComponent } from './newest-questions/newest-questions.component';
+import { NewestContentCreatorComponent } from './newest-content-creator/newest-content-creator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NewestQuestionsComponent } from './newest-questions/newest-questions.co
     NewestPostsComponent,
     NewestSeriesComponent,
     NewestPostsFollowingsComponent,
-    NewestQuestionsComponent
+    NewestQuestionsComponent,
+    NewestContentCreatorComponent
   ],
   imports: [
     CommonModule,
