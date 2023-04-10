@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
     {
       id: 1,
       name: 'CONTENT_CREATOR',
-      link: '',
+      link: '/home/newest/content-creators',
       isShow: true,
       isActive: false,
     },
