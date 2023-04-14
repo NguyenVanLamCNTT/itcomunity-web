@@ -1,3 +1,5 @@
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
+import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
 import { ConfirmModalComponent } from './../modal/confirm-modal/confirm-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +25,9 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
   userLocal: any;
   constructor(
     private modalService: NgbModal,
-    private localStorageHelperService: LocalStorageHelperService
+    private localStorageHelperService: LocalStorageHelperService,
+    private postsService: PostsService,
+    private notifyService: NotifyService
   ) {
     this.userLocal = this.localStorageHelperService.getUser();
   }
@@ -61,5 +65,14 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
       return true;
     }
     return false;
+  }
+
+  bookmarkPosts(posts: any): void {
+    this.postsService.bookmarkPosts(posts?.id, true).subscribe((res) => {
+      this.posts.bookmarked = true;
+      this.notifyService.success('Bookmark Success!', 'Success');
+    }, (error) => {
+      this.notifyService.error('Bookmark Failed!', 'Error');
+    });
   }
 }

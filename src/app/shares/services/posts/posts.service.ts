@@ -107,4 +107,15 @@ export class PostsService {
         })
       );
   }
+
+  public bookmarkPosts(postsId: any, bookmark: boolean): Observable<any> {
+    const url = `${apiUrl}/${path.bookmark}`;
+    return this.apiService.post(url, {postsId, bookmark})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
 }

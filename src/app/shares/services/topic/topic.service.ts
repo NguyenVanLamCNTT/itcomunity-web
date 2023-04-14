@@ -38,7 +38,18 @@ export class TopicService {
   }
 
   public addTopicToUser(topicId: number) {
-    const url = `${apiUrl}/${path.topic}`;
+    const url = `${apiUrl}/${path.addTopic}`;
+    return this.apiService.post(url, {topicId})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public removeTopicFromUser(topicId: number) {
+    const url = `${apiUrl}/${path.removeTopic}`;
     return this.apiService.post(url, {topicId})
       .pipe(
         map((httpResponse: HttpResponse<any>) => {

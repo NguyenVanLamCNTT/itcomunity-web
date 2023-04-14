@@ -16,8 +16,8 @@ export class UserService {
 
   constructor(private apiService: ApiService) { }
 
-  getAllUsers(): Observable<User[]>{
-    const url = `${apiUrl}/${path.allUser}`;
+  getAllUsers(page?: number, perPage?: number, sort?: string, username?: string): Observable<User[]>{
+    const url = `${apiUrl}/${path.allUser}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
     return this.apiService.get(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
@@ -55,6 +55,21 @@ export class UserService {
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
+
+  followingMember(userId: any, follow: boolean): Observable<any>{
+    const url = `${apiUrl}/${path.follow}`;
+    const data = {
+      authorId: userId,
+      follow
+    }
+    return this.apiService.post(url, data)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
           return body || {};
         })
       );

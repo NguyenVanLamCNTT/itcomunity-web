@@ -9,9 +9,13 @@
             </div>
         </div>
         <div class="card-topic-group">
-            <div class="card-topic mt-4" *ngFor="let topic of topics">
+            <div class="card-topic mt-4 p-1" *ngFor="let topic of topics?.items | paginate: {
+                itemsPerPage: itemsSize,
+                currentPage: page,
+                totalItems: topics?.totalItems
+              }">
                 <div class="d-flex align-items-start justify-content-between">
-                    <div class="d-flex w-75">
+                    <div class="d-flex left-card">
                         <div class="card-topic-img">
                             <img src="{{topic.image}}" width="100" height="100" alt="">
                         </div>
@@ -36,11 +40,72 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-25">
-                        <button class="btn-follow">
+                    <div class="right-card d-flex justify-content-end">
+                        <button class="btn-follow me-2" *ngIf="!topic?.isFollowing" (click)="followingTopic(topic)">
                             <i class="fa-solid fa-plus"></i>
                             Follow
                         </button>
+                        <button class="btn-following me-1" *ngIf="topic?.isFollowing" (click)="unFollowingTopic(topic)">
+                            <i class="fa-solid fa-check"></i>
+                            Following
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 d-flex justify-content-end">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+        </div>
+    </div>
+    <div class="user-outer mt-5">
+        <div class="title-group">
+            <div class="title">
+                <p class="text-uppercase">
+                    Members to follow
+                </p>
+                <hr class="ms-1">
+            </div>
+        </div>
+        <div class="user-list">
+            <div class="user-card mt-4" *ngFor="let user of users?.items">
+                <div class="d-flex">
+                    <div class="user-avatar" routerLink="/profile/{{user?.username}}/posts">
+                        <img src="{{user?.avatar}}" alt="">
+                    </div>
+                    <div class="ms-2">
+                        <p class="user-name m-0" routerLink="/profile/{{user?.username}}/posts">
+                            {{user?.fullname}}
+                        </p>
+                        <p class="user-username m-0" routerLink="/profile/{{user?.username}}/posts">
+                            @{{user?.username}}
+                        </p>
+                        <button class="btn-follow mt-1" *ngIf="!user?.isFollowing" (click)="followUser(user)">
+                            <i class="fa-solid fa-plus"></i>
+                            Follow
+                        </button>
+                        <button class="btn-following" *ngIf="user?.isFollowing" (click)="unFollowUser(user)">
+                            <i class="fa-solid fa-check"></i>
+                            Following
+                        </button>
+                    </div>
+                </div>
+                <div class="list-icon">
+                    <div class="icon-item">
+                        <i class="fa-regular fa-file-pen"></i>
+                        <span class="ms-1">{{user?.postsNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-regular fa-users"></i>
+                        <span class="ms-1">{{user?.followersNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-messages-question"></i>
+                        <span class="ms-1">{{user?.questionsNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-list"></i>
+                        <span class="ms-1">{{user?.seriesNumber}}</span>
                     </div>
                 </div>
             </div>

@@ -70,6 +70,17 @@ export class SeriesService {
       );
   }
 
+  public bookmarkSeries(seriesId: any, bookmark: boolean): Observable<any> {
+    const url = `${apiUrl}/${path.bookmark}`;
+    return this.apiService.patch(url, {seriesId, bookmark})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
   // public deleteSeries(seriesId: number): Observable<any> {
   //   const url = `${apiUrl}/${path.series}/${seriesId}`;
   //   return this.apiService.patch(url)

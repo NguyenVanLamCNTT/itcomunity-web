@@ -20,6 +20,7 @@ export const apiPath = {
       postsByUserFollow: 'api/posts/users/user-follow',
       postsBySeries: 'api/posts/series',
       view: 'api/posts/view',
+      bookmark: 'api/posts/bookmark',
     },
     upload: {
       upload: 'api/dms/upload',
@@ -28,13 +29,16 @@ export const apiPath = {
       allUser: 'api/users',
       getMe: 'api/users/me/info',
       byUsername: 'api/users/user',
+      follow: 'api/users/user/follow',
     },
     series: {
       series: 'api/series',
+      bookmark: 'api/series/bookmark',
     },
     topic: {
       topic: 'api/topics',
       addTopic: 'api/topics/add-topic-to-user',
+      removeTopic: 'api/topics/remove-topic-to-user',
     },
     comment: {
       comment: 'api/comments',

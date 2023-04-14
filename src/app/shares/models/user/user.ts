@@ -42,6 +42,7 @@ export class User {
     avatar?: string;
     fullName?: string;
     about?: string;
+    followerIds?: Number[];
 
     static fromJson(user: any): User {
         return deserialize(User, user);

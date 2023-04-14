@@ -1,39 +1,33 @@
 <div class="profile-outer">
     <div class="profile-header container">
-        <div class="p-3 d-flex align-items-center">
-            <div class="profile-header-avatar">
-                <img src="{{ user?.avatar }}" width="140">
+        <div class="p-4 d-flex justify-content-between align-items-center">
+            <div class=" d-flex align-items-center">
+                <div class="profile-header-avatar">
+                    <img src="{{ user?.avatar }}" width="140">
+                </div>
+                <div class="profile-header-text ms-4">
+                    <p class="name">{{ user?.fullName }}</p>
+                    <p class="username m-0">@{{ user?.username }}</p>
+                    <p class="about mt-3"> "{{user?.about}}" </p>
+                </div>
             </div>
-            <div class="profile-header-text ms-4">
-                <p class="name">{{ user?.fullName }}</p>
-                <p class="username m-0">@{{ user?.username }}</p>
-                <p class="about mt-3"> "{{user?.about}}" </p>
+            <div>
+                <button class="btn-follow" (click)="followingMember(user)" *ngIf="!isFollowing">
+                    <i class="fa-solid fa-plus me-1"></i>
+                    Follow
+                </button>
+                <button class="btn-following" *ngIf="isFollowing">
+                    <i class="fa-solid fa-check me-1"></i>
+                    Following
+                </button>
             </div>
         </div>
     </div>
     <menu class="menu d-flex">
         <div class="container">
             <ul class="d-flex justify-content-start align-items-center h-100">
-                <!-- <li class="h-100 px-5">
-                    <a class="my-auto" href="">Profile</a>
-                </li> -->
-                <li class="h-100 px-5">
-                    <a class="my-auto" routerLink="/profile/{{user?.username}}/posts">Posts</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" routerLink="/profile/{{user?.username}}/series">Series</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" href="">Question</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" href="">Followings</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" href="">Followers</a>
-                </li>
-                <li class="h-100 px-5">
-                    <a class="my-auto" href="">Contact</a>
+                <li class="h-100 px-5" id="posts" *ngFor="let item of menuItems" (click)="itemSelected(item)" [class.active]="item.active" routerLink="{{ item?.link }}">
+                    <a class="my-auto">{{ item?.name }}</a>
                 </li>
             </ul>
         </div>
