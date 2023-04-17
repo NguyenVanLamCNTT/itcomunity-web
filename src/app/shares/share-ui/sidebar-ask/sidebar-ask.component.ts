@@ -1,3 +1,4 @@
+import { PostsService } from './../../services/posts/posts.service';
 import { QuestionAnswerService } from './../../services/question-answers/question-answer.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarAskComponent implements OnInit {
   questions: any;
-  constructor(private questionAnswerService: QuestionAnswerService) { }
+  listPosts: any;
+  constructor(private questionAnswerService: QuestionAnswerService,
+              private postsService: PostsService) { }
 
   ngOnInit(): void {
     this.listenService();
@@ -17,6 +20,10 @@ export class SidebarAskComponent implements OnInit {
   listenService() {
     this.questionAnswerService.getQuestion(1, 5).subscribe((res: any) => {
       this.questions = res.items;
+    });
+    this.postsService.getPosts(1, 5).subscribe((res: any) => {
+      this.listPosts = res.items;
+      console.log('this.listPosts', this.listPosts);
     });
   }
 }

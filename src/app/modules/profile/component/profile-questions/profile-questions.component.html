@@ -1,1 +1,5 @@
-<p>profile-questions works!</p>
+<div class="mx-2">
+    <div *ngFor="let question of listQuestions?.items" class="mt-5">
+        <app-question-card [question]="question"></app-question-card>
+    </div>
+</div>

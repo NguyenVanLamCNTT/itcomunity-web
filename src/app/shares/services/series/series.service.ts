@@ -72,7 +72,7 @@ export class SeriesService {
 
   public bookmarkSeries(seriesId: any, bookmark: boolean): Observable<any> {
     const url = `${apiUrl}/${path.bookmark}`;
-    return this.apiService.patch(url, {seriesId, bookmark})
+    return this.apiService.post(url, {seriesId, bookmark})
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body;
@@ -81,6 +81,16 @@ export class SeriesService {
       );
   }
 
+  public getBookmarkSeries(page?: number, perPage?: number, sort?: string,): Observable<any> {
+    const url = `${apiUrl}/${path.getBookmarks}?page=${page}&perPage=${perPage}`;
+    return this.apiService.get(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
   // public deleteSeries(seriesId: number): Observable<any> {
   //   const url = `${apiUrl}/${path.series}/${seriesId}`;
   //   return this.apiService.patch(url)

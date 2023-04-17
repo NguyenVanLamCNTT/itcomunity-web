@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 
@@ -17,7 +17,8 @@ export class ProfilePostsComponent implements OnInit{
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   constructor(private activatedRoute: ActivatedRoute,
-              private postsService: PostsService) { 
+              private postsService: PostsService,
+              private router: Router) { 
     
   }
   ngOnInit(): void {

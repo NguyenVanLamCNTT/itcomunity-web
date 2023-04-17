@@ -1,3 +1,4 @@
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 import { Posts } from 'src/app/shares/models/posts/posts';
 import { SeriesService } from './../../../shares/services/series/series.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,8 @@ export class SeriesDetailComponent implements OnInit {
   listPosts: any;
   constructor(private postsService: PostsService,
     private seriesService: SeriesService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private notifyService: NotifyService) {
 
     }
   ngOnInit(): void {
@@ -36,5 +38,13 @@ export class SeriesDetailComponent implements OnInit {
 
   isPermission(): boolean {
     return true;
+  }
+
+  bookmarkSeries(series: any): void {
+    this.seriesService.bookmarkSeries(series?.id, true).subscribe((res) => {
+      this.notifyService.success('Add bookmark series successfully!', 'Success');
+    }, (err) => {
+      this.notifyService.error('Add bookmark series failed!', 'Error');
+    });
   }
 }

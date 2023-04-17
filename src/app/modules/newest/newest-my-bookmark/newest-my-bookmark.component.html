@@ -1,0 +1,26 @@
+<div class="bookmark-outer">
+    <div>
+        <div>
+            <div class="title-group">
+                <div class="title">
+                    <p class="text-uppercase">
+                        My bookmarks
+                    </p>
+                    <hr class="ms-1">
+                </div>
+            </div>
+            <div class="type">
+                <select name="" id="" (change)="selectType($event)">
+                    <option value="posts">Posts</option>
+                    <option value="series">Series</option>
+                </select>
+            </div>
+            <div class="mt-3 posts-outer" *ngIf="isShow">
+                <app-list-posts-bookmarks></app-list-posts-bookmarks>
+            </div>
+            <div class="mt-4" *ngIf="!isShow">
+                <app-list-series-bookmarks></app-list-series-bookmarks>
+            </div>
+        </div>
+    </div>
+</div>

@@ -118,4 +118,15 @@ export class PostsService {
         })
       );
   }
+
+  public getPostsByBookmark(page?: number, perPage?: number, sort?: string): Observable<Posts> {
+    const url = `${apiUrl}/${path.getBookmarks}?page=${page}&perPage=${perPage}`;
+    return this.apiService.get(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
 }

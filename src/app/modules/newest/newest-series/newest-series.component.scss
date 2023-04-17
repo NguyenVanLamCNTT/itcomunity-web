@@ -4,6 +4,21 @@
     font-weight: 400;
 }
 
+.title {
+    display: flex;
+
+    p {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--gray-text);
+        margin-right: 10px;
+    }
+
+    hr {
+        flex: 1;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .right-content-home {
         display: none;

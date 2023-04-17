@@ -4,3 +4,18 @@
     color: var(--gray-text);
     font-style: italic;
 }
+
+.title {
+    display: flex;
+
+    p {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--gray-text);
+        margin-right: 10px;
+    }
+
+    hr {
+        flex: 1;
+    }
+}

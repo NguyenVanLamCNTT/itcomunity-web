@@ -1,8 +1,14 @@
 <div class="mx-2">
-    <div class="d-flex justify-content-center sub-title">
-        <p>
-            Series with zero posts will only be displayed on users profile page, and will not be listed here.
-        </p>
+    <div class="d-flex justify-content-center sub-title alert alert-warning">
+        Series with zero posts will only be displayed on users profile page, and will not be listed here.
+    </div>
+    <div class="title-group">
+        <div class="title">
+            <p class="text-uppercase">
+                Newest Questions
+            </p>
+            <hr class="ms-1">
+        </div>
     </div>
     <div class="d-flex justify-content-end" *ngIf="isLogin">
         <button mat-raised-button color="primary" routerLink="/series/create">

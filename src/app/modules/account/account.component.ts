@@ -115,4 +115,8 @@ export class AccountComponent implements OnInit{
       });
     }
   }
+
+  cancel(): void {
+    history.back();
+  }
 }

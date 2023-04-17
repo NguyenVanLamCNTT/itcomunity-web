@@ -6,6 +6,7 @@ import { NewestComponent } from './newest.component';
 import { NewestPostsFollowingsComponent } from './newest-posts-followings/newest-posts-followings.component';
 import { NewestQuestionsComponent } from './newest-questions/newest-questions.component';
 import { NewestContentCreatorComponent } from './newest-content-creator/newest-content-creator.component';
+import { NewestMyBookmarkComponent } from './newest-my-bookmark/newest-my-bookmark.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'content-creators',
         component: NewestContentCreatorComponent
+      },
+      {
+        path: 'bookmarks',
+        component: NewestMyBookmarkComponent
       }
     ]
   }

@@ -39,24 +39,24 @@ export class ProfileComponent implements OnInit{
       id: 'questions',
       active: false
     },
-    {
-      name: 'Followers',
-      link: `/profile/${this.router.url.split('/')[2]}/followers`,
-      id: 'followers',
-      active: false
-    },
-    {
-      name: 'Following',
-      link: `/profile/${this.router.url.split('/')[2]}/following`,
-      id: 'following',
-      active: false
-    },
-    {
-      name: 'Bookmarks',
-      link: `/profile/${this.router.url.split('/')[2]}/bookmarks`,
-      id: 'bookmarks',
-      active: false
-    }
+    // {
+    //   name: 'Followers',
+    //   link: `/profile/${this.router.url.split('/')[2]}/followers`,
+    //   id: 'followers',
+    //   active: false
+    // },
+    // {
+    //   name: 'Following',
+    //   link: `/profile/${this.router.url.split('/')[2]}/following`,
+    //   id: 'following',
+    //   active: false
+    // },
+    // {
+    //   name: 'Bookmarks',
+    //   link: `/profile/${this.router.url.split('/')[2]}/bookmarks`,
+    //   id: 'bookmarks',
+    //   active: false
+    // }
   ]
   ngOnInit(): void {
     this.listenService();
@@ -64,6 +64,11 @@ export class ProfileComponent implements OnInit{
   }
   activeClass() {
     const id = this.router.url.split('/')[3];
+    if (id === undefined) {
+      this.menuItems[0].active = true;
+      this.router.navigate([this.menuItems[0].link]);
+      return;
+    }
     this.menuItems.forEach((menuItem: any) => {
       if (menuItem.id === id) {
         menuItem.active = true;
@@ -84,6 +89,8 @@ export class ProfileComponent implements OnInit{
       this.user = user;
       console.log('this.user', this.user);
       this.isFollowing = this.user?.followerIds?.some((follower: any) => follower === this.currentUser?.id);
+    }, (error: any) => {
+      this.router.navigate(['/404']);
     });
   }
 

@@ -21,6 +21,7 @@ export const apiPath = {
       postsBySeries: 'api/posts/series',
       view: 'api/posts/view',
       bookmark: 'api/posts/bookmark',
+      getBookmarks: 'api/posts/bookmark/user',
     },
     upload: {
       upload: 'api/dms/upload',
@@ -34,6 +35,7 @@ export const apiPath = {
     series: {
       series: 'api/series',
       bookmark: 'api/series/bookmark',
+      getBookmarks: 'api/series/bookmark/user',
     },
     topic: {
       topic: 'api/topics',

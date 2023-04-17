@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
       name: 'NEWEST',
       link: '/home/newest/posts',
       isShow: true,
-      isActive: true,
+      isActive: false,
     },
     {
       id: 3,
@@ -55,16 +55,28 @@ export class MenuComponent implements OnInit {
     {
       id: 7,
       name: 'MY_BOOKMARKS',
-      link: '/',
+      link: '/home/newest/bookmarks',
       isShow: false,
       isActive: false,
     }
   ]
   constructor(private authService: AuthService) {
+    this.defaultActive();
   }
 
   ngOnInit(): void {
     this.isLogin = this.authService.checkLogin();
+  }
+
+  defaultActive() {
+    const path = window.location.pathname;
+    this.dataMenu.forEach(element => {
+      if (element.link == path) {
+        element.isActive = true;
+      } else {
+        element.isActive = false;
+      }
+    });
   }
 
   selectItem(item: any) {

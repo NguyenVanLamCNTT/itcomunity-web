@@ -5,7 +5,7 @@
     </div>
     <div>
         <div class="ask-item mt-3" *ngFor="let question of questions">
-            <a routerLink="/questions/{{question?.id}}">
+            <a href="/questions/{{question?.id}}">
                 <h5 class="title-ask">
                     {{ question.title }}
                 </h5>
@@ -22,6 +22,42 @@
                 <div class="icon">
                     <i class="fa-solid fa-comment"></i>
                     <span>{{ question?.answerNumber }}</span>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="name-user">
+                    <span>
+                        {{ question?.author?.fullname }}
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar-ask-outer mx-4 mt-5">
+    <div class="d-flex">
+        <h5 class="title-sidebar text-uppercase">Newest Posts</h5>
+        <hr class="title-line ms-2">
+    </div>
+    <div>
+        <div class="ask-item mt-3" *ngFor="let question of listPosts">
+            <a href="/posts/{{question?.id}}">
+                <h5 class="title-ask">
+                    {{ question.name }}
+                </h5>
+            </a>
+            <div class="group-icon d-flex">
+                <div class="icon">
+                    <i class="fa-solid fa-eye"></i>
+                    <span>{{ question?.viewNumber }}</span>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-share"></i>
+                    <span>{{ question?.bookMarkNumber }}</span>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>{{ question?.commentNumber }}</span>
                 </div>
             </div>
             <div>

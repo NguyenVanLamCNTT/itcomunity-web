@@ -4,6 +4,7 @@ import { ProfileInfoComponent } from './component/profile-info/profile-info.comp
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
+import { ProfileQuestionsComponent } from './component/profile-questions/profile-questions.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: ':username/series',
         component: ProfileSeriesComponent,
+      },
+      {
+        path: ':username/questions',
+        component: ProfileQuestionsComponent,
       }
     ]
   }
