@@ -1,4 +1,5 @@
-import { switchMap, map } from 'rxjs/operators';
+import { NotifyService } from './../../../shares/services/notify/notify.service';
+import { switchMap, map, catchError } from 'rxjs/operators';
 import { LocalStorageHelperService } from '../../../shares/services/token-storage/localstorage-helper.service';
 import { Token } from './../../../shares/models/token/token';
 import { User } from './../../../shares/models/user/user';
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private localStorageHelperService: LocalStorageHelperService,
-    private userService: UserService
+    private userService: UserService,
+    private notifyService: NotifyService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +63,10 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigate(['/auth/validate-email']);
         return this.authService.sendOTP(user.username!);
+      }),
+      catchError((err) => {
+        this.notifyService.error('Login failed please field again!')
+        return of(null);
       })
     ).subscribe((user: User) => {
 

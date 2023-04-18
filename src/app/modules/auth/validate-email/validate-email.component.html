@@ -16,13 +16,12 @@
             <input type="text" name="" id="number6" (keyup)="nextValue('number6')" class="input-otp-item" maxlength="1" formControlName="number6">
         </form>
         <div class="mt-3">
-            <i>
-                ( {{ 'TIME_VERIFY_OTP' | translate }} )
+            <i [class.text-danger]="secondTimeline === 0">
+                ( {{ 'TIME_VERIFY_OTP' | translate: {second: secondTimeline} }} )
             </i>
         </div>
         <div class="my-2">
-            <!-- <button class="btn btn-primary">{{ 'RESEND_OTP' | translate }}</button> -->
-            <button mat-raised-button color="primary">{{ 'RESEND_OTP' | translate }}</button>
+            <button mat-raised-button color="primary" (click)="resendOTP()">{{ 'RESEND_OTP' | translate }}</button>
         </div>
     </div>
 </div>

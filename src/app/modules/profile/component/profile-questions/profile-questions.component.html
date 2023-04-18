@@ -1,4 +1,9 @@
 <div class="mx-2">
+    <div class="text-center" *ngIf="listQuestions?.items.length === 0">
+        <p class="text-description">
+            This user has no blog questions yet or they are not public. You can follow them to see their questions. 
+        </p>
+    </div>
     <div *ngFor="let question of listQuestions?.items" class="mt-5">
         <app-question-card [question]="question"></app-question-card>
     </div>

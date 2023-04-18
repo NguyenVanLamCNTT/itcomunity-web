@@ -14,6 +14,7 @@ import { NgxLinkifyjsModule } from 'ngx-linkifyjs';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { PopoverModule } from 'ngx-smart-popover';
 import { ToastrModule } from 'ngx-toastr';
+import { authInterceptorProviders } from './shares/Interceptor/auth.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

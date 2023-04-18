@@ -1,11 +1,13 @@
+import { NotifyService } from './../../../shares/services/notify/notify.service';
 import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
-import { map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Token } from './../../../shares/models/token/token';
 import { User } from './../../../shares/models/user/user';
 import { AuthService } from './../../../shares/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +20,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private localStorageHelperService: LocalStorageHelperService,
+    private notifyService: NotifyService
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +49,33 @@ export class RegisterComponent implements OnInit {
       mergeMap((res: any) => {
         user && this.localStorageHelperService.addUser(user);
         return this.authService.sendOTP(user.username!);
+      }),
+      catchError((err: any) => {
+        this.notifyService.error('Register failed please try again!', 'Error');
+        return of(err);
       })
     ).subscribe((data: any) => {
       this.router.navigate(['/auth/validate-email']);
     });
+  }
+
+  isControlValid(formGroup: FormGroup, controlName: string): boolean {
+    const control = formGroup.controls[controlName];
+    return control.valid && (control.dirty || control.touched);
+  }
+
+  isControlInvalid(formGroup: FormGroup, controlName: string): boolean {
+    const control = formGroup.controls[controlName];
+    return control.invalid && (control.dirty || control.touched);
+  }
+
+  controlHasError(formGroup: FormGroup, validation: any, controlName: any): boolean {
+    const control = formGroup.controls[controlName];
+    return control.hasError(validation) && (control.dirty || control.touched);
+  }
+
+  isControlTouched(formGroup: FormGroup, controlName: any): boolean {
+    const control = formGroup.controls[controlName];
+    return control.dirty || control.touched;
   }
 }

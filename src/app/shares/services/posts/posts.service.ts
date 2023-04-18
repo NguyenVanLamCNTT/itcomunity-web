@@ -108,9 +108,9 @@ export class PostsService {
       );
   }
 
-  public bookmarkPosts(postsId: any, bookmark: boolean): Observable<any> {
+  public bookmarkPosts(postId: any, bookmark: boolean): Observable<any> {
     const url = `${apiUrl}/${path.bookmark}`;
-    return this.apiService.post(url, {postsId, bookmark})
+    return this.apiService.post(url, {postId, bookmark})
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body;

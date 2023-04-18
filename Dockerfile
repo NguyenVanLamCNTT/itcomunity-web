@@ -6,7 +6,7 @@ WORKDIR /ng-app
 # RUN npm install
 
 COPY . .
-# RUN npm run build:prod
+RUN npm run build:prod
 
 FROM nginx:1.19.10
 

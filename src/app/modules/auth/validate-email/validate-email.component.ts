@@ -1,10 +1,11 @@
+import { NotifyService } from './../../../shares/services/notify/notify.service';
 import { Router } from '@angular/router';
 import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
 import { AuthService } from './../../../shares/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { switchMap } from 'rxjs';
+import { catchError, switchMap } from 'rxjs';
 import { UserService } from 'src/app/shares/services/user/user.service';
 
 @Component({
@@ -14,17 +15,31 @@ import { UserService } from 'src/app/shares/services/user/user.service';
 })
 export class ValidateEmailComponent implements OnInit {
   formOTP = this.initFormOTP();
+  secondTimeline = 120;
   constructor(private translateService: TranslateService,
               private authService: AuthService,
               private localStorageHelperService: LocalStorageHelperService,
               private userService: UserService,
-              private router: Router
+              private router: Router,
+              private notifyService: NotifyService
               ) { }
 
   ngOnInit(): void {
     const currentLanguage = this.translateService.currentLang;
     this.translateService.use(currentLanguage || 'vi');
+    this.startTime();
   }
+  startTime(): void {
+    this.secondTimeline = 120;
+    const interval = setInterval(() => {
+      if (this.secondTimeline > 0) {
+        this.secondTimeline--;
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+
 
   initFormOTP(): FormGroup {
     return new FormGroup({
@@ -94,9 +109,19 @@ export class ValidateEmailComponent implements OnInit {
         this.localStorageHelperService.saveIsVerify(res.isConfirmEmail);
         return this.userService.getMe();
       }),
+      catchError((err) => {
+        this.notifyService.error('Can not verify your email please try again!', 'Error');
+        this.formOTP.reset();
+        document.getElementById('number1')?.focus();
+        return err;
+      })
     ).subscribe((data: any) => {
       this.localStorageHelperService.addUser(data);
       this.router.navigate(['/home/newest/posts']);
     });
+  }
+
+  resendOTP(): void {
+    this.startTime();
   }
 }

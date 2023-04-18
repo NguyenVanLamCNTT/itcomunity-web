@@ -28,13 +28,15 @@
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="username">Username</label>
-                    <input type="text" id="username" class="form-control" formControlName="username"/>
+                    <input type="text" id="username" class="form-control is-invalid" formControlName="username" [class.is-invalid]="isControlInvalid(infoRegister, 'username')"
+                    [class.is-valid]="isControlValid(infoRegister, 'username')"/>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="fullname">Fullname</label>
-                    <input type="text" id="fullname" class="form-control" formControlName="fullname"/>
+                    <input type="text" id="fullname" class="form-control is-invalid" formControlName="fullname" [class.is-invalid]="isControlInvalid(infoRegister, 'fullname')"
+                    [class.is-valid]="isControlValid(infoRegister, 'fullname')"/>
                   </div>
                 </div>
               </div>
@@ -43,7 +45,8 @@
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="gender">Gender</label>
-                    <select name="gender" id="gender" class="form-control" formControlName="gender">
+                    <select name="gender" id="gender" class="form-control is-invalid" formControlName="gender"  [class.is-invalid]="isControlInvalid(infoRegister, 'gender')"
+                    [class.is-valid]="isControlValid(infoRegister, 'gender')">
                       <option value="MALE">Male</option>
                       <option value="FEMALE">Female</option>
                       <option value="OTHER">Other</option>
@@ -54,7 +57,8 @@
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
                     <label class="form-label" for="fullname">Age</label>
-                    <input type="text" id="fullname" class="form-control" formControlName="age"/>
+                    <input type="text" id="fullname" class="form-control is-invalid" formControlName="age" [class.is-invalid]="isControlInvalid(infoRegister, 'age')"
+                    [class.is-valid]="isControlValid(infoRegister, 'age')"/>
                   </div>
                 </div>
               </div>
@@ -62,13 +66,15 @@
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="email">Email address</label>
-                <input type="email" id="email" class="form-control" formControlName="email"/>
+                <input type="email" id="email" class="form-control is-invalid" formControlName="email" [class.is-invalid]="isControlInvalid(infoRegister, 'email')"
+                [class.is-valid]="isControlValid(infoRegister, 'email')"/>
               </div>
   
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" class="form-control" formControlName="password"/>
+                <input type="password" id="password" class="form-control is-invalid" formControlName="password" [class.is-invalid]="isControlInvalid(infoRegister, 'email')"
+                [class.is-valid]="isControlValid(infoRegister, 'email')"/>
               </div>
   
               <!-- Checkbox -->

@@ -27,11 +27,11 @@
                     <span>{{ posts?.viewNumber }}</span>
                 </div>
                 <div class="icon-item">
-                    <i class="fa-solid fa-bookmark"></i>
+                    <i class="fa-solid fa-comment"></i>
                     <span> {{ posts?.commentNumber}}</span>
                 </div>
                 <div class="icon-item">
-                    <i class="fa-solid fa-comment"></i>
+                    <i class="fa-solid fa-bookmark"></i>
                     <span>{{ posts?.bookMarkNumber }}</span>
                 </div>
             </div>
@@ -80,10 +80,16 @@
                         <span>Report</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="!posts?.isBookmark">
                     <a class="dropdown-item p-3 py-2" (click)="bookmarkPosts(posts)">
                         <i class="fa-regular fa-bookmark me-2"></i>
                         <span>Bookmark</span>
+                    </a>
+                </li>
+                <li *ngIf="posts?.isBookmark">
+                    <a class="dropdown-item p-3 py-2" (click)="bookmarkPosts(posts)">
+                        <i class="fa-solid fa-bookmark me-2"></i>
+                        <span>Bookmarked</span>
                     </a>
                 </li>
             </ul>
