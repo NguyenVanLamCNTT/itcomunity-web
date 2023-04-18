@@ -10,12 +10,12 @@ import { Subscription } from 'rxjs';
 export class LanguageComponent implements OnInit, OnDestroy{
   languages = ['en', 'vi'];
   languageChangeSubscription: any;
-  lenguageSelected = 'vi';
+  lenguageSelected = 'en';
 
   constructor(private translateService: TranslateService) {}
 
   ngOnInit() {
-    this.translateService.use('vi');
+    this.translateService.use('en');
     this.languageChangeSubscription = this.translateService.onLangChange.subscribe(
       (event) => {
       }

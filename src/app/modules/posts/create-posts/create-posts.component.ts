@@ -90,7 +90,6 @@ export class CreatePostsComponent implements OnInit {
           this.tags = res.keywords.map((item: any) => {
             return { name: item };
           });
-          console.log('this.tags', this.tags);
           this.formOptionPosts.controls.status.setValue(res.status);
         });
       }
@@ -98,9 +97,8 @@ export class CreatePostsComponent implements OnInit {
   }
   
   listenService() {
-    this.topicService.getTopic().subscribe((res: any) => {
+    this.topicService.getTopic(1, 100).subscribe((res: any) => {
       this.listTopic = res;
-      console.log('this.listTopic', this.listTopic);
     });
   }
 

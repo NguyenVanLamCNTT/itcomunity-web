@@ -1,7 +1,7 @@
 <div class="profile-outer">
     <div class="profile-header container">
         <div class="p-4 d-flex justify-content-between align-items-center">
-            <div class=" d-flex align-items-center">
+            <div class="left-header d-flex align-items-center w-75">
                 <div class="profile-header-avatar">
                     <img src="{{ user?.avatar }}" width="140">
                 </div>
@@ -11,7 +11,7 @@
                     <p class="about mt-3"> "{{user?.about}}" </p>
                 </div>
             </div>
-            <div>
+            <div *ngIf="currentUser?.id !== user?.id">
                 <button class="btn-follow" (click)="followingMember(user)" *ngIf="!isFollowing">
                     <i class="fa-solid fa-plus me-1"></i>
                     Follow
@@ -23,10 +23,10 @@
             </div>
         </div>
     </div>
-    <menu class="menu d-flex">
-        <div class="container">
-            <ul class="d-flex justify-content-start align-items-center h-100">
-                <li class="h-100 px-5" id="posts" *ngFor="let item of menuItems" (click)="itemSelected(item)" [class.active]="item.active" routerLink="{{ item?.link }}">
+    <menu class="menu d-flex p-0">
+        <div class="container-md">
+            <ul class="d-flex justify-content-start align-items-center h-100 menu-outer p-0">
+                <li class="h-100 px-5 menu-item" id="posts" *ngFor="let item of menuItems" (click)="itemSelected(item)" [class.active]="item.active" routerLink="{{ item?.link }}">
                     <a class="my-auto">{{ item?.name }}</a>
                 </li>
             </ul>
@@ -37,7 +37,7 @@
             <router-outlet></router-outlet>
         </div>
         <div class="w-25 d-none d-lg-block mx-2">
-            <app-profile-sidebar></app-profile-sidebar>
+            <app-profile-sidebar [user]="user"></app-profile-sidebar>
         </div>
     </div>
 </div>

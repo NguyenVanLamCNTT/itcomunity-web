@@ -14,7 +14,7 @@
           }">
             <app-card-item [item]="item" [isSeries]="true"></app-card-item>
         </div>
-        <div class="mt-3 d-flex justify-content-end" *ngIf="!listSeries?.items">
+        <div class="mt-3 d-flex justify-content-end" *ngIf="listSeries?.items.length !== 0">
             <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
             </pagination-controls>
         </div>

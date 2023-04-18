@@ -1,5 +1,10 @@
 <div class="series-outer container mt-5">
-    <div class="mx-5">
+    <div class="mx-0 mx-md-5">
+        <div>
+            <h1>
+                {{ 'CREATE_SERIES' | translate }}
+            </h1>
+        </div>
         <form [formGroup]="seriesForm" class="mt-2">
             <div class="d-flex">
                 <input matInput formControlName="title" [placeholder]="'Enter Title Text (not required)'"
@@ -42,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-5 group-sreies-content mx-5">
+    <div class="mt-5 group-sreies-content mx-0 mx-md-5">
         <div class="d-flex sreies-content-title">
             <h3 class="text-uppercase me-3">Series contents</h3>
             <hr>

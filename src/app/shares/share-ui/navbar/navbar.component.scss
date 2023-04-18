@@ -139,3 +139,13 @@ ul li {
         background-color: var(--blue-itc);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .dropdown-menu {
+        left: -200px;
+    }
+    .login-icon {
+        font-size: 1.2rem;
+        color: var(--main-color);
+    }
+}

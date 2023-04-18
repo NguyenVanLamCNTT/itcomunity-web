@@ -14,6 +14,7 @@ import { User } from '../../models/user/user';
 export class NavbarComponent implements OnInit, OnChanges {
   isLogin: boolean = false;
   user: User | undefined;
+  isMobile: boolean = false;
   constructor(private authService: AuthService,
     private router: Router,
     private localStorageHelperService: LocalStorageHelperService) { }
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.isLogin = this.authService.checkLogin();
     this.getMe();
+    this.isMobile = window.innerWidth < 768;
   }
 
   getMe(): void {

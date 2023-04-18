@@ -1,6 +1,6 @@
 <div class="">
     <div class="">
-        <button class="btn-coppy-link w-100">
+        <button class="btn-coppy-link w-100" (click)="copyLink()">
             <i class="fa-solid fa-code"></i>
             Copy link profile
         </button>
@@ -17,15 +17,15 @@
             </div>
             <div class="d-flex justify-content-between">
                 <p class="key">Following Users</p>
-                <p class="value">0</p>
+                <p class="value">{{user?.followersNumber}}</p>
             </div>
             <div class="d-flex justify-content-between">
                 <p class="key">Followers</p>
-                <p class="value">0</p>
+                <p class="value">{{user?.followersNumber}}</p>
             </div>
             <div class="d-flex justify-content-between">
                 <p class="key">Total Posts</p>
-                <p class="value">0</p>
+                <p class="value">{{ user?.postsNumber }}</p>
             </div>
             <div class="d-flex justify-content-between">
                 <p class="key">Bookmark</p>

@@ -3,11 +3,63 @@
         <a class="navbar-brand ms-2" href="/home">
             <img src="assets/images/logo-header-250x250.png" width="50">
         </a>
-        <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        <div class="d-flex align-items-center" *ngIf="isMobile">
+            <a href="" class="dropdown" *ngIf="isLogin">
+                <span class="my-auto h-100 d-flex align-items-center me-2" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="{{ user?.avatar }}" width="40">
+                </span>
+                <ul class="dropdown-menu pt-0">
+                    <div class="popover-profile-header p-3 d-flex">
+                        <div class="popover-profile-header-avatar">
+                            <img src="{{ user?.avatar }}" width="70">
+                        </div>
+                        <div class="popover-profile-header-text ms-2">
+                            <p class="name m-0">{{ user?.fullName }}</p>
+                            <p class="m-0">@{{ user?.username }}</p>
+                            <button class="mt-2 btn-main">Edit</button>
+                        </div>
+                    </div>
+                    <li>
+                        <a class="dropdown-item" routerLink="/account">
+                            <i class="fa-solid fa-user me-1"></i>
+                            {{ 'ACCOUNT' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="/profile/{{user?.username}}/posts">
+                            <i class="fa-sharp fa-solid fa-address-card"></i>
+                            {{ 'PROFILE' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-unlock me-1"></i>
+                            {{ 'CHANGE_PASSWORD' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" (click)="logout()">
+                            <i class="fa-solid fa-right-from-bracket me-1"></i>
+                            {{ 'LOGOUT' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </a>
+            <a class="fw-bold h-100 me-2" routerLink="/auth/login" *ngIf="!isLogin">
+                <span class="my-auto h-100 d-flex align-items-center">
+                    <i class="fa-solid fa-user login-icon me-2"></i>
+                </span>
+            </a>
+            <a class="text-black fw-bold me-2">
+                <app-language></app-language>
+            </a>
+        </div>
+        <button class="navbar-toggler me-2" *ngIf="!isMobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="!isMobile">
             <ul class="mx-3 icon-logo navbar-nav col-12 col-lg-7 row text-lg-center h-100">
                 <li class="col-1"></li>
                 <li class="nav-item active col-4 col-lg-3 p-0">

@@ -44,3 +44,20 @@ select::-ms-expand {
 select:hover {
     background-color: #f2f2f2;
 }
+
+@media (max-width: 500px) {
+    .language-selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        padding: 2px;
+        img {
+            height: 16px;
+            margin-right: 0;
+        }
+        select {
+            font-size: 0.8rem;
+        }
+    }
+}

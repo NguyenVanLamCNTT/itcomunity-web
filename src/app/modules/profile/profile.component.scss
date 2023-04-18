@@ -90,3 +90,46 @@
         color: var(--white);
     }
 }
+
+@media screen and (max-width: 500px) {
+    .menu-outer {
+        width: 100%;
+        overflow: auto;
+        margin-bottom: 10px;
+    }
+
+    .profile-header {
+        .profile-header-avatar {
+            img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    
+        .profile-header-text {
+            .name {
+                font-size: 1rem;
+            }
+            .username {
+                font-size: 0.8rem;
+            }
+            .about {
+                display: none;
+            }
+        }
+    }
+
+    .left-header {
+        width: 70%;
+    }
+
+    .btn-following {
+        margin-left: 5px;
+        padding: 5px;
+    }
+
+    .btn-follow {
+        margin-left: 5px;
+        padding: 5px;
+    }
+}

@@ -20,5 +20,8 @@
   "MY_BOOKMARKS": "My Bookmarks",
   "TOPICS": "Topics",
   "ACCOUNT": "Account",
-  "QUESTIONS": "Question"
+  "QUESTIONS": "Questions",
+  "CREATE_QUESTION": "Create Question",
+  "HOME_PAGE_SLOGAN": "ITCommunity is a community of IT professionals and enthusiasts. We are a place to share and grow the knowledge of IT!",
+  "CREATE_SERIES": "Create Series"
 }

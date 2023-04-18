@@ -1,5 +1,8 @@
 .card-custom {
     border-bottom: 1px solid var(--gray-light);
+    .card-group {
+        display: flex;
+    }
 
     .avatar {
         span {
@@ -64,5 +67,13 @@
     .group-date {
         color: var(--gray-text);
         font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card-custom {
+        .card-group {
+            display: block;
+        } 
     }
 }
