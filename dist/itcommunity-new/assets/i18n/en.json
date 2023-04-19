@@ -7,7 +7,7 @@
   "VALIDATE_EMAIL_SUB_HEADER": "In order to increase the security of the system, we need to verify your identity. Currently, your account has not been verified, please check your Email and verify your account to continue using the services ours.",
   "WELCOME": "Welcome to ITCommunity !",
   "RESEND_OTP": "Resend OTP",
-  "TIME_VERIFY_OTP": "The verification code is only valid for 120s please enter it before this time.",
+  "TIME_VERIFY_OTP": "The verification code is only valid for {{second}}s please enter it before this time.",
   "PROFILE": "Profile",
   "CHANGE_PASSWORD": "Change Password",
   "LOGOUT": "Logout",
@@ -20,5 +20,8 @@
   "MY_BOOKMARKS": "My Bookmarks",
   "TOPICS": "Topics",
   "ACCOUNT": "Account",
-  "QUESTIONS": "Question"
+  "QUESTIONS": "Questions",
+  "CREATE_QUESTION": "Create Question",
+  "HOME_PAGE_SLOGAN": "ITCommunity is a community of IT professionals and enthusiasts. We are a place to share and grow the knowledge of IT!",
+  "CREATE_SERIES": "Create Series"
 }

@@ -7,7 +7,7 @@
     "VALIDATE_EMAIL_SUB_HEADER": "Để tăng tính bảo mật của hệ thống, chúng tôi cần xác thực danh tính của bạn. Hiện tại, tài khoản của bạn chưa được xác thực vui lòng kiểm tra Email của bạn và xác thực tài khoản để tiếp tục sử dụng các dịch vụ của chúng tôi.",
     "WELCOME": "Chào mừng bạn đến với ITCommunity !",
     "RESEND_OTP": "Gửi lại mã OTP",
-    "TIME_VERIFY_OTP": "Mã xác thực chỉ có hiệu lực trong 120s vui lòng nhập nó trước thời gian này.",
+    "TIME_VERIFY_OTP": "Mã xác thực chỉ có hiệu lực trong {{second}}s vui lòng nhập nó trước thời gian này.",
     "PROFILE": "Hồ sơ",
     "CHANGE_PASSWORD": "Đổi mật khẩu",
     "LOGOUT": "Đăng xuất",
@@ -20,5 +20,8 @@
     "MY_BOOKMARKS": "Bài viết đã lưu",
     "TOPICS": "Chủ đề",
     "ACCOUNT": "Tài khoản",
-    "QUESTIONS": "Câu hỏi"
+    "QUESTIONS": "Câu hỏi",
+    "CREATE_QUESTION": "Tạo câu hỏi",
+    "HOME_PAGE_SLOGAN": "ITCommunity là một cộng đồng gồm các chuyên gia và những người đam mê CNTT. Chúng tôi là nơi để chia sẻ và phát triển kiến ​​thức về IT!",
+    "CREATE_SERIES": "Tạo series"
 }
