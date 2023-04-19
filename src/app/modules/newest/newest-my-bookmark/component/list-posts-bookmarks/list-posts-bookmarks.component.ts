@@ -21,7 +21,6 @@ export class ListPostsBookmarksComponent {
 
   listenService(page?: any, itemsSize?: any, sort?: any) {
     this.postsService.getPostsByBookmark(page, itemsSize).subscribe((res) => {
-      console.log(res);
       this.listPosts = res;
     });
   }

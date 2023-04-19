@@ -87,7 +87,6 @@ export class ProfileComponent implements OnInit{
     this.username = this.router.url.split('/')[2];
     this.userService.getByUsername(this.username).subscribe((user: any) => {
       this.user = user;
-      console.log('this.user', this.user);
       this.isFollowing = this.user?.followerIds?.some((follower: any) => follower === this.currentUser?.id);
     }, (error: any) => {
       this.router.navigate(['/404']);

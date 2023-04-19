@@ -146,7 +146,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   }
 
   openModalCommentDetail(comment: any) {
-    console.log('comment', comment);
     const modalRef = this.modalService.open(CommentDetailComponent, { size: 'lg' });
     modalRef.componentInstance.posts = this.posts;
     modalRef.componentInstance.series = this.series;
@@ -162,7 +161,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   }
 
   approve(comment: any): void {
-    console.log('comment', comment);
     if (!comment) {
       return;
     }

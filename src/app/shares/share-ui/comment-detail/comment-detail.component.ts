@@ -29,7 +29,6 @@ export class CommentDetailComponent implements OnInit, OnChanges{
     private notifyService: NotifyService,) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('this.comment', this.comment);
   }
 
   ngOnInit(): void {}
@@ -49,7 +48,6 @@ export class CommentDetailComponent implements OnInit, OnChanges{
     };
 
     this.commentService.createComment(data).subscribe(res => {
-      console.log(res);
       this.notifyService.success('Comment successfully!', 'Success');
       data.author = this.localUser;
       this.comment.childComment.push(data);

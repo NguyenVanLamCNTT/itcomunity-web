@@ -28,12 +28,12 @@ export class RegisterComponent implements OnInit {
 
   initFormRegister(): FormGroup {
     return new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]+$/)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      age: new FormControl('', [Validators.required]),
+      age: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
       gender: new FormControl('', [Validators.required]),
-      fullname: new FormControl('', [Validators.required]),
+      fullname: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]+$/)]),
     });
   }
 

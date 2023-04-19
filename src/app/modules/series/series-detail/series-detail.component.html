@@ -41,10 +41,16 @@
                             <span>Report</span>
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="!series?.isBookmark">
                         <a class="dropdown-item p-3 py-2" (click)="bookmarkSeries(series)">
                             <i class="fa-regular fa-bookmark me-2"></i>
                             <span>Bookmark</span>
+                        </a>
+                    </li>
+                    <li *ngIf="series?.isBookmark">
+                        <a class="dropdown-item p-3 py-2" (click)="unBookmarkSeries(series)">
+                            <i class="fa-solid fa-bookmark me-2"></i>
+                            <span>Bookmarked</span>
                         </a>
                     </li>
                 </ul>

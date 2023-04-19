@@ -26,7 +26,6 @@ export class NewestQuestionsComponent {
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
     this.questionAnswerService.getQuestion(page, itemsSize, sort).subscribe((series: any) => {
       this.listQuestions = series;
-      console.log('this.listQuestions', this.listQuestions);
     });
   }
 

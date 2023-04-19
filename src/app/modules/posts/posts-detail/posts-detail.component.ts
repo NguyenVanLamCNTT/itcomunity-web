@@ -58,7 +58,6 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     this.postsService.getPostsById(this.postsId).pipe(
       switchMap((posts: any) => {
         this.posts = posts;
-        console.log(this.posts);
         return this.postsService.updateView(posts.id);
       }),
       switchMap((res: any) => {

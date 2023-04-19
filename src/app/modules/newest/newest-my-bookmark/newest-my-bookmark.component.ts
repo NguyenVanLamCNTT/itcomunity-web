@@ -21,6 +21,5 @@ export class NewestMyBookmarkComponent implements OnInit {
     } else {
       this.isShow = false;
     }
-    console.log(this.isShow);
   }
 }

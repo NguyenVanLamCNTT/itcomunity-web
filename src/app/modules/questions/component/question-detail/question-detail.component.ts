@@ -15,7 +15,6 @@ export class QuestionDetailComponent implements OnInit{
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((res: any) => {
       this.questionId = res?.id;
-      console.log('this.questionId', this.questionId);
     });
     this.listenService();
   }

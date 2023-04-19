@@ -51,7 +51,6 @@
                       <option value="FEMALE">Female</option>
                       <option value="OTHER">Other</option>
                     </select>
-                    <!-- <input type="text" id="username" class="form-control" /> -->
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
@@ -92,14 +91,14 @@
   
               <!-- Submit button -->
               <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary btn-block mb-4 w-50" (click)="register()">
+                <button type="submit" class="btn btn-primary btn-block mb-4 w-50" (click)="register()" [disabled]="infoRegister.invalid">
                     Sign up
                   </button>
               </div>
 
               <!-- Register buttons -->
               <div class="text-center">
-                <p>or sign up with:</p>
+                <p>Information contact with ITCommunity:</p>
                 <button type="button" class="btn btn-link btn-floating mx-1">
                   <i class="fab fa-facebook-f"></i>
                 </button>

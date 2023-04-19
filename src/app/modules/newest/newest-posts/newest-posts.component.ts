@@ -23,7 +23,6 @@ export class NewestPostsComponent {
   listenService(page = 1, itemsSize = 10, sort = 'desc') {
     this.postsService.getPosts(page, itemsSize, sort).subscribe(res => {
       this.listPosts = res;
-      console.log(this.listPosts);
     })
   }
 

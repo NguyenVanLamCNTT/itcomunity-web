@@ -22,7 +22,6 @@ export class NewestPostsFollowingsComponent {
 
   listenService(page = 1, itemsSize = 10, sort = 'desc') {
     this.postsService.getPostsByUserFollow(page, itemsSize, sort).subscribe(res => {
-      console.log(res);
       this.listPosts = res;
     })
   }

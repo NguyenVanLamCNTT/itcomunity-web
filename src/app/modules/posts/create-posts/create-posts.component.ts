@@ -75,14 +75,10 @@ export class CreatePostsComponent implements OnInit {
     this.listenService();
     this.activatedRoute.params.subscribe((params: any) => {
       if (params.id) {
-        console.log('params.id', params.id);
         this.postsId = params.id;
         this.isUpdate = true;
         this.postsService.getPostsById(params.id).subscribe((res: any) => {
           this.postsOld = res;
-          console.log('res', res);
-          console.log('res', res.name);
-          console.log('res', res.topics);
           this.postsForm.controls.title.setValue(res.name);
           this.postsForm.controls.topics.setValue(res.topics);
           this.contentRichText = res.content;

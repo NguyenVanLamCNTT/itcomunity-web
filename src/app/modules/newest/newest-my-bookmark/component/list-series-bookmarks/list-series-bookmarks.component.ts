@@ -22,7 +22,6 @@ export class ListSeriesBookmarksComponent {
   
   listenServiceSeries(page?: any, itemsSize?: any, sort?: any) {
     this.seriesService.getBookmarkSeries(page, itemsSize).subscribe((res) => {
-      console.log(res);
       this.listSeries = res;
     });
   }

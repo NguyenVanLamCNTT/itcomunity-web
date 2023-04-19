@@ -1,4 +1,4 @@
-<div class="posts-outer container-lg px-lg-5 pt-2">
+<div class="posts-outer container-lg px-0 px-lg-5 pt-2">
     <mat-horizontal-stepper [linear]="true" #horizontalStepper>
         <mat-step #horizontalStepperStep1>
             <ng-template matStepLabel>Posts Info</ng-template>
@@ -126,7 +126,7 @@
         <mat-step #horizontalStepperStep3>
             <ng-template matStepLabel>Posts options</ng-template>
             <form [formGroup]="formOptionPosts" class="d-flex justify-content-center align-items-center">
-                <div class="col-8 shadow p-5 mt-4">
+                <div class="col-12 col-md-8 shadow p-5 mt-4">
                     <h1>Publish your posts</h1>
                     <b>License:</b><span> All Rights Reserved</span><br>
                     <label id="example-radio-group-label" class="mt-3">Visibility:</label>

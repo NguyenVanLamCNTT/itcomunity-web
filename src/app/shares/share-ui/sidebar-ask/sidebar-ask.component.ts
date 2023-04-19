@@ -23,7 +23,6 @@ export class SidebarAskComponent implements OnInit {
     });
     this.postsService.getPosts(1, 5).subscribe((res: any) => {
       this.listPosts = res.items;
-      console.log('this.listPosts', this.listPosts);
     });
   }
 }

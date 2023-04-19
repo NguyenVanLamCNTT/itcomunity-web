@@ -25,7 +25,6 @@ export class ProfileQuestionsComponent {
     this.isLogin = this.authService.checkLogin();
     this.activatedRoute.params.subscribe((params: any) => {
       this.username = params.username;
-      console.log('this.username', this.username);
       this.listenService();
     });
   }
@@ -33,7 +32,6 @@ export class ProfileQuestionsComponent {
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
     this.questionAnswerService.getQuestion(page, itemsSize, sort, this.username).subscribe((series: any) => {
       this.listQuestions = series;
-      console.log('this.listQuestions', this.listQuestions);
     });
   }
 

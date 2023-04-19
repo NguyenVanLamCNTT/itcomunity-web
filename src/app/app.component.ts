@@ -8,9 +8,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'ITCommunity-new';
-  // constructor(private translateService: TranslateService) {}
 
-  // ngOnInit() {
-  //   this.translateService.use('vi');
-  // }
+  ngOnInit() {
+    // redirect https
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+      window.location.href = location.href.replace('http', 'https');
+    }
+  }
 }

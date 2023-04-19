@@ -32,8 +32,6 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
     this.userLocal = this.localStorageHelperService.getUser();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.user);
-    console.log(this.posts);
     this.codeFormat();
   }
   ngAfterViewInit(): void {
@@ -68,6 +66,10 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
   }
 
   bookmarkPosts(posts: any): void {
+    if (!this.userLocal.id) {
+      this.notifyService.error('Please login to bookmark this posts!', 'Error');
+      return;
+    }
     this.postsService.bookmarkPosts(posts?.id, true).subscribe((res) => {
       this.posts.bookmarked = true;
       this.notifyService.success('Bookmark Success!', 'Success');
