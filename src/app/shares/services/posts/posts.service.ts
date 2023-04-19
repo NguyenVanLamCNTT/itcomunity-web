@@ -33,7 +33,7 @@ export class PostsService {
     page && params.set('page', page.toString());
     perPage && params.set('perPage', perPage.toString());
     // sort && params.set('sort', sort);
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
@@ -55,7 +55,7 @@ export class PostsService {
 
   public getPostsBySeries(seriesId: number): Observable<Posts> {
     const url = `${apiUrl}/${path.postsBySeries}/${seriesId}`;
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
@@ -66,7 +66,7 @@ export class PostsService {
 
   public getPostsById(id: number): Observable<Posts> {
     const url = `${apiUrl}/${path.posts}/${id}`;
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;

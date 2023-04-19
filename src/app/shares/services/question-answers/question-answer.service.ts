@@ -28,7 +28,7 @@ export class QuestionAnswerService {
 
   public getQuestion(page?: number, perPage?: number, sort?: string, username?: string): Observable<any> {
     const url = `${apiUrl}/${path.question}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
@@ -50,7 +50,7 @@ export class QuestionAnswerService {
 
   public getAnswer(questionId: number, page?: number, perPage?: number, sort?: string, username?: string): Observable<any> {
     const url = `${apiUrl}/${path.question}/${questionId}/answer?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
@@ -61,7 +61,7 @@ export class QuestionAnswerService {
 
   public getQuestionsById(questionId: number): Observable<any> {
     const url = `${apiUrl}/${path.question}/${questionId}`;
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;

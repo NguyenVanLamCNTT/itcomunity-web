@@ -17,7 +17,7 @@ export class SeriesService {
 
   public getSeries(page?: number, perPage?: number, sort?: string, username?: string): Observable<any[]> {
     const url = `${apiUrl}/${path.series}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
@@ -28,7 +28,7 @@ export class SeriesService {
 
   public getSeriesById(seriesId: number): Observable<any> {
     const url = `${apiUrl}/${path.series}/${seriesId}`;
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;

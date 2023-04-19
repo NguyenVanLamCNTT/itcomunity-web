@@ -17,7 +17,7 @@ export class TopicService {
   
   public getTopic(page?: number, perPage?: number, sort?: string, username?: string): Observable<any> {
     const url = `${apiUrl}/${path.topic}?page=${page}&perPage=${perPage}`;
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;

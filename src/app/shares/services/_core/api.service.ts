@@ -174,6 +174,20 @@ export class ApiService {
       );
   }
 
+  public getNoToken(path: string, options?: any, params?: HttpParams): Observable<any> {
+    return this.httpClient.get(
+      path,
+      {
+        headers: this.setHeadersNoToken(options),
+        params,
+        withCredentials: false,
+        observe: 'response'
+      })
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
   public put(path: string, body?: any): Observable<any> {
     return this.httpClient.put(
       path, body,

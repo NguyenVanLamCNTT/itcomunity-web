@@ -28,7 +28,7 @@ export class CommentService {
 
   public getComments(page?: number, perPage?: number, postsId?: number, seriesId?: number): Observable<any> {
     const url = `${apiUrl}/${path.comment}?page=${page}&perPage=${perPage}` + (postsId ? `&postId=${postsId}` : '') + (seriesId ? `&seriesId=${seriesId}` : '');
-    return this.apiService.get(url)
+    return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
