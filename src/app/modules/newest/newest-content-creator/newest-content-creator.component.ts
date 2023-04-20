@@ -55,6 +55,8 @@ export class NewestContentCreatorComponent implements OnInit{
         this.users.items = this.users.items.filter((user: any) => user.id !== res.id);
         this.loadingServiceService.hideLoading();
       }
+    }, (err: any) => {
+      this.loadingServiceService.hideLoading();
     });
   }
 
@@ -74,6 +76,8 @@ export class NewestContentCreatorComponent implements OnInit{
         }
         return topic;
       });
+      this.loadingServiceService.hideLoading();
+    }, (err: any) => {
       this.loadingServiceService.hideLoading();
     });
   }
