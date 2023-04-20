@@ -40,6 +40,7 @@
 
 
 .left-content-home {
+    position: relative;
     width: 75%;
 }
 
@@ -47,6 +48,13 @@
     width: 25%;
 }
 
+//loader center
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 @media screen and (max-width: 768px) {
     .right-content-home {
         display: none;
@@ -69,6 +77,4 @@
         overflow: auto;
         padding-bottom: 20px;
     }
-
-
 }

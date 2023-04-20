@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { SeriesService } from 'src/app/shares/services/series/series.service';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-profile-series',
@@ -16,7 +17,8 @@ export class ProfileSeriesComponent {
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   constructor (private seriesService: SeriesService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private loadingServiceService: LoadingServiceService) {
     
   }
   ngOnInit(): void {
@@ -27,8 +29,10 @@ export class ProfileSeriesComponent {
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+    this.loadingServiceService.showLoading();
     this.seriesService.getSeries(page, itemsSize, sort, this.username).subscribe((series: any) => {
       this.listSeries = series;
+      this.loadingServiceService.hideLoading();
     });
   }
 

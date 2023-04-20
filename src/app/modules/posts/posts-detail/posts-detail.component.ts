@@ -5,6 +5,7 @@ import { Posts } from 'src/app/shares/models/posts/posts';
 import { PostsService } from './../../../shares/services/posts/posts.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-posts-detail',
@@ -20,7 +21,7 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private notifyService: NotifyService,
     private router: Router,
-    private topicService: TopicService) { }
+    private loadingServiceService: LoadingServiceService) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -55,6 +56,7 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
   }
 
   listenService(): void {
+    this.loadingServiceService.showLoading();
     this.postsService.getPostsById(this.postsId).pipe(
       switchMap((posts: any) => {
         this.posts = posts;
@@ -65,6 +67,7 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
       })
     ).subscribe(
       (res: any) => {
+        this.loadingServiceService.hideLoading();
         this.postsRelatedAuthor = res?.items.filter((res: Posts) => res.id !== this.posts?.id).slice(0, 3);
       }
     );

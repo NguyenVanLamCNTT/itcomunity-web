@@ -1,3 +1,4 @@
+import { LocalStorageHelperService } from 'src/app/shares/services/token-storage/localstorage-helper.service';
 import { ActivatedRoute } from '@angular/router';
 import { SeriesService } from './../../../shares/services/series/series.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
@@ -36,6 +37,8 @@ export class CreateSeriesComponent implements OnInit{
   dataUpdate: any;
   listPostsOld: any[] = [];
 
+  currentUser = this.localStorageHelperService.getUser();
+
   placeholder = `Markdown syntax is supported. Click ? for Help \n
       To next line, using HTML <br> tag or Enter Twice \n
       Click “Next” 👁️ to preview mode \n
@@ -47,7 +50,8 @@ export class CreateSeriesComponent implements OnInit{
               private postsService: PostsService,
               private notifyService: NotifyService,
               private seriesService: SeriesService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute,
+              private localStorageHelperService: LocalStorageHelperService) {}
   ngOnInit(): void {
     this.listenService();
     this.activatedRoute.params.subscribe((params: any) => {
@@ -79,7 +83,7 @@ export class CreateSeriesComponent implements OnInit{
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
-    this.postsService.getPosts(page, itemsSize, sort).subscribe((posts: any) => {
+    this.postsService.getPosts(page, itemsSize, sort, this.currentUser.username).subscribe((posts: any) => {
       this.posts = posts;
     });
   }
@@ -127,6 +131,12 @@ export class CreateSeriesComponent implements OnInit{
 
   closeModal(): void {
     this.modalService.dismissAll();
+  }
+
+  removePosts(posts: Posts): void {
+    this.listPostsSelectedAfterSubmit = this.listPostsSelectedAfterSubmit.filter((item: Posts) => item.id !== posts.id);
+    this.listPostsSelected = this.listPostsSelectedAfterSubmit;
+    this.notifyService.success('Remove posts from series successfully!', 'Notification');
   }
 
   submit(): void {

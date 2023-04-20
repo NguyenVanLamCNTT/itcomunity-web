@@ -71,7 +71,7 @@
                                 {{ posts?.name }}
                             </h1>
                         </div>
-                        <i class="fa-duotone fa-trash mx-2"></i>
+                        <i class="fa-duotone fa-trash mx-2" (click)="removePosts(posts)"></i>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,8 @@
                 currentPage: page,
                 totalItems: posts?.totalItems
               }; let i = index">
-                <div class="mt-2 item-posts" [class.active]="isCheckActive(item)">
-                    <h1 class="text-one-line m-0" (click)="selectPosts(item)">
+                <div class="mt-2 item-posts" [class.active]="isCheckActive(item)" (click)="selectPosts(item)">
+                    <h1 class="text-one-line m-0" >
                         {{i + 1}}. {{ item?.name }}
                         <i class="fa-solid fa-link ms-2"></i>
                     </h1>

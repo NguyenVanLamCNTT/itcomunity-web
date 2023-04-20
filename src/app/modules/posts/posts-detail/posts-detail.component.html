@@ -29,59 +29,60 @@
     </button>
 </div>
 <!-- Slide image -->
+<div *ngIf="posts" class="posts-detail">
+    <!-- Content of the page -->
+    <div class="mt-3 container d-flex">
+        <!-- Content posts -->
+        <div class="left-content-home">
+            <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name"
+                [user]="posts?.author" [posts]="posts" (idDeletePosts)="deletePosts($event)"></app-posts-item>
+        </div>
+        <!-- Content posts -->
 
-<!-- Content of the page -->
-<div class="mt-3 container d-flex">
-    <!-- Content posts -->
-    <div class="left-content-home">
-        <app-posts-item [tags]="posts?.keywords" [content]="posts?.content" [title]="posts?.name" [user]="posts?.author"
-            [posts]="posts" (idDeletePosts)="deletePosts($event)"></app-posts-item>
-    </div>
-    <!-- Content posts -->
-
-    <!-- Sidebar -->
-    <div class="right-content-home mt-3 left-side-bar">
-        <div class="left-side-bar-item sticky" id="sidebar">
-            <div class="mx-4">
-                <div class="d-flex">
-                    <h5 class="title-sidebar text-uppercase">Mục lục</h5>
-                    <hr class="title-line ms-2">
+        <!-- Sidebar -->
+        <div class="right-content-home mt-3 left-side-bar">
+            <div class="left-side-bar-item sticky" id="sidebar">
+                <div class="mx-4">
+                    <div class="d-flex">
+                        <h5 class="title-sidebar text-uppercase">Mục lục</h5>
+                        <hr class="title-line ms-2">
+                    </div>
+                    <ul *ngFor="let header of headers">
+                        <li [class.ms-3]="header.tag === 'H2'">
+                            <a (click)="scroll(header.id)">
+                                <span>{{ header.id }}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <ul *ngFor="let header of headers">
-                    <li [class.ms-3]="header.tag === 'H2'">
-                        <a (click)="scroll(header.id)">
-                            <span>{{ header.id }}</span>
-                        </a>
-                    </li>
-                </ul>
+                <app-sidebar-ask></app-sidebar-ask>
             </div>
-            <app-sidebar-ask></app-sidebar-ask>
+        </div>
+        <!-- Sidebar -->
+    </div>
+    <!-- Content of the page -->
+
+    <!-- Related to -->
+    <div class="container mt-5 related-outer">
+        <div class="title">
+            <h1>More from {{ posts?.author?.fullName }}</h1>
+        </div>
+        <div class="d-flex flex-row justify-content-start align-items-stretch flex-grow-1">
+            <div *ngFor="let item of postsRelatedAuthor">
+                <app-card-item [item]="item" [isRelated]="true"></app-card-item>
+            </div>
         </div>
     </div>
-    <!-- Sidebar -->
-</div>
-<!-- Content of the page -->
+    <!-- Related to -->
 
-<!-- Related to -->
-<div class="container mt-5 related-outer">
-    <div class="title">
-        <h1>More from {{ posts?.author?.fullName }}</h1>
-    </div>
-    <div class="d-flex flex-row justify-content-start align-items-stretch flex-grow-1">
-        <div *ngFor="let item of postsRelatedAuthor">
-            <app-card-item [item]="item" [isRelated]="true"></app-card-item>
+    <!-- Comment -->
+    <div class="container mt-5 comment-outer">
+        <div class="title">
+            <h1>Comments</h1>
+        </div>
+        <div>
+            <app-comments [posts]="posts"></app-comments>
         </div>
     </div>
+    <!-- Comment -->
 </div>
-<!-- Related to -->
-
-<!-- Comment -->
-<div class="container mt-5 comment-outer">
-    <div class="title">
-        <h1>Comments</h1>
-    </div>
-    <div>
-        <app-comments [posts]="posts"></app-comments>
-    </div>
-</div>
-<!-- Comment -->

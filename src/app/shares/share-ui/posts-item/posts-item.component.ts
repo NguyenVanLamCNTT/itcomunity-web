@@ -34,6 +34,7 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     this.codeFormat();
   }
+  
   ngAfterViewInit(): void {
     this.codeFormat();
   }

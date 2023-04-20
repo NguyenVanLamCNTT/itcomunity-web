@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-profile-posts',
@@ -18,7 +19,8 @@ export class ProfilePostsComponent implements OnInit{
   tableSizes: any = [3, 6, 9, 12];
   constructor(private activatedRoute: ActivatedRoute,
               private postsService: PostsService,
-              private router: Router) { 
+              private router: Router,
+              private loadingServiceService: LoadingServiceService) { 
     
   }
   ngOnInit(): void {
@@ -29,8 +31,10 @@ export class ProfilePostsComponent implements OnInit{
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+    this.loadingServiceService.showLoading();
     this.postsService.getPosts(page, itemsSize, sort, this.username).subscribe((posts: any) => {
       this.listPosts = posts;
+      this.loadingServiceService.hideLoading();
     });
   }
 

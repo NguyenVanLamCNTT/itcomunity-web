@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 
 @Component({
@@ -12,17 +13,18 @@ export class NewestPostsFollowingsComponent {
   count: number = 0;
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];  
-  constructor(private postsService: PostsService) {
-
-  }
+  constructor(private postsService: PostsService,
+    private loadingServiceService: LoadingServiceService) {}
 
   ngOnInit() {
     this.listenService();
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc') {
+    this.loadingServiceService.showLoading();
     this.postsService.getPostsByUserFollow(page, itemsSize, sort).subscribe(res => {
       this.listPosts = res;
+      this.loadingServiceService.hideLoading();
     })
   }
 

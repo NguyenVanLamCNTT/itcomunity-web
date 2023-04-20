@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div>
-                <a href="#" class="name-user">
+                <a routerLink="/profile/{{question?.author?.username}}/posts" class="name-user">
                     <span>
                         {{ question?.author?.fullname }}
                     </span>
@@ -40,30 +40,30 @@
         <hr class="title-line ms-2">
     </div>
     <div>
-        <div class="ask-item mt-3" *ngFor="let question of listPosts">
-            <a href="/posts/{{question?.id}}">
+        <div class="ask-item mt-3" *ngFor="let posts of listPosts">
+            <a href="/posts/{{posts?.id}}">
                 <h5 class="title-ask">
-                    {{ question.name }}
+                    {{ posts.name }}
                 </h5>
             </a>
             <div class="group-icon d-flex">
                 <div class="icon">
                     <i class="fa-solid fa-eye"></i>
-                    <span>{{ question?.viewNumber }}</span>
+                    <span>{{ posts?.viewNumber }}</span>
                 </div>
                 <div class="icon">
                     <i class="fa-solid fa-share"></i>
-                    <span>{{ question?.bookMarkNumber }}</span>
+                    <span>{{ posts?.bookMarkNumber }}</span>
                 </div>
                 <div class="icon">
                     <i class="fa-solid fa-comment"></i>
-                    <span>{{ question?.commentNumber }}</span>
+                    <span>{{ posts?.commentNumber }}</span>
                 </div>
             </div>
             <div>
-                <a href="#" class="name-user">
+                <a routerLink="/profile/{{posts?.author?.username}}/posts" class="name-user">
                     <span>
-                        {{ question?.author?.fullname }}
+                        {{ posts?.author?.fullName }}
                     </span>
                 </a>
             </div>

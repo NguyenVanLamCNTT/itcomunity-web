@@ -5,6 +5,7 @@ import { UserService } from 'src/app/shares/services/user/user.service';
 import { TopicService } from './../../../shares/services/topic/topic.service';
 import { Component, OnInit } from '@angular/core';
 import { switchMap, map } from 'rxjs';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-newest-content-creator',
@@ -26,7 +27,8 @@ export class NewestContentCreatorComponent implements OnInit{
               private userService: UserService,
               private notifyService: NotifyService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private loadingServiceService: LoadingServiceService) { }
 
   ngOnInit(): void {
     this.listenServiceTopic();
@@ -34,6 +36,7 @@ export class NewestContentCreatorComponent implements OnInit{
     this.isLogin = this.authService.checkLogin();
   }
   listenServiceUsers(page = 1, itemsSize = 18, sort = 'desc') {
+    this.loadingServiceService.showLoading();
     this.userService.getAllUsers(page, itemsSize).pipe(
       switchMap((res: any) => {
         if (res.items) {
@@ -50,11 +53,13 @@ export class NewestContentCreatorComponent implements OnInit{
           return user;
         });
         this.users.items = this.users.items.filter((user: any) => user.id !== res.id);
+        this.loadingServiceService.hideLoading();
       }
     });
   }
 
   listenServiceTopic(page = 1, itemsSize = 18, sort = 'desc') {
+    this.loadingServiceService.showLoading();
     this.topicService.getTopic(page, itemsSize).pipe(
       switchMap((res: any) => {
         if (res.items) {
@@ -69,6 +74,7 @@ export class NewestContentCreatorComponent implements OnInit{
         }
         return topic;
       });
+      this.loadingServiceService.hideLoading();
     });
   }
   

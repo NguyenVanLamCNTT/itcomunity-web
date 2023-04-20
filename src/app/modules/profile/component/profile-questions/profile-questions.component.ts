@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shares/services/auth/auth.service';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 import { QuestionAnswerService } from 'src/app/shares/services/question-answers/question-answer.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class ProfileQuestionsComponent {
   tableSizes: any = [3, 6, 9, 12];
   constructor (private questionAnswerService: QuestionAnswerService,
               private authService: AuthService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private loadingServiceService: LoadingServiceService) {
     
   }
   ngOnInit(): void {
@@ -30,8 +32,10 @@ export class ProfileQuestionsComponent {
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+    this.loadingServiceService.showLoading();
     this.questionAnswerService.getQuestion(page, itemsSize, sort, this.username).subscribe((series: any) => {
       this.listQuestions = series;
+      this.loadingServiceService.hideLoading();
     });
   }
 

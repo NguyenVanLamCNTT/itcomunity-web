@@ -1,3 +1,4 @@
+import { LoadingServiceService } from './../../../../shares/services/loading/loading-service.service';
 import { QuestionAnswerService } from './../../../../shares/services/question-answers/question-answer.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +12,8 @@ export class QuestionDetailComponent implements OnInit{
   questionId: any;
   question: any;
   constructor(private activatedRoute: ActivatedRoute,
-    private questionAnswerService: QuestionAnswerService) { }
+    private questionAnswerService: QuestionAnswerService,
+    private loadingServiceService: LoadingServiceService) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((res: any) => {
       this.questionId = res?.id;
@@ -20,8 +22,10 @@ export class QuestionDetailComponent implements OnInit{
   }
 
   listenService(): void {
+    this.loadingServiceService.showLoading();
     this.questionAnswerService.getQuestionsById(this.questionId).subscribe((question: any) => {
       this.question = question;
+      this.loadingServiceService.hideLoading();
     });
   }
 

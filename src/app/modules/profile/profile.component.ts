@@ -1,3 +1,4 @@
+import { LoadingServiceService } from './../../shares/services/loading/loading-service.service';
 import { NotifyService } from './../../shares/services/notify/notify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/shares/services/user/user.service';
@@ -18,7 +19,8 @@ export class ProfileComponent implements OnInit{
   constructor(private userService: UserService,
     private router: Router,
     private notifyService: NotifyService,
-    private localStorageHelperService: LocalStorageHelperService) { }
+    private localStorageHelperService: LocalStorageHelperService,
+    private loadingServiceService: LoadingServiceService) { }
 
   menuItems = [
     {
@@ -84,11 +86,14 @@ export class ProfileComponent implements OnInit{
   }
 
   listenService(): void {
+    this.loadingServiceService.showLoading();
     this.username = this.router.url.split('/')[2];
     this.userService.getByUsername(this.username).subscribe((user: any) => {
       this.user = user;
       this.isFollowing = this.user?.followerIds?.some((follower: any) => follower === this.currentUser?.id);
+      this.loadingServiceService.hideLoading();
     }, (error: any) => {
+      this.loadingServiceService.hideLoading();
       this.router.navigate(['/404']);
     });
   }

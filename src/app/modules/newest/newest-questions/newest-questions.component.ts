@@ -1,6 +1,7 @@
 import { QuestionAnswerService } from './../../../shares/services/question-answers/question-answer.service';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/shares/services/auth/auth.service';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-newest-questions',
@@ -15,7 +16,8 @@ export class NewestQuestionsComponent {
   itemsSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   constructor (private questionAnswerService: QuestionAnswerService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private loadingServiceService: LoadingServiceService) {
     
   }
   ngOnInit(): void {
@@ -24,8 +26,10 @@ export class NewestQuestionsComponent {
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+    this.loadingServiceService.showLoading();
     this.questionAnswerService.getQuestion(page, itemsSize, sort).subscribe((series: any) => {
       this.listQuestions = series;
+      this.loadingServiceService.hideLoading();
     });
   }
 

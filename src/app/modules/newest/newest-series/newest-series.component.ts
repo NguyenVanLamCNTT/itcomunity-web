@@ -2,6 +2,7 @@ import { AuthService } from './../../../shares/services/auth/auth.service';
 import { SeriesService } from './../../../shares/services/series/series.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { Component, OnInit } from '@angular/core';
+import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
   selector: 'app-newest-series',
@@ -17,7 +18,8 @@ export class NewestSeriesComponent implements OnInit{
   tableSizes: any = [3, 6, 9, 12];
   constructor (private postsService: PostsService,
               private seriesService: SeriesService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private loadingServiceService: LoadingServiceService) {
     
   }
   ngOnInit(): void {
@@ -26,8 +28,10 @@ export class NewestSeriesComponent implements OnInit{
   }
 
   listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+    this.loadingServiceService.showLoading();
     this.seriesService.getSeries(page, itemsSize, sort).subscribe((series: any) => {
       this.listSeries = series;
+      this.loadingServiceService.hideLoading();
     });
   }
 
