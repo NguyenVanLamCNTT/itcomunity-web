@@ -56,8 +56,14 @@ export class ApiService {
     return httpHeaders;
   }
   public setHeadersNoToken(headers?: any): HttpHeaders {
+    let token = '';
+    if (this.storageService.getToken()) {
+      token = 'Bearer ' + this.storageService.getToken();
+    } else {
+      token = '';
+    }
     // const token = 'Bearer ' + this.storageService.getToken();
-    const token = '';
+    // const token = '';
     let httpHeaders;
 
     if (token) {

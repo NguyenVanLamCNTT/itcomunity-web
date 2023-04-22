@@ -15,6 +15,7 @@ import { NewestContentCreatorComponent } from './newest-content-creator/newest-c
 import { NewestMyBookmarkComponent } from './newest-my-bookmark/newest-my-bookmark.component';
 import { ListPostsBookmarksComponent } from './newest-my-bookmark/component/list-posts-bookmarks/list-posts-bookmarks.component';
 import { ListSeriesBookmarksComponent } from './newest-my-bookmark/component/list-series-bookmarks/list-series-bookmarks.component';
+import { NewestTrendingComponent } from './newest-trending/newest-trending.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListSeriesBookmarksComponent } from './newest-my-bookmark/component/lis
     NewestContentCreatorComponent,
     NewestMyBookmarkComponent,
     ListPostsBookmarksComponent,
-    ListSeriesBookmarksComponent
+    ListSeriesBookmarksComponent,
+    NewestTrendingComponent
   ],
   imports: [
     CommonModule,

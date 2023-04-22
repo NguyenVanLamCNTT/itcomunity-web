@@ -140,6 +140,29 @@ ul li {
     }
 }
 
+.popover-search {
+    position: absolute;
+    z-index: 1000;
+    background-color: var(--white);
+    width: 350px;
+    border: 1px solid var(--gray-light);
+    
+    // animation
+    transition: all 0.5s ease-in-out;
+    .popover-search-body {
+        .popover-search-body-item {
+            .popover-search-body-item-label {
+                background-color: var(--main-color);
+                .title {
+                    color: var(--white);
+                    font-weight: 500;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .dropdown-menu {
         left: -200px;

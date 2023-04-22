@@ -48,7 +48,7 @@ export class MenuComponent implements OnInit {
     {
       id: 6,
       name: 'TRENDING',
-      link: '/',
+      link: '/home/newest/trending',
       isShow: true,
       isActive: false,
     },

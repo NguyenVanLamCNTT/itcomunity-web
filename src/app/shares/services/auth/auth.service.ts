@@ -65,8 +65,7 @@ export class AuthService {
 
   public refreshToken(refreshToken: string): Observable<Token> {
     const url = `${apiUrl}/${path.refreshToken}`;
-    const refreshData = { token: refreshToken };
-    return this.apiService.postNoHeader(url, refreshData)
+    return this.apiService.postNoHeader(url, {refreshToken})
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;

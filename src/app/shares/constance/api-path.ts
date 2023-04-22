@@ -9,7 +9,7 @@ export const apiPath = {
     },
     auth: {
       login: 'api/auth/login',
-      refreshToken: 'api/auth/refreshToken',
+      refreshToken: 'api/auth/refresh-token',
       changePassword: 'api/auth/changePassword',
       register: 'api/auth/register',
       sendOTP: 'api/auth/send-otp',
@@ -22,6 +22,7 @@ export const apiPath = {
       view: 'api/posts/view',
       bookmark: 'api/posts/bookmark',
       getBookmarks: 'api/posts/bookmark/user',
+      trending: 'api/posts/trending/top',
     },
     upload: {
       upload: 'api/dms/upload',

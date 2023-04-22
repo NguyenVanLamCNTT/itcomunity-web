@@ -4,7 +4,7 @@ import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 import { UserService } from 'src/app/shares/services/user/user.service';
 import { TopicService } from './../../../shares/services/topic/topic.service';
 import { Component, OnInit } from '@angular/core';
-import { switchMap, map } from 'rxjs';
+import { switchMap, map, catchError } from 'rxjs';
 import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class NewestContentCreatorComponent implements OnInit{
   page: number = 1;
   count: number = 0;
   itemsSize: number = 18;
-  tableSizes: any = [3, 6, 9, 12]; 
+  tableSizes: any = [3, 6, 9, 12];
     
   constructor(private topicService: TopicService,
               private userService: UserService,
@@ -37,13 +37,26 @@ export class NewestContentCreatorComponent implements OnInit{
   }
   listenServiceUsers(page = 1, itemsSize = 18, sort = 'desc') {
     this.loadingServiceService.showLoading();
+    if (!this.isLogin) {
+      this.userService.getAllUsers(page, itemsSize).subscribe((res: any) => {
+        if (res.items) {
+          this.users = res;
+        }
+        this.loadingServiceService.hideLoading();
+      }, (err: any) => {
+        this.loadingServiceService.hideLoading();
+        console.log(err);
+      });
+      return;
+    }
+    
     this.userService.getAllUsers(page, itemsSize).pipe(
       switchMap((res: any) => {
         if (res.items) {
           this.users = res;
         }
         return this.userService.getMe();
-      })
+      }),
     ).subscribe((res: any) => {
       if (res.authorFollow) {
         this.users.items = this.users.items.map((user: any) => {
@@ -56,12 +69,25 @@ export class NewestContentCreatorComponent implements OnInit{
         this.loadingServiceService.hideLoading();
       }
     }, (err: any) => {
+      console.log(err);
       this.loadingServiceService.hideLoading();
     });
   }
 
   listenServiceTopic(page = 1, itemsSize = 18, sort = 'desc') {
     this.loadingServiceService.showLoading();
+    if (!this.isLogin) {
+      this.topicService.getTopic(page, itemsSize).subscribe((res: any) => {
+        if (res.items) {
+          this.topics = res;
+        }
+        this.loadingServiceService.hideLoading();
+      }, (err: any) => {
+        this.loadingServiceService.hideLoading();
+        console.log(err);
+      });
+      return;
+    }
     this.topicService.getTopic(page, itemsSize).pipe(
       switchMap((res: any) => {
         if (res.items) {
@@ -78,6 +104,7 @@ export class NewestContentCreatorComponent implements OnInit{
       });
       this.loadingServiceService.hideLoading();
     }, (err: any) => {
+      console.log(err);
       this.loadingServiceService.hideLoading();
     });
   }

@@ -55,8 +55,9 @@
                 <app-language></app-language>
             </a>
         </div>
-        <button class="navbar-toggler me-2" *ngIf="!isMobile" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler me-2" *ngIf="!isMobile" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="!isMobile">
@@ -83,8 +84,63 @@
                     <a class="nav-link text-black fw-bold">
                         <div class="d-flex">
                             <div class="form-group">
-                                <input type="text" class="form-control pe-5"
-                                    placeholder="{{ 'SEARCH' | translate }}...">
+                                <input type="text" class="form-control pe-5" placeholder="{{ 'SEARCH' | translate }}..."
+                                    (keydown)="onFilterChange($event)">
+                                <!-- popover search -->
+                                <div class="popover-search" *ngIf="isShowSearch">
+                                    <div class="popover-search-body">
+                                        <div class="popover-search-body-item">
+                                            <div class="popover-search-body-item-label p-2">
+                                                <p class="m-0 text-uppercase title">{{ 'POSTS' | translate }}</p>
+                                            </div>
+                                            <div class="popover-search-body-item-content p-2">
+                                                <div class="popover-search-body-item-content-item"
+                                                    *ngFor="let post of posts">
+                                                    <a routerLink="/post/{{post?.id}}">
+                                                        <div class="popover-search-body-item-content-item-img">
+                                                            <img src="{{ post?.author?.avatar }}" width="50">
+                                                        </div>
+                                                        <div class="popover-search-body-item-content-item-text">
+                                                            <p class="m-0">{{ post?.name }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popover-search-body-item">
+                                            <p class="m-0">{{ 'QUESTIONS' | translate }}</p>
+                                            <div class="popover-search-body-item-content">
+                                                <div class="popover-search-body-item-content-item"
+                                                    *ngFor="let question of questions">
+                                                    <a routerLink="/question/{{question?.id}}">
+                                                        <div class="popover-search-body-item-content-item-img">
+                                                            <img src="{{ question?.thumbnail }}" width="50">
+                                                        </div>
+                                                        <div class="popover-search-body-item-content-item-text">
+                                                            <p class="m-0">{{ question?.title }}</p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popover-search-body-item">
+                                            <p class="m-0">{{ 'SERIES' | translate }}</p>
+                                            <div class="popover-search-body-item-content">
+                                                <div class="popover-search-body-item-content-item"
+                                                    *ngFor="let series of series">
+                                                    <a routerLink="/series/{{series?.id}}">
+                                                        <div class="popover-search-body-item-content-item-img">
+                                                            <img src="{{ series?.thumbnail }}" width="50" />
+                                                            <div class="popover-search-body-item-content-item-text">
+                                                                <p class="m-0">{{ series?.title }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button class="btn btn-search">
                                 <i class="fa fa-search form-control-icon"></i>

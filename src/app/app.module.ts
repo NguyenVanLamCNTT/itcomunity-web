@@ -45,7 +45,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     PopoverModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

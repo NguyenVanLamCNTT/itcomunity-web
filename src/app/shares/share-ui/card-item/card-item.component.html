@@ -1,5 +1,8 @@
-<div class="group-card-item mt-2" *ngIf="!isRelated">
+<div class="group-card-item mt-2 p-1" *ngIf="!isRelated" [class.top-one] = "number === 0 && isTrending" [class.top-two] = "number === 1 && isTrending" [class.top-three] = "number === 2 && isTrending">
     <div class="d-flex justify-content-between">
+        <div class="treding" *ngIf="isTrending">
+            <img src="{{getUrl(number)}}" alt="" width="40">
+        </div>
         <div class="d-flex">
             <div class="avatar-image" routerLink="/profile/{{item?.author?.username}}/posts">
                 <img src="{{item?.author?.avatar}}" alt="{{item?.author?.avatar}}">
@@ -57,7 +60,7 @@
         </div>
         <div class="d-flex">
             <div class="icon">
-                <i class="fa-sharp fa-solid fa-thumbtack"></i>
+                <!-- <i class="fa-sharp fa-solid fa-thumbtack"></i> -->
             </div>
         </div>
     </div>

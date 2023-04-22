@@ -27,8 +27,8 @@ export class PostsService {
       );
   }
 
-  public getPosts(page?: number, perPage?: number, sort?: string, username?: string): Observable<Posts[]> {
-    const url = `${apiUrl}/${path.posts}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
+  public getPosts(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<Posts[]> {
+    const url = `${apiUrl}/${path.posts}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '');
     const params: HttpParams = new HttpParams();
     page && params.set('page', page.toString());
     perPage && params.set('perPage', perPage.toString());
@@ -125,6 +125,17 @@ export class PostsService {
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body.data;
+          return body || {};
+        })
+      );
+  }
+
+  public getPostsTrending(page?: number, perPage?: number, sort?: string): Observable<Posts> {
+    const url = `${apiUrl}/${path.trending}`;
+    return this.apiService.getNoToken(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
           return body || {};
         })
       );

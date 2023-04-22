@@ -1,4 +1,5 @@
 .group-card-item {
+    position: relative;
     border-bottom: 1px solid var(--gray-light);
     padding-bottom: 15px;
 
@@ -183,4 +184,10 @@ a {
     .group-title {
         width: 70%;
     }
+}
+
+.treding {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

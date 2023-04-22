@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(authReq).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && !authReq.url.includes('auth/signin') && error.status === 401) {
+      if (error instanceof HttpErrorResponse && !authReq.url.includes('auth/signin') && error.status === 401 || error.status === 500) {
         return this.handle401Error(authReq, next);
       }
 
@@ -47,9 +47,9 @@ export class AuthInterceptor implements HttpInterceptor {
         return this.authService.refreshToken(token).pipe(
           switchMap((token: any) => {
             this.isRefreshing = false;
-
             this.tokenService.saveToken(token.accessToken);
-            this.refreshTokenSubject.next(token.accessToken);
+            this.tokenService.saveRefreshToken(token.refreshToken);
+            // this.refreshTokenSubject.next(token.accessToken);
             
             return next.handle(this.addTokenHeader(request, token.accessToken));
           }),
@@ -74,7 +74,15 @@ export class AuthInterceptor implements HttpInterceptor {
     // return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
 
     /* for Node.js Express back-end */
-    return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, token) });
+    // return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, token), } );
+    return request.clone({
+      setHeaders: {
+        'Content-Type' : 'application/json; charset=utf-8',
+        'Accept'       : 'application/json',
+        'Authorization': `Bearer ${token}`,
+        TOKEN_HEADER_KEY: token
+      },
+   });
   }
 }
 
