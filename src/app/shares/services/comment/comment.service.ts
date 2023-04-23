@@ -36,4 +36,26 @@ export class CommentService {
         })
       );
   }
+
+  public updateComment(commentId: number, comment: any): Observable<any> {
+    const url = `${apiUrl}/${path.comment}/${commentId}`;
+    return this.apiService.put(url, comment)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public deleteComment(commentId: number): Observable<any> {
+    const url = `${apiUrl}/${path.comment}/${commentId}`;
+    return this.apiService.delete(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
 }

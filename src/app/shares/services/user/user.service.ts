@@ -16,8 +16,8 @@ export class UserService {
 
   constructor(private apiService: ApiService) { }
 
-  getAllUsers(page?: number, perPage?: number, sort?: string, username?: string): Observable<User[]>{
-    const url = `${apiUrl}/${path.allUser}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
+  getAllUsers(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<User[]>{
+    const url = `${apiUrl}/${path.allUser}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '');
     return this.apiService.get(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {

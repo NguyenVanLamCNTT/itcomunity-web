@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Tag {
   name: string;
@@ -15,8 +16,10 @@ export interface Tag {
   styleUrls: ['./create-question.component.scss']
 })
 export class CreateQuestionComponent implements OnInit{
-  
+  questionId: any;
   questionForm: any;
+  question: any;
+  isUpdate: boolean = false;
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -33,9 +36,26 @@ export class CreateQuestionComponent implements OnInit{
   Please hover to any icon for show tooltip. Give me any feedback if any. \n`
 
   constructor(private questionAnswerService: QuestionAnswerService,
-              private notifyService: NotifyService) { }
+              private notifyService: NotifyService,
+              private activatedRoute: ActivatedRoute,) { }
   ngOnInit(): void {
     this.initPostsForm();
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.questionId = params.id;
+      if (this.questionId) {
+        this.questionAnswerService.getQuestionsById(this.questionId).subscribe((question: any) => {
+          this.question = question;
+          console.log(question);
+          this.questionForm.patchValue({
+            title: question.title,
+            status: question.status,
+          });
+          this.tags = question.keywords.map((keyword: any) => JSON.parse(keyword));
+          this.contentRichText = question.content;
+          this.isUpdate = true;
+        });
+      }
+    });
   }
 
   initPostsForm(): void {
@@ -91,15 +111,29 @@ export class CreateQuestionComponent implements OnInit{
     }
     console.log(data);
 
+    if (this.isUpdate) {
+      this.questionAnswerService.updateQuestion(this.questionId, data).subscribe(res => {
+        this.clearData();
+        this.notifyService.success('Update question successfully!', 'Success');
+      },
+      err => {
+        this.notifyService.error('Update question failed!', 'Error');
+      });
+      return;
+    }
+
     this.questionAnswerService.createQuestion(data).subscribe(res => {
-      this.questionForm.reset();
-      this.tags = [];
-      this.contentRichText = "";
-      this.notifyService.success('Create question successfully', 'Success');
+      this.clearData();
+      this.notifyService.success('Create question successfully!', 'Success');
     },
     err => {
-      this.notifyService.error('Create question failed', 'Error');
+      this.notifyService.error('Create question failed!', 'Error');
     });
   }
   
+  clearData() {
+    this.questionForm.reset();
+    this.tags = [];
+    this.contentRichText = "";
+  }
 }

@@ -72,10 +72,23 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
       return;
     }
     this.postsService.bookmarkPosts(posts?.id, true).subscribe((res) => {
-      this.posts.bookmarked = true;
+      posts.isBookmark = true;
       this.notifyService.success('Bookmark Success!', 'Success');
     }, (error) => {
       this.notifyService.error('Bookmark Failed!', 'Error');
+    });
+  }
+
+  unBookmarkPosts(posts: any): void {
+    if (!this.userLocal.id) {
+      this.notifyService.error('Please login to un bookmark this posts!', 'Error');
+      return;
+    }
+    this.postsService.bookmarkPosts(posts?.id, false).subscribe((res) => {
+      posts.isBookmark = false;
+      this.notifyService.success('Un bookmark Success!', 'Success');
+    }, (error) => {
+      this.notifyService.error('Un bookmark Failed!', 'Error');
     });
   }
 }

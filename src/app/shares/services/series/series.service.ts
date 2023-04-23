@@ -91,14 +91,14 @@ export class SeriesService {
         })
       );
   }
-  // public deleteSeries(seriesId: number): Observable<any> {
-  //   const url = `${apiUrl}/${path.series}/${seriesId}`;
-  //   return this.apiService.patch(url)
-  //     .pipe(
-  //       map((httpResponse: HttpResponse<any>) => {
-  //         const body = httpResponse.body;
-  //         return body || {};
-  //       })
-  //     );
-  // }
+  public deleteSeries(seriesId: number): Observable<any> {
+    const url = `${apiUrl}/${path.series}/${seriesId}`;
+    return this.apiService.delete(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
 }

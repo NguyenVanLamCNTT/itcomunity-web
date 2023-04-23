@@ -1,7 +1,35 @@
 <div class="mt-5 container d-flex">
-    <div class="right-content-series">
+    <div class="right-content-question">
         <div class="title">
             <h1>{{ question?.title }}</h1>
+        </div>
+        <div class="my-3 d-flex justify-content-end">
+            <div class="dropdown">
+                <button class="custom-button-option d-flex align-items-center" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <ul class="dropdown-menu popover-posts-option  pt-0">
+                    <li *ngIf="isPermission()">
+                        <a class="dropdown-item p-3 py-2" routerLink="/questions/{{question?.id}}/edit">
+                            <i class="fa-regular fa-pen-to-square me-2"></i>
+                            <span>Edit question</span>
+                        </a>
+                    </li>
+                    <li *ngIf="isPermission()">
+                        <a class="dropdown-item p-3 py-2" (click)="deletequestion(question)">
+                            <i class="fa-duotone fa-trash me-2"></i>
+                            <span>Delete question</span>
+                        </a>
+                    </li>
+                    <li *ngIf="!isPermission()">
+                        <a class="dropdown-item p-3 py-2">
+                            <i class="fa-regular fa-flag me-2"></i>
+                            <span>Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="tags-group">
             <div class="tag-name me-1" *ngFor="let tag of question?.keywords">
@@ -46,7 +74,6 @@
     <div class="mt-3 left-side-bar">
         <div class="left-side-bar-item sticky" id="sidebar">
             <div class="mx-4">
-
             </div>
             <app-sidebar-ask></app-sidebar-ask>
         </div>

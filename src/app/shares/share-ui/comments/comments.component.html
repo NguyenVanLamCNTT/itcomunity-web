@@ -44,26 +44,26 @@
                             aria-expanded="false">
                             <i class="fa-solid fa-ellipsis"></i>
                         </button>
-                        <ul class="dropdown-menu popover-posts-option  pt-0">
-                            <li>
-                                <a class="dropdown-item p-3 py-2" (click)="approve(comment)">
+                        <ul class="dropdown-menu popover-posts-option pt-0">
+                            <li (click)="approve(comment)" *ngIf="isPermission(question) && question">
+                                <a class="dropdown-item p-3 py-2">
                                     <i class="fa-sharp fa-solid fa-circle-check me-2" ></i>
                                     <span>Approve</span>
                                 </a>
                             </li>
-                            <li >
+                            <li (click)="updateComment(comment)" *ngIf="isPermission(comment)">
                                 <a class="dropdown-item p-3 py-2">
                                     <i class="fa-regular fa-pen-to-square me-2"></i>
                                     <span>Edit comment</span>
                                 </a>
                             </li>
-                            <li>
+                            <li (click)="deleteComment(comment)" *ngIf="isPermission(comment)">
                                 <a class="dropdown-item p-3 py-2">
                                     <i class="fa-duotone fa-trash me-2"></i>
                                     <span>Delete comment</span>
                                 </a>
                             </li>
-                            <li >
+                            <li *ngIf="!isPermission(comment)">
                                 <a class="dropdown-item p-3 py-2">
                                     <i class="fa-regular fa-flag me-2"></i>
                                     <span>Report</span>

@@ -151,12 +151,27 @@ ul li {
     transition: all 0.5s ease-in-out;
     .popover-search-body {
         .popover-search-body-item {
+            position: relative;
+
+            .loader {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
             .popover-search-body-item-label {
                 background-color: var(--main-color);
                 .title {
                     color: var(--white);
                     font-weight: 500;
                     font-size: 1rem;
+                }
+            }
+
+            .popover-search-body-item-content {
+                .popover-search-body-item-content-item-card {
+                    display: flex;
                 }
             }
         }

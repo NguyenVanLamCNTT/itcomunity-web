@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user/user.service';
+import { QuestionAnswerService } from './../../services/question-answers/question-answer.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
 import { LocalStorageHelperService } from './../../services/token-storage/localstorage-helper.service';
 import { AuthService } from './../../services/auth/auth.service';
@@ -21,11 +23,14 @@ export class NavbarComponent implements OnInit, OnChanges {
   posts: any;
   series: any;
   questions: any;
+  users: any;
 
   constructor(private authService: AuthService,
     private router: Router,
     private localStorageHelperService: LocalStorageHelperService,
-    private postsService: PostsService) { }
+    private postsService: PostsService,
+    private questionAnswerService: QuestionAnswerService,
+    private userService: UserService) { }
   ngOnChanges(changes: SimpleChanges): void {
   }
 
@@ -45,13 +50,18 @@ export class NavbarComponent implements OnInit, OnChanges {
   }
 
   onFilterChange(event: any): void {
-    console.log('event', event.target.value);
     const value = event.target.value;
+    this.postsService.getPosts(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+      this.posts = res.items;
+    });
+    this.questionAnswerService.getQuestion(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+      this.questions = res.items;
+    });
+    this.userService.getAllUsers(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+      this.users = res.items;
+    });
     if (value || value !== '') {
       this.isShowSearch = true;
-      this.postsService.getPosts(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
-        this.posts = res.items;
-      });
     } else {
       this.isShowSearch = false;
     }

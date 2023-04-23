@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommentDetailComponent } from '../comment-detail/comment-detail.component';
 import { User } from '../../models/user/user';
 import { AuthService } from '../../services/auth/auth.service';
+import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
 const hljs = require('highlight.js');
 
 @Component({
@@ -27,11 +28,13 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   contentRichText: string = '';
   placeholder = 'Write a comment...';
   listComments: any;
+  isUpdate: boolean = false;
 
   page: number = 1;
   count: number = 0;
   itemsSize: number = 5;
   tableSizes: any = [3, 6, 9, 12];
+  commentSelected: any;
 
   localUser: User = this.LocalStorageHelperService.getUser();
   
@@ -100,6 +103,16 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
       parentCommentId: this.comment ? this.comment.id : null,
     }
     if (this.posts) {
+      if (this.isUpdate) {
+        this.commentService.updateComment(this.commentSelected.id, data).subscribe(res => {
+          this.notifyService.success('Comment successfully', 'Success');
+          this.contentRichText = '';
+          this.isUpdate = false;
+          this.listenService(1, 10, this.posts.id);
+          this.isUpdate = false;
+        });
+        return;
+      }
       this.commentService.createComment(data).subscribe(res => {
         this.notifyService.success('Comment successfully', 'Success');
         this.contentRichText = '';
@@ -110,6 +123,16 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
       })
     }
     if (this.series) {
+      if (this.isUpdate) {
+        this.commentService.updateComment(this.commentSelected.id, data).subscribe(res => {
+          this.notifyService.success('Comment successfully', 'Success');
+          this.contentRichText = '';
+          this.isUpdate = false;
+          this.listenService(1, 10, null, this.series.id);
+          this.isUpdate = false;
+        });
+        return;
+      }
       this.commentService.createComment(data).subscribe(res => {
         this.notifyService.success('Comment successfully', 'Success');
         this.contentRichText = '';
@@ -124,6 +147,16 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
       const dataAnswer = {
         content: this.contentRichText,
         questionId: this.question.id
+      }
+      if (this.isUpdate) {
+        this.questionAnswerService.updateAnswer(this.commentSelected.id, dataAnswer).subscribe(res => {
+          this.notifyService.success('Comment successfully', 'Success');
+          this.contentRichText = '';
+          this.isUpdate = false;
+          this.listenService(1, 10, null, null, this.question.id);
+          this.isUpdate = false;
+        });
+        return;
       }
       this.questionAnswerService.createAnswer(dataAnswer).subscribe(res => {
         this.notifyService.success('Comment successfully', 'Success');
@@ -143,6 +176,16 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
     } else if (this.series) {
       this.listenService(this.page, this.itemsSize, null, this.series.id);
     }
+  }
+
+  isPermission(comment: any) {
+    console.log(comment);
+    if (this.authService.checkLogin()) {
+      if (this.localUser.id === comment.author.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   openModalCommentDetail(comment: any) {
@@ -171,6 +214,57 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
     }, 
     err => {
       this.notifyService.error('Approved failed!', 'Error');
+    });
+  }
+
+  updateComment(comment: any): void {
+    console.log(comment);
+    this.contentRichText = comment.content;
+    this.isUpdate = true;
+    this.commentSelected = comment;
+  }
+
+  deleteComment(comment: any): void {
+    if (!comment) {
+      return;
+    }
+
+    const modalRef = this.modalService.open(ConfirmModalComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.action = 'delete';
+    modalRef.componentInstance.title = 'Delete This Series';
+    modalRef.componentInstance.content = 'Are you sure you want to delete this series?';
+    modalRef.result.then((result) => {
+      if (this.posts) {
+        this.commentService.deleteComment(comment.id).subscribe(res => {
+          this.notifyService.success('Deleted successfully!', 'Success');
+          this.listenService(1, 10, this.posts.id);
+        }, 
+        err => {
+          this.notifyService.error('Deleted failed!', 'Error');
+        });
+      }
+  
+      if (this.series) {
+        this.commentService.deleteComment(comment.id).subscribe(res => {
+          this.notifyService.success('Deleted successfully!', 'Success');
+          this.listenService(1, 10, null, this.series.id);
+        }, 
+        err => {
+          this.notifyService.error('Deleted failed!', 'Error');
+        });
+      }
+  
+      if (this.question) {
+        this.questionAnswerService.deleteAnswer(comment.id).subscribe(res => {
+          this.notifyService.success('Deleted successfully!', 'Success');
+          this.listenService(1, 10, null, null, this.question.id);
+        }, 
+        err => {
+          this.notifyService.error('Deleted failed!', 'Error');
+        });
+      }
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }

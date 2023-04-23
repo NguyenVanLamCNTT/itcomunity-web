@@ -24,7 +24,8 @@ export class SeriesDetailComponent implements OnInit {
     private notifyService: NotifyService,
     private localStorageHelperService: LocalStorageHelperService,
     private loadingServiceService: LoadingServiceService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private router: Router) {
 
     }
   ngOnInit(): void {
@@ -60,6 +61,7 @@ export class SeriesDetailComponent implements OnInit {
       return;
     }
     this.seriesService.bookmarkSeries(series?.id, true).subscribe((res) => {
+      series.isBookmark = true;
       this.notifyService.success('Add bookmark series successfully!', 'Success');
     }, (err) => {
       this.notifyService.error('Add bookmark series failed!', 'Error');
@@ -72,6 +74,7 @@ export class SeriesDetailComponent implements OnInit {
       return;
     }
     this.seriesService.bookmarkSeries(series?.id, false).subscribe((res) => {
+      series.isBookmark = false;
       this.notifyService.success('Remove bookmark series successfully!', 'Success');
     }, (err) => {
       this.notifyService.error('Remove bookmark series failed!', 'Error');
@@ -84,8 +87,13 @@ export class SeriesDetailComponent implements OnInit {
     modalRef.componentInstance.title = 'Delete This Series';
     modalRef.componentInstance.content = 'Are you sure you want to delete this series?';
     modalRef.result.then((result) => {
-      this.notifyService.success('Delete series successfully!', 'Success');
-      // this.seriesService.deleteSeries(series?.id).subscribe((res) => {}, (err) => {});
+      this.seriesService.deleteSeries(series?.id).subscribe((res) => {
+        this.router.navigate(['/home/newest/series']);
+        this.notifyService.success('Delete series successfully!', 'Success');
+      }, (err) => {
+        console.log(err);
+        this.notifyService.error('Delete series failed!', 'Error');
+      });
       history.back()
     }).catch((error) => {
       console.log(error);

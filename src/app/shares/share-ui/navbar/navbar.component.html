@@ -85,7 +85,7 @@
                         <div class="d-flex">
                             <div class="form-group">
                                 <input type="text" class="form-control pe-5" placeholder="{{ 'SEARCH' | translate }}..."
-                                    (keydown)="onFilterChange($event)">
+                                    (keyup)="onFilterChange($event)" (keydown)="onFilterChange($event)" (change)="onFilterChange($event)">
                                 <!-- popover search -->
                                 <div class="popover-search" *ngIf="isShowSearch">
                                     <div class="popover-search-body">
@@ -94,13 +94,13 @@
                                                 <p class="m-0 text-uppercase title">{{ 'POSTS' | translate }}</p>
                                             </div>
                                             <div class="popover-search-body-item-content p-2">
-                                                <div class="popover-search-body-item-content-item"
+                                                <div class="popover-search-body-item-content-item mt-3"
                                                     *ngFor="let post of posts">
-                                                    <a routerLink="/post/{{post?.id}}">
+                                                    <a routerLink="/posts/{{post?.id}}" class="popover-search-body-item-content-item-card">
                                                         <div class="popover-search-body-item-content-item-img">
                                                             <img src="{{ post?.author?.avatar }}" width="50">
                                                         </div>
-                                                        <div class="popover-search-body-item-content-item-text">
+                                                        <div class="popover-search-body-item-content-item-text ms-2">
                                                             <p class="m-0">{{ post?.name }}</p>
                                                         </div>
                                                     </a>
@@ -108,15 +108,17 @@
                                             </div>
                                         </div>
                                         <div class="popover-search-body-item">
-                                            <p class="m-0">{{ 'QUESTIONS' | translate }}</p>
-                                            <div class="popover-search-body-item-content">
-                                                <div class="popover-search-body-item-content-item"
+                                            <div class="popover-search-body-item-label p-2">
+                                                <p class="m-0 title">{{ 'QUESTIONS' | translate }}</p>
+                                            </div>
+                                            <div class="popover-search-body-item-content p-2">
+                                                <div class="popover-search-body-item-content-item mt-3"
                                                     *ngFor="let question of questions">
-                                                    <a routerLink="/question/{{question?.id}}">
+                                                    <a routerLink="/questions/{{question?.id}}" class="popover-search-body-item-content-item-card">
                                                         <div class="popover-search-body-item-content-item-img">
-                                                            <img src="{{ question?.thumbnail }}" width="50">
+                                                            <img src="{{ question?.author?.avatar }}" width="50">
                                                         </div>
-                                                        <div class="popover-search-body-item-content-item-text">
+                                                        <div class="popover-search-body-item-content-item-text ms-2">
                                                             <p class="m-0">{{ question?.title }}</p>
                                                         </div>
                                                     </a>
@@ -124,15 +126,17 @@
                                             </div>
                                         </div>
                                         <div class="popover-search-body-item">
-                                            <p class="m-0">{{ 'SERIES' | translate }}</p>
-                                            <div class="popover-search-body-item-content">
-                                                <div class="popover-search-body-item-content-item"
-                                                    *ngFor="let series of series">
-                                                    <a routerLink="/series/{{series?.id}}">
-                                                        <div class="popover-search-body-item-content-item-img">
-                                                            <img src="{{ series?.thumbnail }}" width="50" />
-                                                            <div class="popover-search-body-item-content-item-text">
-                                                                <p class="m-0">{{ series?.title }}</p>
+                                            <div class="popover-search-body-item-label p-2">
+                                                <p class="m-0 title">{{ 'USER' | translate }}</p>
+                                            </div>
+                                            <div class="popover-search-body-item-content p-2">
+                                                <div class="popover-search-body-item-content-item mt-3"
+                                                    *ngFor="let user of users">
+                                                    <a href="/profile/{{user?.username}}">
+                                                        <div class="popover-search-body-item-content-item-card">
+                                                            <img src="{{ user?.avatar }}" width="50" />
+                                                            <div class="popover-search-body-item-content-item-text ms-2">
+                                                                <p class="m-0">{{ user?.fullname }}</p>
                                                             </div>
                                                         </div>
                                                     </a>

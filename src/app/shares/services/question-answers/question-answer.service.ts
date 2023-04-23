@@ -26,8 +26,8 @@ export class QuestionAnswerService {
       );
   }
 
-  public getQuestion(page?: number, perPage?: number, sort?: string, username?: string): Observable<any> {
-    const url = `${apiUrl}/${path.question}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '');
+  public getQuestion(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<any> {
+    const url = `${apiUrl}/${path.question}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '');
     return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
@@ -95,6 +95,28 @@ export class QuestionAnswerService {
   public approvedAnswer (answerId: number, approved: boolean): Observable<any> {
     const url = `${apiUrl}/${path.answer}/${answerId}`;
     return this.apiService.patch(url, {approved})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public deleteQuestion (questionId: number): Observable<any> {
+    const url = `${apiUrl}/${path.question}/${questionId}`;
+    return this.apiService.delete(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public deleteAnswer (answerId: number): Observable<any> {
+    const url = `${apiUrl}/${path.question}/answer/${answerId}`;
+    return this.apiService.delete(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body;
