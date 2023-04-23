@@ -15,7 +15,7 @@ import { HighlightJsModule } from 'ngx-highlight-js';
 import { PopoverModule } from 'ngx-smart-popover';
 import { ToastrModule } from 'ngx-toastr';
 import { authInterceptorProviders } from './shares/Interceptor/auth.interceptor';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -43,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxLinkifyjsModule.forRoot(),
     HighlightJsModule,
     PopoverModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgApexchartsModule
   ],
   providers: [
     authInterceptorProviders

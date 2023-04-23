@@ -51,19 +51,23 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   onFilterChange(event: any): void {
     const value = event.target.value;
-    this.postsService.getPosts(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
-      this.posts = res.items;
-    });
-    this.questionAnswerService.getQuestion(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
-      this.questions = res.items;
-    });
-    this.userService.getAllUsers(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
-      this.users = res.items;
-    });
     if (value || value !== '') {
+      this.postsService.getPosts(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+        this.posts = res.items;
+      });
+      this.questionAnswerService.getQuestion(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+        this.questions = res.items;
+      });
+      this.userService.getAllUsers(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
+        this.users = res.items;
+      });
       this.isShowSearch = true;
     } else {
       this.isShowSearch = false;
     }
+  }
+
+  isAdmin(): boolean {
+    return this.localStorageHelperService.getRole();
   }
 }

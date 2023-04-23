@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.localStorageHelperService.saveToken(res.accessToken.toString());
         this.localStorageHelperService.saveRefreshToken(res.refreshToken.toString());
         this.localStorageHelperService.saveIsVerify(res.isConfirmEmail);
+        this.localStorageHelperService.saveRole(res.isAdmin);
         token.accessToken = res.accessToken;
         token.refreshToken = res.refreshToken;
         token.isConfirmEmail = res.isConfirmEmail;

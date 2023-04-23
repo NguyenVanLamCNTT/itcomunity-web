@@ -5,7 +5,8 @@ export const apiPath = {
       Refresh_Token: 'refresh',
       CART: 'cart',
       USER: 'user',
-      isVerify: 'isVerify'
+      isVerify: 'isVerify',
+      ROLE: 'hide'
     },
     auth: {
       login: 'api/auth/login',

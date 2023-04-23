@@ -26,6 +26,14 @@ export class LocalStorageHelperService {
     this.localStorageService.store(key.isVerify, isVerify);
   }
 
+  public saveRole(role: any): void {
+    this.localStorageService.store(key.ROLE, role);
+  }
+
+  public getRole(): any {
+    return this.localStorageService.retrieve(key.ROLE);
+  }
+
   public getIsVerify(): any {
     return this.localStorageService.retrieve(key.isVerify);
   }

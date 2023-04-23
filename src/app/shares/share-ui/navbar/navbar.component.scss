@@ -170,8 +170,21 @@ ul li {
             }
 
             .popover-search-body-item-content {
-                .popover-search-body-item-content-item-card {
-                    display: flex;
+                .popover-search-body-item-content-item {
+                    border-bottom: 1px solid var(--gray-light);
+                    padding: 5px;
+                    cursor: pointer;
+                    &:hover {
+                        p {
+                            color: var(--main-color);
+                        }
+                    }
+                    .popover-search-body-item-content-item-card {
+                        display: flex;
+                        img {
+                            border-radius: 50%;
+                        }
+                    }
                 }
             }
         }

@@ -22,6 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentDetailComponent } from './comment-detail/comment-detail.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
+import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
+import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     ConfirmModalComponent,
     CommentsComponent,
     CommentDetailComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    NavbarAdminComponent,
+    SidebarAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +54,8 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     MyCkEditorModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CollapseModule
   ],
   exports: [
     NavbarComponent,
@@ -61,7 +67,9 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     PostsItemComponent,
     SidebarAskComponent,
     CommentsComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    NavbarAdminComponent,
+    SidebarAdminComponent
   ],
   providers: [
     HighlightJsDirective,

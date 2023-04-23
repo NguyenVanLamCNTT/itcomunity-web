@@ -38,6 +38,12 @@
                             {{ 'CHANGE_PASSWORD' | translate }}
                         </a>
                     </li>
+                    <li *ngIf="isAdmin()">
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-unlock me-1"></i>
+                            Switch to admin mode 
+                        </a>
+                    </li>
                     <li>
                         <a class="dropdown-item" (click)="logout()">
                             <i class="fa-solid fa-right-from-bracket me-1"></i>
@@ -85,7 +91,7 @@
                         <div class="d-flex">
                             <div class="form-group">
                                 <input type="text" class="form-control pe-5" placeholder="{{ 'SEARCH' | translate }}..."
-                                    (keyup)="onFilterChange($event)" (keydown)="onFilterChange($event)" (change)="onFilterChange($event)">
+                                    (keyup)="onFilterChange($event)">
                                 <!-- popover search -->
                                 <div class="popover-search" *ngIf="isShowSearch">
                                     <div class="popover-search-body">
@@ -96,7 +102,7 @@
                                             <div class="popover-search-body-item-content p-2">
                                                 <div class="popover-search-body-item-content-item mt-3"
                                                     *ngFor="let post of posts">
-                                                    <a routerLink="/posts/{{post?.id}}" class="popover-search-body-item-content-item-card">
+                                                    <a href="/posts/{{post?.id}}" class="popover-search-body-item-content-item-card">
                                                         <div class="popover-search-body-item-content-item-img">
                                                             <img src="{{ post?.author?.avatar }}" width="50">
                                                         </div>
@@ -200,6 +206,12 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fa-solid fa-unlock me-1"></i>
                                     {{ 'CHANGE_PASSWORD' | translate }}
+                                </a>
+                            </li>
+                            <li *ngIf="isAdmin()">
+                                <a class="dropdown-item" routerLink="/admin">
+                                    <i class="fa-sharp fa-regular fa-user-secret me-1"></i>
+                                    Switch to admin mode 
                                 </a>
                             </li>
                             <li>
