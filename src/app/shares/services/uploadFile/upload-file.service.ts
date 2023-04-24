@@ -15,7 +15,7 @@ export class UploadFileService {
 
   constructor(private apiService: ApiService) { }
 
-  public uploadFile(file: FormData): Observable<any>{
+  public uploadFile(file: any): Observable<any>{    
     const url = `${apiUrl}/${path.upload}`;
     return this.apiService.postFormData(url, file)
       .pipe(

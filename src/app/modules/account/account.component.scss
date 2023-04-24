@@ -26,9 +26,13 @@
     
     label {
         position: absolute !important;
-        display: none;
+        // display: none;
     }
     img:hover + label {
+        display: block;
+    }
+
+    &:hover + label {
         display: block;
     }
 }

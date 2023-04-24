@@ -39,14 +39,12 @@ export class ApiService {
 
   public setHeadersFormData(headers?: any): HttpHeaders {
     const token = 'Bearer ' + this.storageService.getToken();
-    console.log(token);
     // const token = '';
     let httpHeaders;
 
     if (token) {
       try {
         httpHeaders = new HttpHeaders(_.assign({
-          "Content-Type": "multipart/form-data",
           Authorization: token
         }, headers));
       } catch (error) {

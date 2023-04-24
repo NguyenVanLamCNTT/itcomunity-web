@@ -1,6 +1,11 @@
-<div id="chart">
+<div id="chart" class="mt-5">
+  <div class="text-center">
+    <h1>
+      Summary of the last 12 months
+    </h1>
+  </div>
     <apx-chart
-      [series]="series"
+      [series]="chartOptions?.series"
       [chart]="chartOptions?.chart"
       [dataLabels]="chartOptions?.dataLabels"
       [plotOptions]="chartOptions?.plotOptions"

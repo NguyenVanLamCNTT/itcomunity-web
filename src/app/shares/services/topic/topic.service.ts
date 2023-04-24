@@ -27,6 +27,7 @@ export class TopicService {
   }
 
   public createTopic(topic: any): Observable<any> {
+    console.log(topic);
     const url = `${apiUrl}/${path.topic}`;
     return this.apiService.post(url, topic)
       .pipe(

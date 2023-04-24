@@ -41,18 +41,18 @@ export class UsersManagerComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-  deletePosts(posts: any): void {
+  deletePosts(user: any): void {
     const modalRef = this.modalService.open(ConfirmModalComponent, { centered: true, size: 'md' });
     modalRef.componentInstance.action = 'delete';
-    modalRef.componentInstance.title = 'Delete This Series';
-    modalRef.componentInstance.content = 'Are you sure you want to delete this series?';
+    modalRef.componentInstance.title = 'Delete This User';
+    modalRef.componentInstance.content = 'Are you sure you want to delete this User?';
     modalRef.result.then((result) => {
-      // this.seriesService.deleteSeries(posts.id).subscribe(res => {
-      //   this.notifyService.success('Delete series successfully!', 'Success');
-      //   this.listenService();
-      // }, err => {
-      //   this.notifyService.error('Delete series failed!', 'Error');
-      // })
+      this.userService.deleteUser(user.id).subscribe(res => {
+        this.notifyService.success('Delete user successfully!', 'Success');
+        this.listenService();
+      }, err => {
+        this.notifyService.error('Delete user failed!', 'Error');
+      })
     }).catch((error) => {
       console.log(error);
     });

@@ -80,6 +80,7 @@ export class TopicsManagerComponent {
   urlThumbnail: any = [];
   filesThumbnail: any;
   detectFileThumbnail(event: any): void {
+    console.log(event.target.result)
     this.urlThumbnail.splice(event);
     this.filesThumbnail = event.target.files || event.dataTransfer.files;
     if (this.filesThumbnail.length < 7) {
@@ -98,7 +99,7 @@ export class TopicsManagerComponent {
     this.filesThumbnail = [];
   }
 
-  createTopic(): void {    
+  createTopic(): void {
     if (this.filesThumbnail && this.filesThumbnail.length > 0) {
       console.log(this.filesThumbnail[0]);
       const formData = new FormData();
@@ -106,13 +107,26 @@ export class TopicsManagerComponent {
       console.log(formData.getAll('upload'));
       this.uploadFileService.uploadFile(formData).subscribe(res => {
         console.log(res);
-        this.imageTopic = res.fileName;
-        this.topicsForm.image = this.imageTopic;
-      }, err => {});
+        if (res.fileName) {
+          this.topicsForm.value.image = res.fileName;
+          console.log(this.topicsForm.getRawValue());
+          const data = {
+            name: this.topicsForm.value.name,
+            image: res.fileName
+          }
+          console.log(data);
+          this.topicService.createTopic(data).subscribe(res => {
+            this.notifyService.success('Create topic successfully!', 'Success');
+            this.listenService();
+          }, err => { });
+        }
+      }, err => { });
+      return;
     }
-    // this.topicService.createTopic(this.topicsForm.getRawValue()).subscribe(res => {
-    //   this.notifyService.success('Create topic successfully!', 'Success');
-    //   this.listenService();
-    // }, err => {});
+
+    this.topicService.createTopic(this.topicsForm.getRawValue()).subscribe(res => {
+      this.notifyService.success('Create topic successfully!', 'Success');
+      this.listenService();
+    }, err => { });
   }
 }

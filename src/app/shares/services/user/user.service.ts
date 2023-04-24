@@ -74,4 +74,15 @@ export class UserService {
         })
       );
   }
+
+  deleteUser(userId: any): Observable<any>{
+    const url = `${apiUrl}/${path.allUser}/${userId}`;
+    return this.apiService.delete(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
 }

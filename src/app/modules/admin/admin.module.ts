@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LocalStorageHelperService } from 'src/app/shares/services/token-storage/localstorage-helper.service';
 import { UploadFileService } from 'src/app/shares/services/uploadFile/upload-file.service';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     NgApexchartsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
     LocalStorageHelperService,

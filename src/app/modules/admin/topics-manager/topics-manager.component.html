@@ -1,68 +1,23 @@
-
-<!-- <div>
+<div>
     <h1 class="title">
         Create Topics <span class="text-danger">({{totalSeries}})</span>
     </h1>
     <div>
         <form [formGroup]="topicsForm">
             <div class="form-group" >
-                <label for="">Name</label>
-                <input type="text" class="form-control" placeholder="Name" formControlName="name">
-                <div class="">
-                    <div class="magazine1" appDrag (files)="detectFileThumbnail($event)">
-                        <label
-                            class="inline-block my-3 text-gray-500 text-center flex flex-col w-100"
-                            *ngIf="urlThumbnail?.length === 0">
-                            Image Thumbnail </label>
-                        <div class="flex items-start justify-center w-100 drop1 h-100"
-                            *ngIf="urlThumbnail?.length === 0">
-                            <label draggable="true" class="w-100 border-0" for="files1">
-                                <div class="flex-column text-center w-100 pt-2">
-                                    <mat-icon aria-hidden="false"
-                                        aria-label="Example home icon"
-                                        fontIcon="touch_app"></mat-icon>
-                                    <div class="desc">
-                                        Click Or Drag
-                                        <br />
-                                        Image Here
-                                    </div>
-                                    <p
-                                        class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                    </p>
-                                </div>
-                                <input type="file" id="files1" class="opacity-0"
-                                    (change)="detectFileThumbnail($event)" />
-                            </label>
-                        </div>
-                        <div *ngFor="let url of urlThumbnail; let i = index" cdkDrag
-                            class="d-flex justify-content-center align-items-cente w-100 h-100">
-                            <div *ngIf="i === 0" class="h-100 w-100">
-                                <div class="h-100 w-100">
-                                    <img class="flex flex-col rounded-lg" [src]="url"
-                                        style="height: 100%; width: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center"
-                        *ngIf="urlThumbnail?.length != 0">
-                        <button mat-mini-fab color="warn" (click)="removeUrlThumbnail()"
-                            class="absolute justify-self-center my-fab">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </div>
-                </div>
+                <label for="">Name:</label>
+                <input type="text" class="form-control mt-1" placeholder="Name" formControlName="name">
+            </div>
+            <div class="form-group mt-3">
+                <label for="">Image:</label>
+                <input type="file" class="form-control mt-1" placeholder="Image" (change)="detectFileThumbnail($event)">
             </div>
         </form>
-        <div class="form-group">
-            <label for="">Image</label>
-            <input type="file" placeholder="Image" (change)="detectFileThumbnail($event)">
-        </div>
         <div class="d-flex justify-content-end">
             <button class="btn btn-primary mt-2" (click)="createTopic()">Create Topic</button>
         </div>
     </div>
-</div> -->
+</div>
 <div>
     <h1 class="title">
         List Topics <span class="text-danger">({{totalSeries}})</span>

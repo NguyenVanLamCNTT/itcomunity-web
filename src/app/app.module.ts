@@ -47,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgApexchartsModule
   ],
   providers: [
-    authInterceptorProviders
+    // authInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
