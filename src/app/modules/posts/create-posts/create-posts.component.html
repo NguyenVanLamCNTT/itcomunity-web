@@ -6,7 +6,8 @@
                 <div class="form-group mt-1 col-12">
                     <div class="col-12 d-flex">
                         <input matInput formControlName="title" [placeholder]="'Enter Title Text (not required)'"
-                            class="input-custom me-3">
+                            class="input-custom me-3 is-invalid" [class.is-invalid]="isControlInvalid(postsForm, 'title')"
+                            [class.is-valid]="isControlValid(postsForm, 'title')">
                         <div class="dropdown">
                             <button class="custom-button-thumbnail d-flex align-items-center" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,12 +71,14 @@
                             </ul>
                         </div>
                     </div>
+                    <mat-error *ngIf="isControlInvalid(postsForm, 'title')">Title is required</mat-error>
                     <div>
                         <select name="" id="" class="select-custom mt-2" formControlName="topics">
                             <option value="{{topic?.id}}" *ngFor="let topic of listTopic?.items">
                                 {{ topic?.name }}
                             </option>
                         </select>
+                        <mat-error *ngIf="isControlInvalid(postsForm, 'topics')">Topic is required</mat-error>
                         <div class="form-group col-12 mt-2 chip-list">
                             <mat-form-field class="width-1 w-100" appearance="fill">
                                 <mat-chip-grid #chipGrid aria-label="Enter tags">
@@ -93,11 +96,13 @@
                                         [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
                                 </mat-chip-grid>
                             </mat-form-field>
+                            <mat-error *ngIf="tags.length > 5"> Content less than 5 tags </mat-error>
                         </div>
                     </div>
                 </div>
                 <div>
                     <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="contentRichText" [placeholder]="placeholder"></app-my-ck-editor>
+                    <mat-error *ngIf="!contentRichText.length"> Content is required </mat-error>
                 </div>
                 <div class="d-flex justify-content-end mt-2">
                     <div>

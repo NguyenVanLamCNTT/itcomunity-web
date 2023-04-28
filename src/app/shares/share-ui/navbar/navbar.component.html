@@ -159,17 +159,17 @@
                     </a>
                 </li>
                 <li class="nav-item active col-3 p-0 login-item d-flex justify-items-center">
-                    <a href="" *ngIf="isLogin" class="me-3">
+                    <a *ngIf="isLogin" class="me-3" title="Currently the function is live in development. Sorry for the inconvenience">
                         <span class="my-auto h-100 d-flex align-items-center">
                             <i class="fa-solid fa-circle-exclamation"></i>
                         </span>
                     </a>
-                    <a href="" *ngIf="isLogin" class="me-3">
+                    <a *ngIf="isLogin" class="me-3" title="Currently the function is live in development. Sorry for the inconvenience">
                         <span class="my-auto h-100 d-flex align-items-center">
                             <i class="fa-solid fa-bell"></i>
                         </span>
                     </a>
-                    <a href="" *ngIf="isLogin" class="me-3">
+                    <a routerLink="/posts/create" *ngIf="isLogin" class="me-3">
                         <span class="my-auto h-100 d-flex align-items-center">
                             <i class="fa-sharp fa-solid fa-pen-line"></i>
                         </span>
@@ -202,12 +202,12 @@
                                     {{ 'PROFILE' | translate }}
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a class="dropdown-item" href="#">
                                     <i class="fa-solid fa-unlock me-1"></i>
                                     {{ 'CHANGE_PASSWORD' | translate }}
                                 </a>
-                            </li>
+                            </li> -->
                             <li *ngIf="isAdmin()">
                                 <a class="dropdown-item" routerLink="/admin">
                                     <i class="fa-sharp fa-regular fa-user-secret me-1"></i>

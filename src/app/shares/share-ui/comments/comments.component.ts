@@ -181,7 +181,7 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   isPermission(comment: any) {
     console.log(comment);
     if (this.authService.checkLogin()) {
-      if (this.localUser.id === comment.author.id) {
+      if (this.localUser.id === comment?.author?.id) {
         return true;
       }
     }
