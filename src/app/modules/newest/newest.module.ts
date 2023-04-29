@@ -16,6 +16,7 @@ import { NewestMyBookmarkComponent } from './newest-my-bookmark/newest-my-bookma
 import { ListPostsBookmarksComponent } from './newest-my-bookmark/component/list-posts-bookmarks/list-posts-bookmarks.component';
 import { ListSeriesBookmarksComponent } from './newest-my-bookmark/component/list-series-bookmarks/list-series-bookmarks.component';
 import { NewestTrendingComponent } from './newest-trending/newest-trending.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NewestTrendingComponent } from './newest-trending/newest-trending.compo
     RouterModule,
     ShareUiModule,
     NgxPaginationModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ]
 })
 export class NewestModule { }

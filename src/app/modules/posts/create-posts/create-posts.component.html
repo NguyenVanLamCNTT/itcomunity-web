@@ -1,7 +1,7 @@
 <div class="posts-outer container-lg px-0 px-lg-5 pt-2">
     <mat-horizontal-stepper [linear]="true" #horizontalStepper>
         <mat-step #horizontalStepperStep1>
-            <ng-template matStepLabel>Posts Info</ng-template>
+            <ng-template matStepLabel>{{ 'POSTS_INFO' | translate }}</ng-template>
             <form [formGroup]="postsForm" class="mt-2">
                 <div class="form-group mt-1 col-12">
                     <div class="col-12 d-flex">
@@ -116,7 +116,7 @@
             </form>
         </mat-step>
         <mat-step #horizontalStepperStep2>
-            <ng-template matStepLabel>Posts preview</ng-template>
+            <ng-template matStepLabel>{{ 'POSTS_PREVIEW' | translate }}</ng-template>
             <app-posts-item [tags]="tags" [content]="content" [title]="this.postsForm.value.title"
                 [user]="user"></app-posts-item>
             <div class="d-flex justify-content-end mt-2">
@@ -129,7 +129,7 @@
             </div>
         </mat-step>
         <mat-step #horizontalStepperStep3>
-            <ng-template matStepLabel>Posts options</ng-template>
+            <ng-template matStepLabel>{{ 'POSTS_OPTIONS' | translate }}</ng-template>
             <form [formGroup]="formOptionPosts" class="d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-8 shadow p-5 mt-4">
                     <h1>Publish your posts</h1>

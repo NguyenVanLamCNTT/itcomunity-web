@@ -6,7 +6,8 @@ export const apiPath = {
       CART: 'cart',
       USER: 'user',
       isVerify: 'isVerify',
-      ROLE: 'hide'
+      ROLE: 'hide',
+      LANGUAGE: 'language',
     },
     auth: {
       login: 'api/auth/login',

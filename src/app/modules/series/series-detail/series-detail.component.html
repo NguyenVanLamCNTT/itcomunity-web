@@ -76,7 +76,7 @@
             <div [innerHTML]="series?.description | safeHtml"></div>
         </div>
         <div class="d-flex align-items-end">
-            <h1 class="text-uppercase title-content m-0 mt-2">Contents</h1>
+            <h1 class="text-uppercase title-content m-0 mt-2">{{ 'CONTENTS' | translate }}</h1>
             <hr class="title-line m-0 ms-2">
         </div>
         <div class="mt-4 mx-2">
@@ -87,7 +87,7 @@
         <!-- Comment -->
         <div class="container mt-5 comment-outer">
             <div class="title">
-                <h1>Comments</h1>
+                <h1>{{ 'COMMENTS' | translate }}</h1>
             </div>
             <div>
                 <app-comments [series]="series"></app-comments>

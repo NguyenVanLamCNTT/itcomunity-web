@@ -1,3 +1,4 @@
+import { LocalStorageHelperService } from 'src/app/shares/services/token-storage/localstorage-helper.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -12,10 +13,19 @@ export class LanguageComponent implements OnInit, OnDestroy{
   languageChangeSubscription: any;
   lenguageSelected = 'en';
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private translateService: TranslateService,
+              private localStorageHelperService: LocalStorageHelperService) {}
 
   ngOnInit() {
-    this.translateService.use('en');
+    const language = this.localStorageHelperService.getLanguage();
+    if (language) {
+      this.translateService.use(language);
+      this.lenguageSelected = language;
+      const element = document.getElementById('language') as HTMLSelectElement;
+      element.value = language;
+    } else {
+      this.translateService.use('en');
+    }
     this.languageChangeSubscription = this.translateService.onLangChange.subscribe(
       (event) => {
       }
@@ -25,6 +35,7 @@ export class LanguageComponent implements OnInit, OnDestroy{
   changeLanguage(language: any) {
     const value = language.target.value;
     this.lenguageSelected = value;
+    this.localStorageHelperService.saveLanguage(value);
     this.translateService.use(value);
   }
 

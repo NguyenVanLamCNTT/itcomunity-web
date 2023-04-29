@@ -65,7 +65,7 @@
     <!-- Related to -->
     <div class="container mt-5 related-outer">
         <div class="title">
-            <h1>More from {{ posts?.author?.fullName }}</h1>
+            <h1>{{ 'MORE_FROM' | translate }} {{ posts?.author?.fullName }}</h1>
         </div>
         <div class="d-flex flex-row justify-content-start align-items-stretch flex-grow-1">
             <div *ngFor="let item of postsRelatedAuthor">
@@ -78,7 +78,7 @@
     <!-- Comment -->
     <div class="container mt-5 comment-outer">
         <div class="title">
-            <h1>Comments</h1>
+            <h1>{{'COMMENTS' | translate}}</h1>
         </div>
         <div>
             <app-comments [posts]="posts"></app-comments>

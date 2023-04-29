@@ -1,6 +1,6 @@
 <div class="language-selector d-flex">
     <img [src]="lenguageSelected === 'vi' ? 'assets/images/icon-vietnam.png' : 'assets/images/icon-english.png'" alt="Logo">
-    <select (change)="changeLanguage($event)" class="select">
+    <select (change)="changeLanguage($event)" class="select" id="language">
       <option value="en">EN</option>
       <option value="vi">VI</option>
     </select>

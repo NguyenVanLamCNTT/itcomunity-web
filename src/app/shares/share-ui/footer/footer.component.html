@@ -32,12 +32,12 @@
               <img src="assets/images/logo-full-250x250.png" width="250">
             </div>
             <p class="mt-2 text-center text-light">
-              Một trong những cộng đồng lớn nhất về công nghệ, chia sẻ kiến thức, kinh nghiệm, hướng dẫn, tư vấn, giải đáp các vấn đề liên quan đến công nghệ.
+              {{ 'FOOTER_CONTENT' | translate }}
             </p>
           </div>
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <h6 class="text-uppercase fw-bold mb-4 text-light">
-              LIÊN HỆ
+              {{ 'FOOTER_CONTACT' | translate }}
             </h6>
             <p class="text-light"><i class="fa fa-home me-3"></i> 134 Võ Thị Sáu - Phường Võ Thị Sáu - Quận 3 - TP HCM</p>
             <p class="text-light">
@@ -52,36 +52,36 @@
               Tài nguyên
             </h6>
             <p>
-              <a class=" text-decoration-none text-light" routerLink="#">Bài viết</a>
+              <a class=" text-decoration-none text-light" routerLink="/home/newest/posts">{{ 'POSTS' | translate }}</a>
             </p>
             <p>
-              <a class=" text-decoration-none text-light" routerLink="#">Câu hỏi</a>
+              <a class=" text-decoration-none text-light" routerLink="/home/newest/questions">{{ 'QUESTIONS' | translate }}</a>
             </p>
             <p>
               <a class=" text-decoration-none text-light" routerLink="#">Videos</a>
             </p>
             <p>
-              <a class=" text-decoration-none text-light" routerLink="#">Thảo luận</a>
+              <a class=" text-decoration-none text-light" routerLink="/home/newest/series">Series</a>
             </p>
             <p>
-              <a class=" text-decoration-none text-light" routerLink="#">Tổ chức</a>
+              <a class=" text-decoration-none text-light" routerLink="#">{{ 'ORGANIZATION' | translate }}</a>
             </p>
             <p>
-              <a class=" text-decoration-none text-light" routerLink="#">Trạng thái hệ thống</a>
+              <a class=" text-decoration-none text-light" routerLink="#">{{ 'SYSTEM_STATUS' | translate }}</a>
             </p>
           </div>
           <div class="col-md-5 col-lg-2 col-xl-3 mx-auto mb-4">
             <h6 class="text-uppercase fw-bold mb-4 text-light">
-              NHẬN THÔNG BÁO
+              {{ 'FOOTER_NOTIFYCATION' | translate }}
             </h6>
             <p class="text-light">
-              Đăng Ký Nhận Bài Viết Mới Nhất Thông Qua Email
+              {{ 'REGISTER_EMAIL' | translate }}
             </p>
             <div>
               <input class="form-control col-4 col-lg-12" placeholder="Email address !">
             </div>
             <div class="mt-3">
-              <button class="btn btn-danger">ĐĂNG KÝ</button>
+              <button class="btn btn-danger">{{ 'REGISTER' | translate }}</button>
             </div>
           </div>
         </div>

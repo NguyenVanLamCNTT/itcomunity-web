@@ -62,4 +62,12 @@ export class LocalStorageHelperService {
     this.localStorageService.clear(key.USER);
     this.localStorageService.clear(key.CART);
   }
+
+  public saveLanguage(language: string): void {
+    this.localStorageService.store(key.LANGUAGE, language);
+  }
+
+  public getLanguage(): any {
+    return this.localStorageService.retrieve(key.LANGUAGE);
+  }
 }

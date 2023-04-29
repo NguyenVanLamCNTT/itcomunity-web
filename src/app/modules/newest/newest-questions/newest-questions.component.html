@@ -3,7 +3,7 @@
         <div class="title">
             <p class="text-uppercase">
                 <i class="fa-regular fa-messages-question"></i>
-                Newest Questions
+                {{ 'NEWEST_QUESTIONS' | translate }}
             </p>
             <hr class="ms-1">
         </div>
@@ -11,7 +11,7 @@
     <div class="d-flex justify-content-end" *ngIf="isLogin">
         <button mat-raised-button color="primary" routerLink="/questions/create">
             <i class="fa-solid fa-circle-plus"></i>
-            Ask Question
+            {{ 'CREATE_QUESTION' | translate }}
         </button>
     </div>
     <div *ngFor="let question of listQuestions?.items">
