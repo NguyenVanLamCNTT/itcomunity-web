@@ -14,7 +14,16 @@
             {{ 'CREATE_QUESTION' | translate }}
         </button>
     </div>
-    <div *ngFor="let question of listQuestions?.items">
+    <div *ngFor="let question of listQuestions?.items | paginate: {
+        itemsPerPage: itemsSize,
+        currentPage: page,
+        totalItems: listQuestions?.totalItems
+      }">
         <app-question-card [question]="question"></app-question-card>
+    </div>
+    <div class="mt-3 d-flex justify-content-end">
+        <pagination-controls *ngIf="listQuestions?.items.length" previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
     </div>
 </div>

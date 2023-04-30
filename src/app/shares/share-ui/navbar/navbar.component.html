@@ -17,7 +17,7 @@
                         <div class="popover-profile-header-text ms-2">
                             <p class="name m-0">{{ user?.fullName }}</p>
                             <p class="m-0">@{{ user?.username }}</p>
-                            <button class="mt-2 btn-main">Edit</button>
+                            <button class="mt-2 btn-main" routerLink="/account">Edit</button>
                         </div>
                     </div>
                     <li>
@@ -75,12 +75,12 @@
                     </a>
                 </li>
                 <li class="nav-item active col-4 col-lg-3 p-0">
-                    <a class="nav-link text-black fw-bold" href="#">
+                    <a class="nav-link text-black fw-bold" routerLink="/home/newest/questions">
                         {{ 'Q&A' | translate }}
                     </a>
                 </li>
                 <li class="nav-item active col-4 col-lg-3 p-0">
-                    <a class="nav-link text-black" routerLink="/home/newest/questions">
+                    <a class="nav-link text-black" routerLink="/home/newest/series">
                         {{ 'SERIES' | translate }}
                     </a>
                 </li>
@@ -187,7 +187,9 @@
                                 <div class="popover-profile-header-text ms-2">
                                     <p class="name m-0">{{ user?.fullName }}</p>
                                     <p class="m-0">@{{ user?.username }}</p>
-                                    <button class="mt-2 btn-main">Edit</button>
+                                    <button class="mt-2 btn-main">
+                                        <a routerLink="/account">Edit</a>
+                                    </button>
                                 </div>
                             </div>
                             <li>

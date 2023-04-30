@@ -70,10 +70,25 @@
     }
 }
 
+.left-card {
+    width: 25%;
+}
+
+.right-card {
+    width: 65%;
+}
+
 @media screen and (max-width: 500px) {
     .card-custom {
         .card-group {
             display: block;
         } 
+    }
+    .left-card {
+        width: 100%;
+    }
+    
+    .right-card {
+        width: 100%;
     }
 }

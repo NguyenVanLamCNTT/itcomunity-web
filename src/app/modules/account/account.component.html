@@ -6,8 +6,8 @@
             </h1>
         </div>
         <div class="avatar d-flex justify-content-center align-items-center" (files)="detectFileThumbnail($event)">
-            <img src="{{urlProfile}}" alt="{{urlProfile}}" width="200" height="200px" class="rounded">
-            <label for="upload">
+            <img src="{{urlProfile}}" alt="{{urlProfile}}" width="200" height="200px" class="rounded" (click)="detectFileThumbnail($event)">
+            <label for="upload" style="z-index: 10000;">
                 <i class="fa-sharp fa-regular fa-image"></i>
             </label>
             <input type="file" id="upload" class="uploadImgae d-none" (change)="detectFileThumbnail($event)">

@@ -138,6 +138,9 @@ ul li {
     &:hover {
         background-color: var(--blue-itc);
     }
+    a {
+        color: var(--white) !important;
+    }
 }
 
 .popover-search {
