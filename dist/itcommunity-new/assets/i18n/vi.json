@@ -56,5 +56,6 @@
     "ORGANIZATION": "Tổ chức",
     "SYSTEM_STATUS": "Trạng thái hệ thống",
     "REGISTER_EMAIL": "Đăng Ký Nhận Bài Viết Mới Nhất Thông Qua Email",
-    "REGISTER": "Đăng ký"
+    "REGISTER": "Đăng ký",
+    "NEWEST_FOLLOWING_DESCRIPTION": "Các bài đăng ở đây đã được hiển thị dựa trên Chủ đề và bài đăng của những người bạn theo dõi. Nếu bạn muốn theo dõi các chủ đề hoặc tác giả mới, xin vui lòng bấm"
 }
