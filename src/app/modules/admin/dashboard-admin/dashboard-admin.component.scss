@@ -1,0 +1,40 @@
+.group-card {
+    display: flex;
+    .card-dashboard {
+        background-color: var(--white);
+        width: 20%;
+        text-align: center;
+        padding: 25px 0;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+        .number {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--main-color);
+            span {
+                font-size: 1.2rem;
+                font-weight: 400;
+                color: #0DCB81;
+            }
+        }
+        .title {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-text);
+        }
+    }
+}
+.chart-bg {
+    background-color: var(--white);
+    border-radius: 5px;
+    .title-chart {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--main-color);
+        padding: 10px 0;
+    }
+}

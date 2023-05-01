@@ -12,6 +12,7 @@ import { LoadingServiceService } from 'src/app/shares/services/loading/loading-s
 export class ProfilePostsComponent implements OnInit{
   username: string | undefined;
   listPosts: any;
+  isPublic: boolean = true;
   // Pagination
   page: number = 1;
   count: number = 0;
@@ -39,9 +40,9 @@ export class ProfilePostsComponent implements OnInit{
     return false;
   }
 
-  listenService(page = 1, itemsSize = 10, sort = 'desc'): void {
+  listenService(page = 1, itemsSize = 10, sort = 'desc', status = 'PUBLISH'): void {
     this.loadingServiceService.showLoading();
-    this.postsService.getPosts(page, itemsSize, sort, this.username).subscribe((posts: any) => {
+    this.postsService.getPosts(page, itemsSize, sort, this.username, undefined, status).subscribe((posts: any) => {
       this.listPosts = posts;
       this.loadingServiceService.hideLoading();
     });
@@ -49,6 +50,20 @@ export class ProfilePostsComponent implements OnInit{
 
   onTableDataChange(event: any) {
     this.page = event;
-    this.listenService(this.page, this.itemsSize);
+    if (this.isPublic) {
+      this.listenService(this.page, this.itemsSize);
+    } else {
+      this.listenService(this.page, this.itemsSize, 'desc', 'DRAFT');
+    }
+  }
+
+  changeStatus(event: any) {
+    const status = event.target.value;
+    if (status === 'PUBLISH') {
+      this.isPublic = true;
+    } else {
+      this.isPublic = false;
+    }
+    this.listenService(this.page, this.itemsSize, 'desc', status);
   }
 }

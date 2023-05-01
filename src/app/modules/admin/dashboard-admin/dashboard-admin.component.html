@@ -1,18 +1,32 @@
 <div id="chart" class="mt-5">
-  <div class="text-center">
-    <h1>
+  <div class="group-card">
+    <div class="card-dashboard me-1" routerLink="/admin/users-manager">
+      <p class="number">{{ totalUsers }} <span>(+{{totalUsersInDay}} today)</span></p>
+      <p class="title">Number of users</p>
+    </div>
+    <div class="card-dashboard mx-1" routerLink="/admin/posts-manager">
+      <p class="number">{{ totalPosts }} <span>(+{{totalPostsInDay}} today)</span></p>
+      <p class="title">Number of posts</p>
+    </div>
+    <div class="card-dashboard mx-1" routerLink="/admin/series-manager">
+      <p class="number">{{ totalSeries }} <span>(+{{totalSeriesInDay}} today)</span></p>
+      <p class="title">Number of series</p>
+    </div>
+    <div class="card-dashboard mx-1" routerLink="/admin/questions-manager">
+      <p class="number">{{ totalQuestions }} <span>(+{{totalQuestionsInDay}} today)</span></p>
+      <p class="title">Number of questions</p>
+    </div>
+    <div class="card-dashboard ms-1" routerLink="/admin/topic-manager">
+      <p class="number">{{ totalTopics }} <span>(+{{totalTopicsInDay}} today)</span></p>
+      <p class="title">Number of topics</p>
+    </div>
+  </div>
+  <div class="chart-bg text-center mt-3">
+    <h1 class="title-chart">
       Summary of the last 12 months
     </h1>
+    <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart" [dataLabels]="chartOptions?.dataLabels"
+      [plotOptions]="chartOptions?.plotOptions" [yaxis]="chartOptions?.yaxis" [xaxis]="chartOptions?.xaxis"
+      [fill]="chartOptions?.fill" [title]="chartOptions?.title"></apx-chart>
   </div>
-    <apx-chart
-      [series]="chartOptions?.series"
-      [chart]="chartOptions?.chart"
-      [dataLabels]="chartOptions?.dataLabels"
-      [plotOptions]="chartOptions?.plotOptions"
-      [yaxis]="chartOptions?.yaxis"
-      [xaxis]="chartOptions?.xaxis"
-      [fill]="chartOptions?.fill"
-      [title]="chartOptions?.title"
-    ></apx-chart>
-  </div>
-  
+</div>

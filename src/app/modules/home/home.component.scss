@@ -42,6 +42,12 @@
     }
 }
 
+@media screen and (max-width: 400px) {
+    .slider-text {
+        display: none;
+    }
+}
+
 .wrapper {
     position: relative;
 }

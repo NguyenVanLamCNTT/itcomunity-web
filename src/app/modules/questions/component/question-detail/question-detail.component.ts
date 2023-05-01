@@ -1,7 +1,7 @@
 import { QuestionAnswerService } from 'src/app/shares/services/question-answers/question-answer.service';
 import { LocalStorageHelperService } from './../../../../shares/services/token-storage/localstorage-helper.service';
 import { LoadingServiceService } from './../../../../shares/services/loading/loading-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from 'src/app/shares/share-ui/modal/confirm-modal/confirm-modal.component';
@@ -10,7 +10,8 @@ import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 @Component({
   selector: 'app-question-detail',
   templateUrl: './question-detail.component.html',
-  styleUrls: ['./question-detail.component.scss']
+  styleUrls: ['./question-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuestionDetailComponent implements OnInit{
   questionId: any;

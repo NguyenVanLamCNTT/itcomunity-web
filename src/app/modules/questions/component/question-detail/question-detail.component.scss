@@ -64,12 +64,17 @@
     display: flex;
 }
 
+.group-content img {
+    width: 100% !important;
+}
+
+
 @media screen and (max-width: 768px) {
     .left-side-bar {
         display: none;
     }
 
-    .right-content-series {
+    .right-content-question {
         width: 100%;
     }
 

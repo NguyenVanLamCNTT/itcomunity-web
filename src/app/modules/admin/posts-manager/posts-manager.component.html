@@ -45,6 +45,9 @@
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element" class="text-center">
             <i class="fa-solid fa-trash text-danger" (click)="deletePosts(element)"></i>
+            <a routerLink="/posts/{{element.id}}" title="Go to posts">
+              <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+            </a>
         </td>
       </ng-container>
   

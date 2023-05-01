@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { TopicService } from './../../../shares/services/topic/topic.service';
 import { UserService } from './../../../shares/services/user/user.service';
 import { SeriesService } from './../../../shares/services/series/series.service';
@@ -41,6 +42,16 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
   dataByMonthQuestion: any[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   dataByMonthUser: any[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   dataByMonthTopic: any[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  totalPosts = 0;
+  totalSeries = 0;
+  totalQuestions = 0;
+  totalUsers = 0;
+  totalTopics = 0;
+  totalUsersInDay = 0;
+  totalPostsInDay = 0;
+  totalSeriesInDay = 0;
+  totalQuestionsInDay = 0;
+  totalTopicsInDay = 0;
 
   series: any[] = [];
 
@@ -161,7 +172,7 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
         }
       },
       title: {
-        text: "Get Posts, Series, Questions by month",
+        text: "Get Posts, Series, Questions, Topics by month",
         offsetY: 305,
         align: "center",
         style: {
@@ -174,20 +185,25 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    setTimeout(() => {
-      this.listenService();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.listenService();
+    // }, 1000);
   }
   
   listenService() {
     this.postsService.getPosts(1, 100).subscribe((res: any) => {
       const posts = res.items;
+      this.totalPosts = res.totalItems;
       const total = res.totalItems;
+      this.totalPostsInDay = posts.filter((post: any) => {
+        const date = new Date(post.created);
+        const today = new Date();
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      }).length;
       posts.map((post: any) => {
         this.getPostsByCreateByMonth(post)
       });
       this.dataByMonth = this.dataByMonth.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
-      console.log('dataByMonth', this.chartOptions);
       this.chartOptions.series[0].data = this.dataByMonth;
       // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
@@ -195,12 +211,17 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
     });
 
     this.seriesService.getSeries(1, 100).subscribe((res: any) => {
-      console.log('res', res);
       const series = res.items;
       const total = res.totalItems;
+      this.totalSeries = res.totalItems;
       series.map((serie: any) => {
         this.getSeriesByCreateByMonth(serie)
       });
+      this.totalSeriesInDay = series.posts.filter((series1: any) => {
+        const date = new Date(series1.ost.created);
+        const today = new Date();
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      }).length;
 
       this.dataByMonthSeries = this.dataByMonthSeries.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[1].data = this.dataByMonthSeries;
@@ -212,9 +233,15 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
     this.questionAnswerService.getQuestion(1, 100).subscribe((res: any) => {
       const questionAnswers = res.items;
       const total = res.totalItems;
+      this.totalQuestions = res.totalItems;
       questionAnswers.map((questionAnswer: any) => {
         this.getQuestionAnswerByCreateByMonth(questionAnswer)
       });
+      this.totalQuestionsInDay = questionAnswers.posts.filter((series1: any) => {
+        const date = new Date(series1.ost.created);
+        const today = new Date();
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      }).length;
 
       this.dataByMonthQuestion = this.dataByMonthQuestion.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[2].data = this.dataByMonthQuestion;
@@ -226,10 +253,15 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
     this.userService.getAllUsers(1, 100).subscribe((res: any) => {
       const users = res.items;
       const total = res.totalItems;
+      this.totalUsers = res.totalItems;
       users.map((user: any) => {
         this.getUserByCreateByMonth(user)
       });
-
+      this.totalUsersInDay = users.filter((user: any) => {
+        const date = new Date(user.created);
+        const today = new Date();
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      }).length;
       this.dataByMonthUser = this.dataByMonthUser.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       // this.chartOptions.series[3].data = this.dataByMonthUser;
       // this.chart
@@ -238,25 +270,23 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
     });
 
     this.topicService.getTopic(1, 100).subscribe((res: any) => {
-      console.log('res', res);
       const topics = res.items;
       const total = res.totalItems;
+      this.totalTopics = res.totalItems;
       topics.map((topic: any) => {
         this.getTopicByCreateByMonth(topic)
       });
 
+      this.totalTopicsInDay = topics.filter((topic: any) => {
+        const date = new Date(topic.created);
+        const today = new Date();
+        return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+      }).length;
       this.dataByMonthTopic = this.dataByMonthTopic.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[3].data = this.dataByMonthTopic;
-      console.log('this.dataByMonthTopic', this.dataByMonthTopic);
-      // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
       chart.render();
     });
-
-    // console.log('this.dataByMonth', this.dataByMonth);
-    // console.log('this.dataByMonthSeries', this.dataByMonthSeries);
-    // console.log('this.dataByMonthQuestion', this.dataByMonthQuestion);
-    // console.log('this.dataByMonthUser', this.dataByMonthUser);
   }
 
   // get posts by create by month
