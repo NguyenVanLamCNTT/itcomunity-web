@@ -1,0 +1,86 @@
+<div class="container-fluid container-lg"> 
+    <div class="mt-5">
+        <form [formGroup]="searchForm" class="w-100 d-flex justify-content-between align-items-center">
+            <input type="text" class="form-control me-3" placeholder="{{ 'SEARCH' | translate }}..." formControlName="search" (keydown)="onFilterChange($event)">
+            <button class="btn btn-primary btn-search" (click)="submitSearch()">{{ 'SEARCH' | translate }}</button>
+        </form>
+    </div>
+    <div class="menu d-flex align-items-center mt-3">
+        <div class="menu-item me-3" (click)="setActiveMenu('posts')">
+            <p id="posts">{{ 'POSTS' | translate }}</p>
+        </div>
+        <div class="menu-item me-3" (click)="setActiveMenu('questions')">
+            <p id="questions">{{ 'QUESTIONS' | translate }}</p>
+        </div>
+        <div class="menu-item me-3" (click)="setActiveMenu('author')">
+            <p id="author">{{ 'AUTHOR' | translate }}</p>
+        </div>
+    </div>
+    
+    <div *ngIf="isPosts">
+        <div *ngIf="listPosts.length === 0" class="mt-5">
+            <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
+        </div>
+        <div *ngFor="let item of listPosts">
+            <app-card-item [item]="item"></app-card-item>
+        </div>
+    </div>
+
+    <div *ngIf="isQuestions">
+        <div *ngIf="listQuestions.length === 0" class="mt-5">
+            <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
+        </div>
+        <div *ngFor="let item of listQuestions">
+            <app-question-card [question]="item"></app-question-card>
+        </div>
+    </div>
+
+    <div *ngIf="isAuthor">
+        <div class="user-list">
+            <div *ngIf="listUsers.length === 0" class="mt-5">
+                <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
+            </div>
+            <div class="user-card mt-4" *ngFor="let user of listUsers">
+                <div class="d-flex">
+                    <div class="user-avatar" routerLink="/profile/{{user?.username}}/posts">
+                        <img src="{{user?.avatar}}" alt="">
+                    </div>
+                    <div class="ms-2">
+                        <p class="user-name m-0" routerLink="/profile/{{user?.username}}/posts">
+                            {{user?.fullname}}
+                        </p>
+                        <p class="user-username m-0" routerLink="/profile/{{user?.username}}/posts">
+                            @{{user?.username}}
+                        </p>
+                        <button class="btn-follow mt-1" *ngIf="!user?.isFollowing">
+                            <i class="fa-solid fa-plus"></i>
+                            Follow
+                        </button>
+                        <button class="btn-following" *ngIf="user?.isFollowing">
+                            <i class="fa-solid fa-check"></i>
+                            Following
+                        </button>
+                    </div>
+                </div>
+                <div class="list-icon">
+                    <div class="icon-item">
+                        <i class="fa-regular fa-file-pen"></i>
+                        <span class="ms-1">{{user?.postsNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-regular fa-users"></i>
+                        <span class="ms-1">{{user?.followersNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-messages-question"></i>
+                        <span class="ms-1">{{user?.questionsNumber}}</span>
+                    </div>
+                    <div class="icon-item">
+                        <i class="fa-solid fa-list"></i>
+                        <span class="ms-1">{{user?.seriesNumber}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

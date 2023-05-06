@@ -1,0 +1,156 @@
+.menu {
+    border-bottom: 1px solid var(--gray-light);
+
+    .menu-item {
+        padding: 10px 0;
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-text);
+            margin-bottom: 0;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+    }
+}
+
+.active {
+    color: var(--main-color) !important;
+}
+
+.title {
+    display: flex;
+
+    p {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--gray-text);
+        margin-right: 10px;
+    }
+
+    hr {
+        flex: 1;
+    }
+}
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .user-card {
+        width: 32%;
+        border: 1px solid #e9e9eb;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+
+        .user-avatar {
+            img {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 10px;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+
+        .user-username {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gray-text);
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+.btn-follow {
+    background-color: var(--main-color);
+    color: var(--white);
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--white);
+        color: var(--main-color);
+    }
+}
+
+.btn-following {
+    background-color: var(--white);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    padding: 2px 7px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--main-color);
+        color: var(--white);
+    }
+}
+
+.list-icon {
+    display: inline-flex;
+    justify-content: start;
+    width: 100%;
+    padding-top: 10px;
+    .icon-item {
+        margin-right: 25px;
+
+        i {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 5px;
+            color: var(--gray-text);
+        }
+    }
+}
+
+.btn-search {
+    width: 150px;
+}
+
+@media screen and (max-width: 768px) {
+    .topic-outer {
+        .card-topic-group {
+            .card-topic {
+                width: 100% !important;
+            }
+        }
+    }
+    .user-outer {
+        .user-list {
+            .user-card {
+                width: 100% !important;
+            }
+        }
+    }
+}

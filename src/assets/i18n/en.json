@@ -57,5 +57,7 @@
   "SYSTEM_STATUS": "System Status",
   "REGISTER_EMAIL": "Register Email Address to receive notifications",
   "REGISTER": "Register",
-  "NEWEST_FOLLOWING_DESCRIPTION": "The posts here have been displayed based on the Topics, and the posts of the people you follow. If you want to follow new topics or authors, please click"
+  "NEWEST_FOLLOWING_DESCRIPTION": "The posts here have been displayed based on the Topics, and the posts of the people you follow. If you want to follow new topics or authors, please click",
+  "NO_RESULT": "No result",
+  "AUTHOR": "Author"
 }

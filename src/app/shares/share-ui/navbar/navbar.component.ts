@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit, OnChanges {
   user: User | undefined;
   isMobile: boolean = false;
   isShowSearch: boolean = false;
+  valueSearch: string = '';
 
   posts: any;
   series: any;
@@ -49,8 +50,13 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.router.navigate(['/home/newest/posts']);
   }
 
+  closeModal(): void {
+    this.isShowSearch = false;
+  }
+
   onFilterChange(event: any): void {
     const value = event.target.value;
+    this.valueSearch = value;
     if (value || value !== '') {
       this.postsService.getPosts(1, 3, undefined, undefined, event.target.value).subscribe((res: any) => {
         this.posts = res.items;
