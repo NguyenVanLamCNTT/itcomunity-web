@@ -7,6 +7,7 @@ import { LocalStorageHelperService } from 'src/app/shares/services/token-storage
 import { LoadingServiceService } from 'src/app/shares/services/loading/loading-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from 'src/app/shares/share-ui/modal/confirm-modal/confirm-modal.component';
+import { ReportModalComponent } from 'src/app/shares/share-ui/modal/report-modal/report-modal.component';
 
 @Component({
   selector: 'app-series-detail',
@@ -95,6 +96,16 @@ export class SeriesDetailComponent implements OnInit {
         this.notifyService.error('Delete series failed!', 'Error');
       });
       history.back()
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  report() {
+    const modalRef = this.modalService.open(ReportModalComponent, { centered: true, size: 'md' });
+    modalRef.result.then((result) => {
+      this.notifyService.success('Thank you for your report, we will process it as soon as possible.', 'Success');
+      
     }).catch((error) => {
       console.log(error);
     });

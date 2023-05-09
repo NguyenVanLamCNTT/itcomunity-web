@@ -8,6 +8,7 @@ import { CommentDetailComponent } from '../comment-detail/comment-detail.compone
 import { User } from '../../models/user/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { ConfirmModalComponent } from '../modal/confirm-modal/confirm-modal.component';
+import { ReportModalComponent } from '../modal/report-modal/report-modal.component';
 const hljs = require('highlight.js');
 
 @Component({
@@ -263,6 +264,16 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
           this.notifyService.error('Deleted failed!', 'Error');
         });
       }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  report() {
+    const modalRef = this.modalService.open(ReportModalComponent, { centered: true, size: 'md' });
+    modalRef.result.then((result) => {
+      this.notifyService.success('Thank you for your report, we will process it as soon as possible.', 'Success');
+      
     }).catch((error) => {
       console.log(error);
     });

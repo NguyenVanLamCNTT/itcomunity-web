@@ -1,1 +1,46 @@
-<p>report-modal works!</p>
+<div class="p-4">
+    <div class="header d-flex justify-content-end">
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body text-center pt-0">
+        <img src="../../../../../assets/images/icon-warning.png" alt="" width="80px">
+        <h4 class="title mt-2">Report</h4>
+        <div class="text-start">
+            <span class="content">
+                <span class="text-danger me-1">*</span>Reason for reporting this content
+            </span>
+            <ul class="list-unstyled">
+                <li class="my-1">
+                    <input type="checkbox">
+                    Spam
+                </li>
+                <li class="my-1">
+                    <input type="checkbox">
+                    Rules Violation
+                </li>
+                <li class="my-1">
+                    <input type="checkbox">
+                    Harassment
+                </li>
+                <li class="my-1">
+                    <input type="checkbox">
+                    Infringes copyright
+                </li>
+                <li class="my-1">
+                    <input type="checkbox">
+                    Poor Translation
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button class="btn-cancel flex-grow-1 me-1" (click)="closeModal()">
+            <i class="fa-regular fa-xmark me-2"></i>
+            Cancel
+        </button>
+        <button class="btn-ok flex-grow-1 ms-1" (click)="confirm()">
+            <i class="fa-solid fa-check me-2"></i>
+            Confirm
+        </button>
+    </div>
+</div>

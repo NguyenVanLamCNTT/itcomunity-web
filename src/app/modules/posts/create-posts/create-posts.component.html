@@ -75,6 +75,7 @@
                     <div>
                         <select name="" id="" class="select-custom mt-2" formControlName="topics">
                             <option value="{{topic?.id}}" *ngFor="let topic of listTopic?.items">
+                                <input type="checkbox">
                                 {{ topic?.name }}
                             </option>
                         </select>

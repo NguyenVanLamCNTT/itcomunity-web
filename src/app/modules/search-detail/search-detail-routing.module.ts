@@ -4,6 +4,10 @@ import { SearchDetailComponent } from './search-detail.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: SearchDetailComponent,
+  },
+  {
     path: ':search',
     component: SearchDetailComponent,
   }

@@ -2,7 +2,7 @@ import { LoadingServiceService } from './../../shares/services/loading/loading-s
 import { UserService } from './../../shares/services/user/user.service';
 import { QuestionAnswerService } from './../../shares/services/question-answers/question-answer.service';
 import { PostsService } from './../../shares/services/posts/posts.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup } from '@angular/forms';
 
@@ -24,7 +24,8 @@ export class SearchDetailComponent implements OnInit {
               private postsService: PostsService,
               private questionAnswerService: QuestionAnswerService,
               private userService: UserService,
-              private loadingServiceService: LoadingServiceService) { }
+              private loadingServiceService: LoadingServiceService,
+              private router: Router) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       this.searchValue = params.search;
@@ -82,10 +83,17 @@ export class SearchDetailComponent implements OnInit {
 
   onFilterChange(event: any): void {
     this.searchValue = event.target.value;
+    if (this.searchValue === '') {
+      this.listPosts = [];
+      this.listQuestions = [];
+      this.listUsers = [];
+      return;
+    }
   }
 
   submitSearch(): void {
     this.listenSearch();
+    this.router.navigate([`/search/${this.searchValue}`]);
   }
 
   listenSearch(): void {

@@ -5,6 +5,7 @@ import { ConfirmModalComponent } from './../modal/confirm-modal/confirm-modal.co
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightJsDirective } from 'ngx-highlight-js';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { ReportModalComponent } from '../modal/report-modal/report-modal.component';
 const hljs = require('highlight.js');
 @Component({
   selector: 'app-posts-item',
@@ -89,6 +90,19 @@ export class PostsItemComponent implements AfterViewInit, OnChanges{
       this.notifyService.success('Un bookmark Success!', 'Success');
     }, (error) => {
       this.notifyService.error('Un bookmark Failed!', 'Error');
+    });
+  }
+
+  report() {
+    const modalRef = this.modalService.open(ReportModalComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.action = 'delete';
+    modalRef.componentInstance.title = 'Delete This Posts';
+    modalRef.componentInstance.content = 'Are you sure you want to delete this posts?';
+    modalRef.result.then((result) => {
+      this.notifyService.success('Thank you for your report, we will process it as soon as possible.', 'Success');
+      
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }

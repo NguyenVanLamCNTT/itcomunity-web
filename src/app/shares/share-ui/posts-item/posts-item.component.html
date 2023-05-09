@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li *ngIf="!isPermission()">
-                    <a class="dropdown-item p-3 py-2">
+                    <a class="dropdown-item p-3 py-2" (click)="report()">
                         <i class="fa-regular fa-flag me-2"></i>
                         <span>Report</span>
                     </a>
