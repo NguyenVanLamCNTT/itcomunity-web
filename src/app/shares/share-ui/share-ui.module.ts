@@ -25,6 +25,7 @@ import { QuestionCardComponent } from './question-card/question-card.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ReportModalComponent } from './modal/report-modal/report-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     QuestionCardComponent,
     NavbarAdminComponent,
     SidebarAdminComponent,
+    ReportModalComponent,
   ],
   imports: [
     CommonModule,
