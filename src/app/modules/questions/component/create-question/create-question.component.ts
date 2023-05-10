@@ -136,4 +136,24 @@ export class CreateQuestionComponent implements OnInit{
     this.tags = [];
     this.contentRichText = "";
   }
+
+  isControlValid(formGroup: FormGroup, controlName: string): boolean {
+    const control = formGroup.controls[controlName];
+    return control.valid && (control.dirty || control.touched);
+  }
+
+  isControlInvalid(formGroup: FormGroup, controlName: string): boolean {
+    const control = formGroup.controls[controlName];
+    return control.invalid && (control.dirty || control.touched);
+  }
+
+  controlHasError(formGroup: FormGroup, validation: any, controlName: any): boolean {
+    const control = formGroup.controls[controlName];
+    return control.hasError(validation) && (control.dirty || control.touched);
+  }
+
+  isControlTouched(formGroup: FormGroup, controlName: any): boolean {
+    const control = formGroup.controls[controlName];
+    return control.dirty || control.touched;
+  }
 }

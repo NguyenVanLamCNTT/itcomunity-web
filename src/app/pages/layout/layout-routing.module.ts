@@ -40,6 +40,10 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: () => import('../../modules/search-detail/search-detail.module').then(m => m.SearchDetailModule),
+      },
+      {
+        path: 'change-password',
+        loadChildren: () => import('../../modules/change-password/change-password.module').then(m => m.ChangePasswordModule),
       }
     ]
   },

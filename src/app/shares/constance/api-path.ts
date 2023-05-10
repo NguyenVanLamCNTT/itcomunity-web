@@ -12,7 +12,7 @@ export const apiPath = {
     auth: {
       login: 'api/auth/login',
       refreshToken: 'api/auth/refresh-token',
-      changePassword: 'api/auth/changePassword',
+      changePassword: 'api/auth/change-password',
       register: 'api/auth/register',
       sendOTP: 'api/auth/send-otp',
       verifyOTP: 'api/auth/validate-otp',

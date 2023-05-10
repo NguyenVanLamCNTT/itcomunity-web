@@ -31,18 +31,20 @@
                                 <hr>
                                 <p class="sub-title mx-1">👁️‍🗨️ Chỉ những người có liên kết đến series này, mới có thể
                                     xem được</p>
-                                <button mat-stroked-button color="primary" (click)="submit()">Save</button>
+                                <button mat-stroked-button color="primary" (click)="submit()" [disabled]="seriesForm.invalid || !textDescriptionSeries.length">Save</button>
                             </div>
                         </div>
                     </ul>
                 </div>
             </div>
+            <mat-error *ngIf="isControlInvalid(seriesForm, 'title')">Title is required</mat-error>
         </form>
         <div class="mt-1">
             <app-my-ck-editor [readonly]="readonly" (changeInput)="onchange($event)" [contentRichText]="textDescriptionSeries" [placeholder]="placeholder"></app-my-ck-editor>
+            <mat-error *ngIf="!textDescriptionSeries.length"> Content is required </mat-error>
             <div class="d-flex justify-content-end mt-1">
                 <span class="me-4 fw-bold">Line: 0</span>
-                <span class="fw-bold me-4">Word: 0</span>
+                <span class="fw-bold me-4">Word: {{textDescriptionSeries.length}}</span>
                 <span class="fw-bold me-2">0:0</span>
             </div>
         </div>

@@ -180,7 +180,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   }
 
   isPermission(comment: any) {
-    console.log(comment);
     if (this.authService.checkLogin()) {
       if (this.localUser.id === comment?.author?.id) {
         return true;
@@ -219,7 +218,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
   }
 
   updateComment(comment: any): void {
-    console.log(comment);
     this.contentRichText = comment.content;
     this.isUpdate = true;
     this.commentSelected = comment;
@@ -273,7 +271,6 @@ export class CommentsComponent implements OnChanges, AfterViewInit{
     const modalRef = this.modalService.open(ReportModalComponent, { centered: true, size: 'md' });
     modalRef.result.then((result) => {
       this.notifyService.success('Thank you for your report, we will process it as soon as possible.', 'Success');
-      
     }).catch((error) => {
       console.log(error);
     });

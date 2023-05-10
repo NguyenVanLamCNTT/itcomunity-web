@@ -110,4 +110,15 @@ export class AuthService {
   checkIsVerify(): boolean {
     return this.localStorageHelperService.getIsVerify();
   }
+
+  changePassword(oldPassword: string, newPassword: string): Observable<any> {
+    const url = `${apiUrl}/${path.changePassword}`;
+    const data = { oldPassword, newPassword };
+    return this.apiService.patch(url, data).pipe(
+      map((httpResponse: HttpResponse<any>) => {
+        const body = httpResponse.body.data;
+        return body;
+      })
+    );
+  }
 }
