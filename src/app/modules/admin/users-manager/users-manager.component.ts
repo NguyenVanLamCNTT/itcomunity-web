@@ -32,7 +32,6 @@ export class UsersManagerComponent {
       this.totalUsers = res.totalItems;
       this.dataSource.data = res.items;
       this.loadingServiceService.hideLoading();
-      console.log(res);
     });
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;

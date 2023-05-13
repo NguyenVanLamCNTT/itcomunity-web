@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-plus me-1"></i>
                     Follow
                 </button>
-                <button class="btn-following" *ngIf="isFollowing">
+                <button class="btn-following" *ngIf="isFollowing" (click)="unfollowingMember(user)">
                     <i class="fa-solid fa-check me-1"></i>
                     Following
                 </button>

@@ -26,9 +26,7 @@ export class NewestTrendingComponent {
   listenService(page = 1, itemsSize = 10, sort = 'desc') {
     this.loadingServiceService.showLoading();
     this.postsService.getPostsTrending().subscribe(res => {
-      console.log(res);
       this.listPosts = res;
-      console.log(this.listPosts);
       this.loadingServiceService.hideLoading();
     })
   }

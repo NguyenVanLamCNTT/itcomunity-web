@@ -31,9 +31,9 @@ export class NewestContentCreatorComponent implements OnInit{
               private loadingServiceService: LoadingServiceService) { }
 
   ngOnInit(): void {
+    this.isLogin = this.authService.checkLogin();
     this.listenServiceTopic();
     this.listenServiceUsers();
-    this.isLogin = this.authService.checkLogin();
   }
   listenServiceUsers(page = 1, itemsSize = 18, sort = 'desc') {
     this.loadingServiceService.showLoading();

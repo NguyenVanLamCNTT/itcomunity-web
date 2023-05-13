@@ -16,9 +16,7 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const user = this.localStorageHelperService.getUser();
-      console.log(user);
     if (this.authState.checkLogin()) {
-      console.log(user);
       if (this.localStorageHelperService.getRole()) {
         return true;
       } else {

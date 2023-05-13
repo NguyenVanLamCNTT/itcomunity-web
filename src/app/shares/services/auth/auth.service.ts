@@ -104,7 +104,7 @@ export class AuthService {
   }
 
   checkLogin(): boolean {
-    return this.checkIsVerify() && this.localStorageHelperService.getToken() && this.localStorageHelperService.getRefreshToken();
+    return this.checkIsVerify() && this.localStorageHelperService.getToken() && this.localStorageHelperService.getRefreshToken() ? true : false;
   }
 
   checkIsVerify(): boolean {

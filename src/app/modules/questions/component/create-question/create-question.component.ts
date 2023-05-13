@@ -45,7 +45,6 @@ export class CreateQuestionComponent implements OnInit{
       if (this.questionId) {
         this.questionAnswerService.getQuestionsById(this.questionId).subscribe((question: any) => {
           this.question = question;
-          console.log(question);
           this.questionForm.patchValue({
             title: question.title,
             status: question.status,

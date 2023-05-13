@@ -45,7 +45,6 @@ export class TopicsManagerComponent {
     this.topicService.getTopic(1, 1000).subscribe((res: any) => {
       this.totalSeries = res.totalItems;
       this.dataSource.data = res.items;
-      console.log(res);
       this.loadingServiceService.hideLoading();
     });
   }
@@ -74,13 +73,11 @@ export class TopicsManagerComponent {
   files: any
 
   uploadImage(event: any): void {
-    console.log(event);
     this.files = event.target.files;
   }
   urlThumbnail: any = [];
   filesThumbnail: any;
   detectFileThumbnail(event: any): void {
-    console.log(event.target.result)
     this.urlThumbnail.splice(event);
     this.filesThumbnail = event.target.files || event.dataTransfer.files;
     if (this.filesThumbnail.length < 7) {
@@ -101,20 +98,15 @@ export class TopicsManagerComponent {
 
   createTopic(): void {
     if (this.filesThumbnail && this.filesThumbnail.length > 0) {
-      console.log(this.filesThumbnail[0]);
       const formData = new FormData();
       formData.append('upload', this.filesThumbnail[0]);
-      console.log(formData.getAll('upload'));
       this.uploadFileService.uploadFile(formData).subscribe(res => {
-        console.log(res);
         if (res.fileName) {
           this.topicsForm.value.image = res.fileName;
-          console.log(this.topicsForm.getRawValue());
           const data = {
             name: this.topicsForm.value.name,
             image: res.fileName
           }
-          console.log(data);
           this.topicService.createTopic(data).subscribe(res => {
             this.notifyService.success('Create topic successfully!', 'Success');
             this.listenService();

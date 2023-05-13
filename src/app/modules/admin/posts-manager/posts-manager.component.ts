@@ -30,7 +30,6 @@ export class PostsManagerComponent implements OnInit, AfterViewInit {
     this.postsService.getPosts(1, 1000).subscribe((res: any) => {
       this.totalPosts = res.totalItems;
       this.dataSource.data = res.items;
-      console.log(this.dataSource.data);
       this.loadingServiceService.hideLoading();
 
     });
