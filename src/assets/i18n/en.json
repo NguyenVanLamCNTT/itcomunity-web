@@ -60,5 +60,6 @@
   "NEWEST_FOLLOWING_DESCRIPTION": "The posts here have been displayed based on the Topics, and the posts of the people you follow. If you want to follow new topics or authors, please click",
   "NO_RESULT": "No result",
   "AUTHOR": "Author",
-  "SWITCH_TO_ADMIN_MODE": "Switch to Admin Mode"
+  "SWITCH_TO_ADMIN_MODE": "Switch to Admin Mode",
+  "TABLE_OF_CONTENTS": "Table of Contents"
 }

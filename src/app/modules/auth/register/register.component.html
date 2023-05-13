@@ -72,8 +72,15 @@
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="password">Password</label>
-                <input type="password" id="password" class="form-control is-invalid" formControlName="password" [class.is-invalid]="isControlInvalid(infoRegister, 'email')"
-                [class.is-valid]="isControlValid(infoRegister, 'email')"/>
+                <input type="password" id="password" class="form-control is-invalid" formControlName="password" [class.is-invalid]="isControlInvalid(infoRegister, 'password')"
+                [class.is-valid]="isControlValid(infoRegister, 'password')"/>
+              </div>
+
+               <!-- Password input -->
+               <div class="form-outline mb-4">
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="form-control is-invalid" formControlName="confirmPassword" [class.is-invalid]="!comparePassword() && infoRegister.get('confirmPassword').touched"
+                [class.is-valid]="comparePassword() && infoRegister.get('confirmPassword').touched"/>
               </div>
   
               <!-- Checkbox -->

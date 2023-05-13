@@ -85,13 +85,15 @@ export class AccountComponent implements OnInit{
       fd.append('upload', this.fileProfile[0]);
       this.uploadFileService.uploadFile(fd).pipe(
         switchMap((url: any) => {
-          userUpdate.avatar = url;
+          console.log(url);
+          userUpdate.avatar = url.fileName;
           return this.userService.updateMe(userUpdate);
         }),
         switchMap((res: any) => {
           return this.userService.getMe();
         })
       ).subscribe((res: any) => {
+        console.log(res);
         this.localStorageHelperService.addUser(res);
         this.listenService();
         this.notifyService.success('Update profile successfully!', 'Success');

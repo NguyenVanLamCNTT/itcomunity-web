@@ -44,7 +44,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HighlightJsModule,
     PopoverModule,
     ToastrModule.forRoot(),
-    NgApexchartsModule
   ],
   providers: [
     // authInterceptorProviders

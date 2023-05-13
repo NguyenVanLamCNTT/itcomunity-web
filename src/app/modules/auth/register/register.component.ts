@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { ConfirmedValidator } from '../../change-password/confirmed.validator';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ import { of } from 'rxjs';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  infoRegister = this.initFormRegister();
+  infoRegister: any = this.initFormRegister();
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -33,8 +34,20 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       age: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
       gender: new FormControl('', [Validators.required]),
-      fullname: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]+$/)]),
+      fullname: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)])
     });
+  }
+
+  comparePassword(): boolean {
+    const password = this.infoRegister.value.password;
+    const confirmPassword = this.infoRegister.value.confirmPassword;
+    console.log(password, confirmPassword);
+    if (password && confirmPassword && password === confirmPassword) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   register(): void {
