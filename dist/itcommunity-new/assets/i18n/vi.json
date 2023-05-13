@@ -60,5 +60,6 @@
     "NEWEST_FOLLOWING_DESCRIPTION": "Các bài đăng ở đây đã được hiển thị dựa trên Chủ đề và bài đăng của những người bạn theo dõi. Nếu bạn muốn theo dõi các chủ đề hoặc tác giả mới, xin vui lòng bấm",
     "NO_RESULT": "Không có kết quả",
     "AUTHOR": "Tác giả",
-    "SWITCH_TO_ADMIN_MODE": "Chuyển sang chế độ quản trị"
+    "SWITCH_TO_ADMIN_MODE": "Chuyển sang chế độ quản trị",
+    "TABLE_OF_CONTENTS": "Mục lục"
 }
