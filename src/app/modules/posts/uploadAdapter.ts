@@ -16,6 +16,10 @@ export class MyUploadAdapter implements UploadAdapter {
   upload(): Promise<{ default: string }> {
     return this.loader.file.then((file: any) => {
       return new Promise<{ default: string }>((resolve, reject) => {
+        if (!this.token || !file) {
+          reject('Token not found!');
+          return;
+        }
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'https://api.it-community.tech/api/dms/upload', true);
         xhr.setRequestHeader('Authorization', 'Bearer ' + this.token); // if you're using JWT authentication
@@ -23,18 +27,19 @@ export class MyUploadAdapter implements UploadAdapter {
         const formData = new FormData();
         formData.append('upload', file);
         xhr.send(formData);
-        // setTimeout(() => {
+
         xhr.onreadystatechange = () => {
-          if (xhr.readyState === 4) {
-            if (xhr.status >= 200 && xhr.status < 300) {
-              const response = JSON.parse(xhr.response);
-              resolve({ default: response.data.fileName });
-            } else {
-              reject(xhr.response);
+          setTimeout(() => {
+            if (xhr.readyState === 4 && xhr.response !== '' && xhr.response !== undefined && xhr.response !== null) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                const response = JSON.parse(xhr.response);
+                resolve({ default: response.data.fileName });
+              } else {
+                reject(xhr.response);
+              }
             }
-          }
+          }, 1000);
         };
-        // }, 1000);
       });
     });
   }

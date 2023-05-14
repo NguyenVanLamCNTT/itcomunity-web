@@ -29,6 +29,7 @@ export class ValidateEmailComponent implements OnInit {
     this.translateService.use(currentLanguage || 'vi');
     this.startTime();
   }
+
   startTime(): void {
     this.secondTimeline = 120;
     const interval = setInterval(() => {
@@ -122,6 +123,8 @@ export class ValidateEmailComponent implements OnInit {
   }
 
   resendOTP(): void {
+    const user = this.localStorageHelperService.getUser();
+    console.log(user);
     this.startTime();
   }
 }

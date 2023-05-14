@@ -14,7 +14,7 @@ import { ConfirmModalComponent } from 'src/app/shares/share-ui/modal/confirm-mod
   styleUrls: ['./users-manager.component.scss']
 })
 export class UsersManagerComponent {
-  displayedColumns: string[] = ['author', 'username', 'postsNumber', 'questionsNumber', 'seriesNumber', 'action'];
+  displayedColumns: string[] = ['author', 'username', 'postsNumber', 'questionsNumber', 'seriesNumber', 'email', 'created', 'action'];
   dataSource = new MatTableDataSource<any>();
   totalUsers: number = 0;
 
@@ -28,9 +28,11 @@ export class UsersManagerComponent {
 
   listenService(): void {
     this.loadingServiceService.showLoading();
-    this.userService.getAllUsers(1, 1000).subscribe((res: any) => {
-      this.totalUsers = res.totalItems;
-      this.dataSource.data = res.items;
+    this.userService.getAllUsersAdmin(1, 1000).subscribe((res: any) => {
+      this.totalUsers = res.length;
+      this.dataSource.data = res.sort((a: any, b: any) => {
+        return a.created - b.created;
+      });
       this.loadingServiceService.hideLoading();
     });
   }
