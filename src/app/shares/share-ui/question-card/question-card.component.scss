@@ -5,10 +5,21 @@
     }
 
     .avatar {
-        span {
+        .name {
             font-size: 1rem;
             color: var(--main-color);
             font-weight: 500;
+            cursor: pointer;
+        }
+        img {
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .username {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            font-weight: 400;
+            cursor: pointer;
         }
     }
 

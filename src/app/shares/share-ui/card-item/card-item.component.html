@@ -37,7 +37,7 @@
                         </a>
                     </div> -->
                     <div class="tag-name me-1" *ngFor="let tag of item?.keywords">
-                        <a href="#">
+                        <a routerLink="/search/{{ tag }}">
                             <span>{{ tag }}</span>
                         </a>
                     </div>

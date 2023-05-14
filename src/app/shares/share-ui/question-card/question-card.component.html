@@ -24,15 +24,18 @@
         </div>
         <div class="ms-0 ms-md-3 right-card">
             <div class="avatar d-flex align-items-center">
-                <img src="{{question?.author?.avatar}}" width="30" height="30" alt="">
-                <span class="name ms-1">{{question?.author?.fullname}}</span>
+                <img src="{{question?.author?.avatar}}" width="40" height="40" alt="" routerLink="/profile/{{question?.author?.username}}/posts">
+                <div class="ms-2">
+                    <span class="name" routerLink="/profile/{{question?.author?.username}}/posts">{{question?.author?.fullname}}</span>
+                    <p class="username" routerLink="/profile/{{question?.author?.username}}/posts">@{{question?.author?.username}}</p>
+                </div>
             </div>
             <div class="title my-2">
                 <a routerLink="/questions/{{question?.id}}">{{question?.title}}</a>
             </div>
             <div class="d-flex">
                 <div class="tag-name me-1" *ngFor="let tag of question?.keywords">
-                    <a href="#">
+                    <a routerLink="/search/{{ parseObject(tag) }}">
                         <span>{{ parseObject(tag) }}</span>
                     </a>
                 </div>

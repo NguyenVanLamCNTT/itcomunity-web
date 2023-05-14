@@ -1,4 +1,11 @@
 .profile-header {
+    .profile-header-avatar {
+        img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+        }
+    }
     .profile-header-text {
         color: var(--gray-text);
         font-weight: 400 !important;
