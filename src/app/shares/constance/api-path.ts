@@ -34,6 +34,7 @@ export const apiPath = {
       getMe: 'api/users/me/info',
       byUsername: 'api/users/user',
       follow: 'api/users/user/follow',
+      allUserAdmin: 'api/users/dashboard/summary',
     },
     series: {
       series: 'api/series',

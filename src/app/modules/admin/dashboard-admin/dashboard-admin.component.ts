@@ -195,7 +195,7 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       const posts = res.items;
       this.totalPosts = res.totalItems;
       const total = res.totalItems;
-      this.totalPostsInDay = posts.filter((post: any) => {
+      this.totalPostsInDay = posts?.filter((post: any) => {
         const date = new Date(post.created);
         const today = new Date();
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
@@ -205,9 +205,8 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       });
       this.dataByMonth = this.dataByMonth.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[0].data = this.dataByMonth;
-      // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
-      chart.render();
+      // chart.render();
     });
 
     this.seriesService.getSeries(1, 100).subscribe((res: any) => {
@@ -217,17 +216,16 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       series.map((serie: any) => {
         this.getSeriesByCreateByMonth(serie)
       });
-      this.totalSeriesInDay = series.posts.filter((series1: any) => {
-        const date = new Date(series1.ost.created);
+      this.totalSeriesInDay = series?.filter((series1: any) => {
+        const date = new Date(series1.created);
         const today = new Date();
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
       }).length;
 
       this.dataByMonthSeries = this.dataByMonthSeries.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[1].data = this.dataByMonthSeries;
-      // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
-      chart.render();
+      // chart.render();
     });
 
     this.questionAnswerService.getQuestion(1, 100).subscribe((res: any) => {
@@ -237,27 +235,26 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       questionAnswers.map((questionAnswer: any) => {
         this.getQuestionAnswerByCreateByMonth(questionAnswer)
       });
-      this.totalQuestionsInDay = questionAnswers.posts.filter((series1: any) => {
-        const date = new Date(series1.ost.created);
+      this.totalQuestionsInDay = questionAnswers?.filter((series1: any) => {
+        const date = new Date(series1.created);
         const today = new Date();
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
       }).length;
 
       this.dataByMonthQuestion = this.dataByMonthQuestion.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[2].data = this.dataByMonthQuestion;
-      // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
-      chart.render();
+      // chart.render();
     });
 
-    this.userService.getAllUsers(1, 100).subscribe((res: any) => {
-      const users = res.items;
-      const total = res.totalItems;
-      this.totalUsers = res.totalItems;
+    this.userService.getAllUsersAdmin(1, 100).subscribe((res: any) => {
+      const users = res;
+      const total = res.length;
+      this.totalUsers = total;
       users.map((user: any) => {
         this.getUserByCreateByMonth(user)
       });
-      this.totalUsersInDay = users.filter((user: any) => {
+      this.totalUsersInDay = users?.filter((user: any) => {
         const date = new Date(user.created);
         const today = new Date();
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
@@ -266,7 +263,7 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       // this.chartOptions.series[3].data = this.dataByMonthUser;
       // this.chart
       const chart = new ApexCharts(this.chart, this.chartOptions);
-      chart.render();
+      // chart.render();
     });
 
     this.topicService.getTopic(1, 100).subscribe((res: any) => {
@@ -277,7 +274,7 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
         this.getTopicByCreateByMonth(topic)
       });
 
-      this.totalTopicsInDay = topics.filter((topic: any) => {
+      this.totalTopicsInDay = topics?.filter((topic: any) => {
         const date = new Date(topic.created);
         const today = new Date();
         return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
@@ -285,7 +282,7 @@ export class DashboardAdminComponent implements OnInit, OnChanges{
       this.dataByMonthTopic = this.dataByMonthTopic.map((data: any) => Number((parseInt(data)/parseInt(total) * 100).toFixed(0)));
       this.chartOptions.series[3].data = this.dataByMonthTopic;
       const chart = new ApexCharts(this.chart, this.chartOptions);
-      chart.render();
+      // chart.render();
     });
   }
 

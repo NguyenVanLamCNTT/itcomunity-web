@@ -27,6 +27,17 @@ export class UserService {
       );
   }
 
+  getAllUsersAdmin(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<User[]>{
+    const url = `${apiUrl}/${path.allUserAdmin}`;
+    return this.apiService.get(url)
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
   getMe(): Observable<User>{
     const url = `${apiUrl}/${path.getMe}`;
     return this.apiService.get(url)
