@@ -76,7 +76,7 @@ export class AccountComponent implements OnInit{
 
   submit(): void {
     const userUpdate = new User();
-    userUpdate.fullName = this.userForm.value.fullname;
+    userUpdate.fullname = this.userForm.value.fullname;
     userUpdate.about = this.userForm.value.about;
     userUpdate.avatar = this.urlProfile;
     userUpdate.age = this.userForm.value.age;

@@ -141,3 +141,17 @@ a {
 .dropdown-item {
     cursor: pointer;
 }
+
+.image-style-align-left {
+    float: left;
+}
+
+.image-style-align-right {
+    float: right;
+}
+
+.image-style-align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

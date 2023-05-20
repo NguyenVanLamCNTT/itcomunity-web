@@ -195,9 +195,9 @@ export class CreatePostsComponent implements OnInit {
     const keywords = this.tags.map((tag: any) => tag.name);
     const data: Posts = {
       name: this.postsForm.value.title,
-      topics: [1],
+      topics: [this.postsForm.value.topics],
       content: this.content,
-      keywords: keywords,
+      keywords: keywords, 
       status: this.formOptionPosts.value.status,
       imageUrl: ''
     };
