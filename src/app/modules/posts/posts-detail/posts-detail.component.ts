@@ -70,15 +70,13 @@ export class PostsDetailComponent implements OnInit, AfterViewInit {
     ).subscribe(
       (res: any) => {
         this.loadingServiceService.hideLoading();
-        this.postsRelatedAuthor = res?.items.filter((res: Posts) => res.id !== this.posts?.id).slice(0, 3);
-        console.log('this.postsRelatedAuthor', this.postsRelatedAuthor);
+        this.postsRelatedAuthor = res?.items.filter((res: Posts) => res.id !== this.posts?.id).slice(0, 4);
       }
     );
 
     this.postsService.getPostsTrending(1, 10).subscribe(res => {
       this.postsTrending = res;
       this.postsTrending = this.postsTrending.splice(0, 4);
-      console.log('this.postsTrending', this.postsTrending);
     });
   }
 

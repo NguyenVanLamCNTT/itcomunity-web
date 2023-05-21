@@ -62,12 +62,12 @@
                         <span>Edit posts</span>
                     </a>
                 </li>
-                <li *ngIf="isPermission()">
+                <!-- <li *ngIf="isPermission()">
                     <a class="dropdown-item p-3 py-2" href="#">
                         <i class="fa-regular fa-square-plus me-2"></i>
                         <span>Add posts to series</span>
                     </a>
-                </li>
+                </li> -->
                 <li *ngIf="isPermission()">
                     <a class="dropdown-item p-3 py-2" (click)="deletePosts(posts?.id)">
                         <i class="fa-duotone fa-trash me-2"></i>
