@@ -61,5 +61,9 @@
   "NO_RESULT": "No result",
   "AUTHOR": "Author",
   "SWITCH_TO_ADMIN_MODE": "Switch to Admin Mode",
-  "TABLE_OF_CONTENTS": "Table of Contents"
+  "TABLE_OF_CONTENTS": "Table of Contents",
+  "POSTS_EMPTY": "This user has no posts yet or they are not public. You can follow them to see their posts.",
+  "SERIES_EMPTY": "This user has no series yet or they are not public. You can follow them to see their series.",
+  "QUESTIONS_EMPTY": "This user has no questions yet or they are not public. You can follow them to see their questions.",
+  "COPY_LINK": "Copy link profile"
 }

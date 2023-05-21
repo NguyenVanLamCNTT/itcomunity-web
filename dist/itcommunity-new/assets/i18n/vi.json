@@ -32,7 +32,7 @@
     "FOLLOWING": "Đang theo dõi",
     "UNFOLLOW": "Bỏ theo dõi",
     "FOLLOWERS": "Người theo dõi",
-    "MEMBER_TO_FOLLOW": "Thành viên theo dõi",
+    "MEMBER_TO_FOLLOW": "Gợi ý thành viên theo dõi",
     "NEWEST_POSTS_OF_THE_PEOPLE_YOU_FOLLOW": "Bài viết mới nhất của những người bạn theo dõi",
     "TRENDING_POSTS": "Bài viết nổi bật",
     "POSTS_INFO": "Thông tin",
@@ -61,5 +61,9 @@
     "NO_RESULT": "Không có kết quả",
     "AUTHOR": "Tác giả",
     "SWITCH_TO_ADMIN_MODE": "Chuyển sang chế độ quản trị",
-    "TABLE_OF_CONTENTS": "Mục lục"
+    "TABLE_OF_CONTENTS": "Mục lục",
+    "POSTS_EMPTY": "Người dùng này chưa có bài đăng trên blog nào hoặc chúng không được công khai. Bạn có thể theo dõi họ để xem bài viết của họ.",
+    "SERIES_EMPTY": "Người dùng này chưa có series nào hoặc chúng không được công khai. Bạn có thể theo dõi họ để xem series của họ.",
+    "QUESTIONS_EMPTY": "Người dùng này chưa có câu hỏi nào hoặc chúng không được công khai. Bạn có thể theo dõi họ để xem câu hỏi của họ.",
+    "COPY_LINK": "Sao chép liên kết"
 }
