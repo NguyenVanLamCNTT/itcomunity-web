@@ -66,6 +66,12 @@ export class TopicsManagerComponent {
       // }, err => {
       //   this.notifyService.error('Delete series failed!', 'Error');
       // })
+      this.topicService.deleteTopic(posts.id).subscribe(res => {
+        this.notifyService.success('Delete topic successfully!', 'Success');
+        this.listenService();
+      }, err => {
+        this.notifyService.error('Delete topic failed!', 'Error');
+      });
     }).catch((error) => {
       console.log(error);
     });

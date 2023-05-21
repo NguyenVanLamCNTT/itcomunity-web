@@ -27,7 +27,9 @@
         <div class="container-md">
             <ul class="d-flex justify-content-start align-items-center h-100 menu-outer p-0">
                 <li class="h-100 px-5 menu-item" id="posts" *ngFor="let item of menuItems" (click)="itemSelected(item)" [class.active]="item.active" routerLink="{{ item?.link }}">
-                    <a class="my-auto">{{ item?.name }}</a>
+                    <a class="my-auto">
+                        {{ item.name | translate}}
+                    </a>
                 </li>
             </ul>
         </div>

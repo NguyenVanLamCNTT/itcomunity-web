@@ -39,7 +39,7 @@
     </div>
     <div class="d-flex">
         <div class="tag-name me-1" *ngFor="let tag of tags">
-            <a href="#">
+            <a routerLink="/search/{{ tag }}">
                 <span>{{ tag.name ? tag.name : tag }}</span>
             </a>
         </div>

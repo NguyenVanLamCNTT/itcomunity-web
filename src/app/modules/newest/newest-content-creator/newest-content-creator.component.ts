@@ -35,7 +35,8 @@ export class NewestContentCreatorComponent implements OnInit{
     this.listenServiceTopic();
     this.listenServiceUsers();
   }
-  listenServiceUsers(page = 1, itemsSize = 18, sort = 'desc') {
+  listenServiceUsers(page = 1, itemsSize = 9, sort = 'desc') {
+    page = this.getRandomInt(1, 4);
     this.loadingServiceService.showLoading();
     if (!this.isLogin) {
       this.userService.getAllUsers(page, itemsSize).subscribe((res: any) => {
@@ -72,6 +73,12 @@ export class NewestContentCreatorComponent implements OnInit{
       console.log(err);
       this.loadingServiceService.hideLoading();
     });
+  }
+
+  getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
   }
 
   listenServiceTopic(page = 1, itemsSize = 18, sort = 'desc') {

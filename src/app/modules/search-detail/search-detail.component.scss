@@ -79,6 +79,52 @@
         }
     }
 }
+.topic-outer {
+    .title {
+        display: flex;
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--gray-text);
+            margin-right: 10px;
+        }
+
+        hr {
+            flex: 1;
+        }
+    }
+
+    .card-topic-group {
+        display: flex;
+        flex-wrap: wrap;
+
+        .card-topic {
+            width: 33% !important;
+            margin: 0;
+            margin-right: 1px;
+
+            .topic-title {
+                font-size: 1rem;
+                font-weight: 500;
+                color: var(--black);
+                margin-bottom: 10px;
+
+                i {
+                    color: #fe9e40;
+                }
+            }
+        }
+    }
+
+    .left-card {
+        width: 70%;
+    }
+
+    .right-card {
+        width: 30%;
+    }
+}
 
 .btn-follow {
     background-color: var(--main-color);

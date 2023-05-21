@@ -2,7 +2,7 @@ import { TopicService } from './../../../shares/services/topic/topic.service';
 import { User } from './../../../shares/models/user/user';
 import { LocalStorageHelperService } from './../../../shares/services/token-storage/localstorage-helper.service';
 import { UserService } from './../../../shares/services/user/user.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -80,7 +80,7 @@ export class CreatePostsComponent implements OnInit {
         this.postsService.getPostsById(params.id).subscribe((res: any) => {
           this.postsOld = res;
           this.postsForm.controls.title.setValue(res.name);
-          this.postsForm.controls.topics.setValue(res.topics);
+          this.postsForm.controls.topics.setValue(res.topicIds[0]);
           this.contentRichText = res.content;
           // this.urlThumbnail = res.imageThumbnail;
           this.tags = res.keywords.map((item: any) => {
@@ -195,12 +195,13 @@ export class CreatePostsComponent implements OnInit {
     const keywords = this.tags.map((tag: any) => tag.name);
     const data: Posts = {
       name: this.postsForm.value.title,
-      topics: [this.postsForm.value.topics],
+      topics: [Number(this.postsForm.value.topics)],
       content: this.content,
       keywords: keywords, 
       status: this.formOptionPosts.value.status,
       imageUrl: ''
     };
+    console.log('data', data);
     if (this.filesThumbnail && this.filesThumbnail[0]) {
       const fd = new FormData();
       fd.append('upload', this.filesThumbnail[0]);

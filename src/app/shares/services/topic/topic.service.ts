@@ -15,8 +15,8 @@ export class TopicService {
 
   constructor(private apiService: ApiService) { }
   
-  public getTopic(page?: number, perPage?: number, sort?: string, username?: string): Observable<any> {
-    const url = `${apiUrl}/${path.topic}?page=${page}&perPage=${perPage}`;
+  public getTopic(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<any> {
+    const url = `${apiUrl}/${path.topic}?page=${page}&perPage=${perPage}` + (sort ? `&sort=${sort}` : '') + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '');
     return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
@@ -51,6 +51,17 @@ export class TopicService {
   public removeTopicFromUser(topicId: number) {
     const url = `${apiUrl}/${path.removeTopic}`;
     return this.apiService.post(url, {topicId})
+      .pipe(
+        map((httpResponse: HttpResponse<any>) => {
+          const body = httpResponse.body;
+          return body || {};
+        })
+      );
+  }
+
+  public deleteTopic(topicId: number): Observable<any> {
+    const url = `${apiUrl}/${path.topic}/${topicId}`;
+    return this.apiService.delete(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {
           const body = httpResponse.body;

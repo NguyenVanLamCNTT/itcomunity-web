@@ -1,7 +1,7 @@
 <div class="mx-2">
     <div class="text-center" *ngIf="listQuestions?.items.length === 0">
         <p class="text-description">
-            This user has no blog questions yet or they are not public. You can follow them to see their questions. 
+            {{ 'QUESTIONS_EMPTY' | translate }}
         </p>
     </div>
     <div *ngFor="let question of listQuestions?.items| paginate: {

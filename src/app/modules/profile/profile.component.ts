@@ -24,19 +24,19 @@ export class ProfileComponent implements OnInit{
 
   menuItems = [
     {
-      name: 'Posts',
+      name: 'POSTS',
       link: `/profile/${this.router.url.split('/')[2]}/posts`,
       id: 'posts',
       active: false
     },
     {
-      name: 'Series',
+      name: 'SERIES',
       link: `/profile/${this.router.url.split('/')[2]}/series`,
       id: 'series',
       active: false
     },
     {
-      name: 'Questions',
+      name: 'QUESTIONS',
       link: `/profile/${this.router.url.split('/')[2]}/questions`,
       id: 'questions',
       active: false

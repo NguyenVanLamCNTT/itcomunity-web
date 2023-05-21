@@ -15,10 +15,13 @@
         <div class="menu-item me-3" (click)="setActiveMenu('author')">
             <p id="author">{{ 'AUTHOR' | translate }}</p>
         </div>
+        <div class="menu-item me-3" (click)="setActiveMenu('topics')">
+            <p id="topics">{{ 'TOPIC' | translate }}</p>
+        </div>
     </div>
     
     <div *ngIf="isPosts">
-        <div *ngIf="listPosts.length === 0" class="mt-5">
+        <div *ngIf="listPosts?.length === 0" class="mt-5">
             <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
         </div>
         <div *ngFor="let item of listPosts">
@@ -27,7 +30,7 @@
     </div>
 
     <div *ngIf="isQuestions">
-        <div *ngIf="listQuestions.length === 0" class="mt-5">
+        <div *ngIf="listQuestions?.length === 0" class="mt-5">
             <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
         </div>
         <div *ngFor="let item of listQuestions">
@@ -37,7 +40,7 @@
 
     <div *ngIf="isAuthor">
         <div class="user-list">
-            <div *ngIf="listUsers.length === 0" class="mt-5">
+            <div *ngIf="listUsers?.length === 0" class="mt-5">
                 <p class="text-center text-secondary">{{ 'NO_RESULT' | translate }}</p>
             </div>
             <div class="user-card mt-4" *ngFor="let user of listUsers">
@@ -78,6 +81,50 @@
                     <div class="icon-item">
                         <i class="fa-solid fa-list"></i>
                         <span class="ms-1">{{user?.seriesNumber}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-outer" *ngIf="isTopics">
+        <div class="card-topic-group">
+            <div class="card-topic mt-4 p-1" *ngFor="let topic of listTopics">
+                <div class="d-flex align-items-start justify-content-between">
+                    <div class="d-flex left-card">
+                        <div class="card-topic-img">
+                            <img src="{{topic.image}}" width="100" height="100" alt="">
+                        </div>
+                        <div class="ms-2">
+                            <p class="topic-title m-0">
+                                <i class="rss-icon fa fa-rss-square pr-05"></i>
+                                {{topic.name}}
+                            </p>
+                            <div>
+                                <div>
+                                    <span>Posts:</span>
+                                    <span class="ms-1">{{topic.postNumber}}</span>
+                                </div>
+                                <div>
+                                    <span>Followers:</span>
+                                    <span class="ms-1">{{topic.followersNumber}}</span>
+                                </div>
+                                <div>
+                                    <span>Answers:</span>
+                                    <span class="ms-1">{{topic.answerNumber}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-card d-flex justify-content-end">
+                        <button class="btn-follow me-2" *ngIf="!topic?.isFollowing" (click)="followingTopic(topic)">
+                            <i class="fa-solid fa-plus"></i>
+                            Follow
+                        </button>
+                        <button class="btn-following me-1" *ngIf="topic?.isFollowing" (click)="unFollowingTopic(topic)">
+                            <i class="fa-solid fa-check"></i>
+                            Following
+                        </button>
                     </div>
                 </div>
             </div>

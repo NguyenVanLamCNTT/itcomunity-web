@@ -1,3 +1,4 @@
+import { NotifyService } from 'src/app/shares/services/notify/notify.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notifyService: NotifyService) { }
 
   ngOnInit(): void {
   }
 
+  sendEmail(): void {
+    this.notifyService.success('Register notify successfully!', 'Success');
+  }
 }
