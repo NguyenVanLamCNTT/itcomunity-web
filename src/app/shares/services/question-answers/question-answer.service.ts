@@ -26,8 +26,8 @@ export class QuestionAnswerService {
       );
   }
 
-  public getQuestion(page?: number, perPage?: number, sort?: string, username?: string, search?: string): Observable<any> {
-    const url = `${apiUrl}/${path.question}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '');
+  public getQuestion(page?: number, perPage?: number, sort?: string, username?: string, search?: string, isDeleted?: boolean): Observable<any> {
+    const url = `${apiUrl}/${path.question}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '') + (isDeleted ? `&isDeleted=${isDeleted}` : '');
     return this.apiService.getNoToken(url)
       .pipe(
         map((httpResponse: HttpResponse<any>) => {

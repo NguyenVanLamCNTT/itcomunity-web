@@ -16,6 +16,7 @@ export const apiPath = {
       register: 'api/auth/register',
       sendOTP: 'api/auth/send-otp',
       verifyOTP: 'api/auth/validate-otp',
+      revertDelete: 'api/auth/revert-deleted',
     },
     posts: {
       posts: 'api/posts',

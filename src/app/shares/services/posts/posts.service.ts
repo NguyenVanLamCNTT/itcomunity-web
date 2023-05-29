@@ -27,8 +27,8 @@ export class PostsService {
       );
   }
 
-  public getPosts(page?: number, perPage?: number, sort?: string, username?: string, search?: string, status?: string): Observable<Posts[]> {
-    const url = `${apiUrl}/${path.posts}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '') + (status ? `&status=${status}` : '');
+  public getPosts(page?: number, perPage?: number, sort?: string, username?: string, search?: string, status?: string, isDeleted?: boolean): Observable<Posts[]> {
+    const url = `${apiUrl}/${path.posts}?page=${page}&perPage=${perPage}` + (username ? `&username=${username}` : '') + (search ? `&search=${search}` : '') + (status ? `&status=${status}` : '') + (isDeleted ? `&isDeleted=${isDeleted}` : '');
     const params: HttpParams = new HttpParams();
     page && params.set('page', page.toString());
     perPage && params.set('perPage', perPage.toString());

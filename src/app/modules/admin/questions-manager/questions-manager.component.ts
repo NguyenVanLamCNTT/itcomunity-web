@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shares/services/auth/auth.service';
 import { LoadingServiceService } from './../../../shares/services/loading/loading-service.service';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -17,16 +18,19 @@ export class QuestionsManagerComponent {
   displayedColumns: string[] = ['author', 'title', 'answerNumber', 'created', 'modified', 'action'];
   dataSource = new MatTableDataSource<any>();
   totalQuestions: number = 0;
+  isDelete: boolean = false;
 
   constructor(private questionAnswerService: QuestionAnswerService,
     private notifyService: NotifyService,
     private modalService: NgbModal,
-    private loadingServiceService: LoadingServiceService) { }
+    private loadingServiceService: LoadingServiceService,
+    private authService: AuthService) { }
   ngOnInit(): void {
     this.listenService();
   }
 
   listenService(): void {
+    this.isDelete = false;
     this.loadingServiceService.showLoading();
     this.questionAnswerService.getQuestion(1, 1000).subscribe((res: any) => {
       this.totalQuestions = res.totalItems;
@@ -54,6 +58,22 @@ export class QuestionsManagerComponent {
       })
     }).catch((error) => {
       console.log(error);
+    });
+  }
+
+  getDeleteQuestions(): void {
+    this.isDelete = true;
+    this.questionAnswerService.getQuestion(1, 1000, '', '', '', true).subscribe((res: any) => {
+      this.totalQuestions = res.totalItems;
+      this.dataSource.data = res.items;
+    });
+  }
+
+  restoreQuestion(question: any): void {
+    this.authService.revertDelete(0, 0, question.id).subscribe(res => {
+      this.notifyService.success('Restore question successfully!', 'Success');
+      this.getDeleteQuestions();
+      this.listenService();
     });
   }
 }

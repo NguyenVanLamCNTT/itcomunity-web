@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shares/services/auth/auth.service';
 import { LoadingServiceService } from './../../../shares/services/loading/loading-service.service';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -17,16 +18,19 @@ export class SeriesManagerComponent {
   displayedColumns: string[] = ['author', 'name', 'status', 'created', 'modified', 'action'];
   dataSource = new MatTableDataSource<any>();
   totalSeries: number = 0;
+  isDelete: boolean = false;
 
   constructor(private seriesService: SeriesService,
     private notifyService: NotifyService,
     private modalService: NgbModal,
-    private loadingServiceService: LoadingServiceService) { }
+    private loadingServiceService: LoadingServiceService,
+    private authService: AuthService) { }
   ngOnInit(): void {
     this.listenService();
   }
 
   listenService(): void {
+    this.isDelete = false;
     this.loadingServiceService.showLoading();
     this.seriesService.getSeries(1, 1000).subscribe((res: any) => {
       this.totalSeries = res.totalItems;
@@ -54,6 +58,24 @@ export class SeriesManagerComponent {
       })
     }).catch((error) => {
       console.log(error);
+    });
+  }
+
+  getDeleteSeries(): void {
+    this.isDelete = true;
+    this.loadingServiceService.showLoading();
+    this.seriesService.getSeries(1, 1000, '', '', this.isDelete).subscribe((res: any) => {
+      this.totalSeries = res.totalItems;
+      this.dataSource.data = res.items;
+      this.loadingServiceService.hideLoading();
+    });
+  }
+
+  revertSeries(series: any): void {
+    this.authService.revertDelete(0, 0, 0, 0, series.id).subscribe(res => {
+      this.notifyService.success('Revert series successfully!', 'Success');
+      this.getDeleteSeries();
+      this.listenService();
     });
   }
 }

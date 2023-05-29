@@ -121,4 +121,20 @@ export class AuthService {
       })
     );
   }
+
+  revertDelete(userId?: number, postId?: number, questionId?: number, topicId?: number, seriesId?: number): Observable<any> {
+    const url = `${apiUrl}/${path.revertDelete}`;
+    return this.apiService.patch(url, {
+      userId,
+      postId,
+      questionId,
+      topicId,
+      seriesId
+    }).pipe(
+      map((httpResponse: HttpResponse<any>) => {
+        const body = httpResponse.body.data;
+        return body;
+      })
+    );
+  }
 }

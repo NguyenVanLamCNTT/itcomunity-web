@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shares/services/auth/auth.service';
 import { LoadingServiceService } from './../../../shares/services/loading/loading-service.service';
 import { NotifyService } from './../../../shares/services/notify/notify.service';
 import { PostsService } from 'src/app/shares/services/posts/posts.service';
@@ -16,22 +17,24 @@ export class PostsManagerComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['author', 'name', 'status', 'created', 'modified', 'action'];
   dataSource = new MatTableDataSource<any>();
   totalPosts: number = 0;
+  isDelete: boolean = true;
 
   constructor(private postsService: PostsService,
     private notifyService: NotifyService,
     private modalService: NgbModal,
-    private loadingServiceService: LoadingServiceService) { }
+    private loadingServiceService: LoadingServiceService,
+    private authService: AuthService) { }
   ngOnInit(): void {
     this.listenService();
   }
 
   listenService(): void {
+    this.isDelete = false;
     this.loadingServiceService.showLoading();
     this.postsService.getPosts(1, 1000).subscribe((res: any) => {
       this.totalPosts = res.totalItems;
       this.dataSource.data = res.items;
       this.loadingServiceService.hideLoading();
-
     });
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -54,6 +57,23 @@ export class PostsManagerComponent implements OnInit, AfterViewInit {
       });
     }).catch((error) => {
       console.log(error);
+    });
+  }
+  getDeletePosts(): void {
+    this.isDelete = true;
+    this.loadingServiceService.showLoading();
+    this.postsService.getPosts(1, 1000, '', '', '', '', this.isDelete).subscribe((res: any) => {
+      this.totalPosts = res.totalItems;
+      this.dataSource.data = res.items;
+      this.loadingServiceService.hideLoading();
+    });
+  }
+  
+  revertPosts(posts: any): void {
+    this.authService.revertDelete(0, posts.id).subscribe(res => {
+      this.notifyService.success('Revert posts successfully!', 'Success');
+      this.listenService();
+      this.getDeletePosts();
     });
   }
 }
